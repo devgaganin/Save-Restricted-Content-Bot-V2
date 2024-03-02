@@ -93,7 +93,7 @@ Deploy your bot on `heroku`
 # Editing Repo - [TEAM SPY](https://t.me/dev_gagan)
 
 You can freely edit repo the customisation you can do is -
-- Change command pattern like /batch to other name (edit this in ```main/plugins/batch.py```)
+- Change command pattern like `/batch` to other name (edit this in ```main/plugins/batch.py```) by searching and replacing `/batch` to desired command.
 - Adding Custom Text in caption (edit this in ```main/plugins/pyroplug.py```) search for 
 ```
 caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
