@@ -46,7 +46,7 @@ FORCESUB: Before starting building bots create a public channel and get the user
 Easy Method:
 
 - Go to main then edit ```__init__.py``` as below
-- Place `#` befpre every `config` and after `=` write your vars in single inverted comma. see example below
+- Place `#` before every `config` and after `=` write your vars in single inverted comma. see example below
 
 ```
 # variables
@@ -64,13 +64,13 @@ AUTH = "1234567" #config("AUTH", default=None)
 sudo apt update
 sudo apt install ffmpeg git python3-pip
 git clone your_repo_link
-cd saverestrictedcontentbot 
+cd you_repo_name
 pip3 install -r requirements.txt
 python3 -m main
 ```
 
 - if you want bot to be running in background then enter `screen -S gagan` before `python3 -m main` 
-- after `python3 -m main`, click ctrl+A, ctrl+D
+- after `python3 -m main`, click `ctrl+A`, `ctrl+D`
 - if you want to stop bot, then enter `screen -r gagan` and to kill screen enter `screen -S gagan -X quit`.
 
 
