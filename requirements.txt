@@ -1,4 +1,4 @@
-#Github.com-Vasusen-code
+#GitHub github.com/devgaganin
 https://devgagan.in/wp-content/uploads/2023/12/gagantelethon.zip
 #ethon==1.3.8
 cryptg
