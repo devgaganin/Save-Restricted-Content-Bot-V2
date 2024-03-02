@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>Save restricted Content Bot by <a href="https://t.me/dev_gagan"> Team SPY</a></b>
+  <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan.in </a>
 </h1> 
 
 Contact: [Telegram](https://t.me/dev_gagan)
@@ -45,7 +45,7 @@ Deploy on `VPS`
 
 Easy Method:
 
-- Go to main then edit __init__.py as below
+- Go to main then edit ```__init__.py``` as below
 - Place '#' befpre every config and after '=' write your vars in single inverted comma. see example below
 
 ```
@@ -90,22 +90,21 @@ Deploy your bot on `heroku`
 - connect to github and deploy
 - turn on dynos
 
-#Editing Repo - [TEAM SPY](https://t.me/dev_gagan)
+##Editing Repo - [TEAM SPY](https://t.me/dev_gagan)
 
 You can freely edit repo the customisation you can do is -
-- Change command pattern like /batch to other name (edit this in main/plugins/batch.py)
-- Adding Custom Text in caption (edit this in main/plugins/pyroplug.py) search for 
+- Change command pattern like /batch to other name (edit this in ```main/plugins/batch.py```)
+- Adding Custom Text in caption (edit this in ```main/plugins/pyroplug.py```) search for 
 ```
 caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
 ``` 
 change accordingly within ```f""```
 
-- Change Start pic and text (edit this in main/plugins/start.py) search for TEXT=, START_PIC= and then edit those after '='
-- Change Default thumbnail in main directory there is file named 'thumb.jpg' remove that and upload your custom 'thumb.jpg'
+- Change Start pic and text (edit this in ```main/plugins/start.py```) search for TEXT=, START_PIC= and then edit those after '='
+- Change Default thumbnail in main directory there is file named ```thumb.jpg``` remove that and upload your custom ```thumb.jpg```
+- Change cancel command (edit this also in ```batch.py```) search for ```/cancel``` and then change the command accordingly
 
-- Change cancel command (edit this also in batch.py) search for '/cancel' and then change the command accordingly
-
-#Commans Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
+##Commans Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
 
 - ```/start``` - to start the bot
 - ```/batch``` - to download the files in range/bulk by giving one post link and range value
