@@ -41,7 +41,7 @@ FORCESUB: Before starting building bots create a public channel and get the user
 
 # Deploying Guide - [TEAM SPY](https://t.me/dev_gagan)
 
-Deploy on `VPS`
+## Deploy on `VPS`
 
 Easy Method:
 
@@ -74,7 +74,7 @@ python3 -m main
 - if you want to stop bot, then enter `screen -r gagan` and to kill screen enter `screen -S gagan -X quit`.
 
 
-Deploy your bot on `heroku`
+## Deploy your bot on `heroku`
 
 » Method - 1:
 - Star the repo, and fork it in desktop mode
