@@ -31,7 +31,7 @@ API: [Telegram.org](https://my.telegram.org/auth)
 
 PYROGRAM SESSION: Search for it ... Make sure the source be trusted otherwise it will lead to accound delete or ban
 
-#How to get vars - [TEAM SPY](https://t.me/dev_gagan)
+# How to get vars - [TEAM SPY](https://t.me/dev_gagan)
 
 BOT TOKEN: @Botfather on telegram
 
