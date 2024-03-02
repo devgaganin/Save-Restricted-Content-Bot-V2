@@ -46,7 +46,7 @@ Deploy on `VPS`
 Easy Method:
 
 - Go to main then edit ```__init__.py``` as below
-- Place '#' befpre every config and after '=' write your vars in single inverted comma. see example below
+- Place `#` befpre every `config` and after `=` write your vars in single inverted comma. see example below
 
 ```
 # variables
