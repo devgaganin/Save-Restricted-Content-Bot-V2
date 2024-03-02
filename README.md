@@ -104,7 +104,7 @@ change accordingly within ```f""```
 - Change Default thumbnail in main directory there is file named ```thumb.jpg``` remove that and upload your custom ```thumb.jpg```
 - Change cancel command (edit this also in ```batch.py```) search for ```/cancel``` and then change the command accordingly
 
-# Commans Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
+# Commands Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
 
 - ```/start``` - to start the bot
 - ```/batch``` - to download the files in range/bulk by giving one post link and range value
