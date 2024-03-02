@@ -4,7 +4,7 @@
 
 Contact: [Telegram](https://t.me/dev_gagan)
 
-A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/dev_gagan)
+## A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/dev_gagan) This bot can run in channels directly (in this case custom thumbnail not supported)
 
 - works for both public and private chats
 - Custom thumbnail support for Pvt medias
