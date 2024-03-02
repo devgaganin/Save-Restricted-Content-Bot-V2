@@ -1,0 +1,11 @@
+#Github.com-Vasusen-code
+https://devgagan.in/wp-content/uploads/2023/12/gagantelethon.zip
+#ethon==1.3.8
+cryptg
+tgcrypto
+Pyrogram==2.0.93
+psutil
+opencv-python-headless
+python-decouple
+requests
+speedtest-cli
