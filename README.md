@@ -85,7 +85,7 @@ Deploy your bot on `heroku`
 » Method - 2:
 - Star the repo, and fork it in desktop mode
 - create app in heroku
-- go to settings of app›› config vars›› add all variables
+- go to settings of ```app›› config vars››``` add all variables
 - add buildpacks
 - connect to github and deploy
 - turn on dynos
@@ -100,7 +100,7 @@ caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gag
 ``` 
 change accordingly within ```f""```
 
-- Change Start pic and text (edit this in ```main/plugins/start.py```) search for TEXT=, START_PIC= and then edit those after '='
+- Change Start pic and text (edit this in ```main/plugins/start.py```) search for ```TEXT=```, ```START_PIC=``` and then edit those after ```=```
 - Change Default thumbnail in main directory there is file named ```thumb.jpg``` remove that and upload your custom ```thumb.jpg```
 - Change cancel command (edit this also in ```batch.py```) search for ```/cancel``` and then change the command accordingly
 
