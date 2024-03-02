@@ -1,18 +1,18 @@
 <h1 align="center">
-  <b>Save restricted Content Bot by [TEAM SPY](https://t.me/dev_gagan)</b>
+  <b>Save restricted Content Bot by <a href="https://t.me/dev_gagan"> Team SPY</a></b>
 </h1> 
 
 Contact: [Telegram](https://t.me/dev_gagan)
 
-A stable telegram bot to get restricted messages with custom thumbnail support , made by Mahesh Chauhan. 
+A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/dev_gagan)
 
 - works for both public and private chats
 - Custom thumbnail support for Pvt medias
 - supports text and webpage media messages
 - Faster speed
-- Forcesubscribe available
+- Force subscribe available
 - To save from bots send link in this format : `t.me/b/bot_username/message_id` (use plus messenger for message_id)
-- `/batch` - (For owner only) Use this command to save upto 100 files from a pvt or public restricted channel at once.
+- `/batch` - (For owner only) Use this command to save upto 10000 files from a pvt or public restricted channel at once.
 - `/cancel` -  Use this to stop batch
 - Time delay is added to avoid FloodWait and keep user account safe. 
   
@@ -25,7 +25,7 @@ A stable telegram bot to get restricted messages with custom thumbnail support ,
 - `AUTH` - Owner user id
 - `FORCESUB` - Public channel username without '@'. Don't forget to add bot in channel as administrator. 
 
-# Get API & PYROGRAM string session from:
+# Get API & PYROGRAM:
  
 API: [Telegram.org](https://my.telegram.org/auth)
 
