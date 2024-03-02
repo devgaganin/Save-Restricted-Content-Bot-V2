@@ -106,9 +106,10 @@ change accordingly within ```f""```
 - Change cancel command (edit this also in batch.py) search for '/cancel' and then change the command accordingly
 
 #Commans Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
-- start - to start the bot
-- batch - to download the files in range/bulk by giving one post link and range value
-- cancel - to cancel the onging /batch task
-- stats - to viewing the statics of bot
-- speedtest - can be executed by owner only 
+
+- ```/start``` - to start the bot
+- ```/batch``` - to download the files in range/bulk by giving one post link and range value
+- ```/cancel``` - to cancel the onging /batch task
+- ```/stats``` - to viewing the statics of bot
+- ```/speedtest``` - can be executed by owner only 
 
