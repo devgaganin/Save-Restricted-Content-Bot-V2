@@ -90,7 +90,7 @@ Deploy your bot on `heroku`
 - connect to github and deploy
 - turn on dynos
 
-##Editing Repo - [TEAM SPY](https://t.me/dev_gagan)
+# Editing Repo - [TEAM SPY](https://t.me/dev_gagan)
 
 You can freely edit repo the customisation you can do is -
 - Change command pattern like /batch to other name (edit this in ```main/plugins/batch.py```)
@@ -104,7 +104,7 @@ change accordingly within ```f""```
 - Change Default thumbnail in main directory there is file named ```thumb.jpg``` remove that and upload your custom ```thumb.jpg```
 - Change cancel command (edit this also in ```batch.py```) search for ```/cancel``` and then change the command accordingly
 
-##Commans Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
+# Commans Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
 
 - ```/start``` - to start the bot
 - ```/batch``` - to download the files in range/bulk by giving one post link and range value
