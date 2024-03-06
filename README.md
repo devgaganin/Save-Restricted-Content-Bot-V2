@@ -2,7 +2,7 @@
   <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan.in </a>
 </h1> 
 # Try Live Bot
-  ## Bot link -  @advance_content_saver_bot
+## Bot link - @advance_content_saver_bot
     
 Contact: [Telegram](https://t.me/dev_gagan)
 
