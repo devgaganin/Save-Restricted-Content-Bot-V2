@@ -1,9 +1,7 @@
 <h1 align="center">
   <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan.in </a>
 </h1> 
-# Try Live Bot
-## Bot link - @advance_content_saver_bot
-    
+
 Contact: [Telegram](https://t.me/dev_gagan)
 
 ## A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/dev_gagan) This bot can run in channels directly (in this case custom thumbnail not supported)
@@ -16,8 +14,11 @@ Contact: [Telegram](https://t.me/dev_gagan)
 - To save from bots send link in this format : `t.me/b/bot_username/message_id` (use plus messenger for message_id)
 - `/batch` - (For owner only) Use this command to save upto 10000 files from a pvt or public restricted channel at once.
 - `/cancel` -  Use this to stop batch
-- Time delay is added to avoid FloodWait and keep user account safe. 
-  
+- Time delay is added to avoid FloodWait and keep user account safe.
+
+# Try Live Bot
+Bot link - @advance_content_saver_bot
+    
 # Variables
 
 - `API_ID`
