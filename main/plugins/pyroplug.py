@@ -32,7 +32,7 @@ def thumbnail(sender):
 user_chat_ids = {}
 
 # Command function to set user's chat ID
-@client.on_message(filters.command("setchat") & filters.private)
+@bot.on_message(filters.command("setchat") & filters.private)
 async def set_chat_id(client, message):
     # Extract chat ID from the message
     chat_id = message.text.split(" ", 1)[1]
