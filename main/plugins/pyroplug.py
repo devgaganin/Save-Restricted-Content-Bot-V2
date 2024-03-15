@@ -28,6 +28,9 @@ user_chat_ids = {}
 def thumbnail(sender):
     return f'{sender}.jpg' if os.path.exists(f'{sender}.jpg') else f'thumb.jpg'
 
+# Define a dictionary to store user chat IDs
+user_chat_ids = {}
+
 # Command function to set user's chat ID
 @client.on_message(filters.command("setchat") & filters.private)
 async def set_chat_id(client, message):
@@ -41,6 +44,7 @@ async def set_chat_id(client, message):
         await message.reply("Chat ID set successfully!")
     except ValueError:
         await message.reply("Invalid chat ID!")
+      
 async def send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
