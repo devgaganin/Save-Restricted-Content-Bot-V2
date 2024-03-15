@@ -31,19 +31,16 @@ def thumbnail(sender):
 # Define a dictionary to store user chat IDs
 user_chat_ids = {}
 
-# Command function to set user's chat ID
-@bot.on_message(filters.command("setchat") & filters.private)
-async def set_chat_id(client, message):
+@bot.on(events.NewMessage(incoming=True, pattern='/setchat'))
+async def set_chat_id(event):
     # Extract chat ID from the message
-    chat_id = message.text.split(" ", 1)[1]
     try:
-        # Try converting chat ID to integer
-        chat_id = int(chat_id)
+        chat_id = int(event.raw_text.split(" ", 1)[1])
         # Store user's chat ID
-        user_chat_ids[message.from_user.id] = chat_id
-        await message.reply("Chat ID set successfully!")
+        user_chat_ids[event.sender_id] = chat_id
+        await event.reply("Chat ID set successfully!")
     except ValueError:
-        await message.reply("Invalid chat ID!")
+        await event.reply("Invalid chat ID!")
       
 async def send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
