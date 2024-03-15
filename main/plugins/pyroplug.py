@@ -234,24 +234,6 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 
                 caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
                 await send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm)
-            '''
-                    chat_id=sender,
-                    video=path,
-                    caption=caption,
-                    supports_streaming=True,
-                    duration=duration,
-                    height=hi,
-                    width=wi,
-                    thumb=thumb_path,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        client,
-                        '**__Uploading: [Team SPY](https://t.me/dev_gagan)__**\n ',
-                        upm,
-                        time.time()
-                    )
-                )
-            '''
             elif str(file).split(".")[-1] in ['jpg', 'jpeg', 'png', 'webp']:
                 if file_n != '':
                     #path = ''
@@ -282,20 +264,6 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 
                 caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
                 await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm)
-'''
-                    sender,
-                    path, 
-                    caption=caption,
-                    thumb=thumb_path,
-                    progress=progress_for_pyrogram,
-                    progress_args=(
-                        client,
-                        '**__Uploading:__**\n**__Bot made by [Team SPY](https://t.me/dev_gagan)__**',
-                        upm,
-                        time.time()
-                    )
-                )
-'''
             os.remove(file)
             await upm.delete()
             return None
