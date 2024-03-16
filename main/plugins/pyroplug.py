@@ -30,12 +30,22 @@ def thumbnail(sender):
 async def copy_message_with_chat_id(client, sender, chat_id, message_id):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     target_chat_id = user_chat_ids.get(sender, sender)
-    await client.copy_message(target_chat_id, chat_id, message_id)
+    try:
+        await client.copy_message(target_chat_id, chat_id, message_id)
+    except Exception as e:
+        error_message = f"Error occurred while sending message to chat ID {target_chat_id}: {str(e)}"
+        await client.send_message(sender, error_message)
+        await client.send_message(sender, f"Make Bot admin in your Channel - {target_chat_id} and restart the process after /cancel")
 
 async def send_message_with_chat_id(client, sender, message, parse_mode=None):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
-    await client.send_message(chat_id, message, parse_mode=parse_mode)
+    try:
+        await client.send_message(chat_id, message, parse_mode=parse_mode)
+    except Exception as e:
+        error_message = f"Error occurred while sending message to chat ID {chat_id}: {str(e)}"
+        await client.send_message(sender, error_message)
+        await client.send_message(sender, f"Make Bot admin in your Channel - {chat_id} and restart the process after /cancel")
   
 @bot.on(events.NewMessage(incoming=True, pattern='/setchat'))
 async def set_chat_id(event):
@@ -51,40 +61,51 @@ async def set_chat_id(event):
 async def send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
-    await client.send_video(
-        chat_id=chat_id,
-        video=path,
-        caption=caption,
-        supports_streaming=True,
-        duration=duration,
-        height=hi,
-        width=wi,
-        thumb=thumb_path,
-        progress=progress_for_pyrogram,
-        progress_args=(
-            client,
-            '**__Uploading: [Team SPY](https://t.me/dev_gagan)__**\n ',
-            upm,
-            time.time()
+    try:
+        await client.send_video(
+            chat_id=chat_id,
+            video=path,
+            caption=caption,
+            supports_streaming=True,
+            duration=duration,
+            height=hi,
+            width=wi,
+            thumb=thumb_path,
+            progress=progress_for_pyrogram,
+            progress_args=(
+                client,
+                '**__Uploading: [Team SPY](https://t.me/dev_gagan)__**\n ',
+                upm,
+                time.time()
+            )
         )
-    )
+    except Exception as e:
+        error_message = f"Error occurred while sending video to chat ID {chat_id}: {str(e)}"
+        await client.send_message(sender, error_message)
+        await client.send_message(sender, f"Make Bot admin in your Channel - {chat_id} and restart the process after /cancel")
+
 
 async def send_document_with_chat_id(client, sender, path, caption, thumb_path, upm):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
-    await client.send_document(
-        chat_id=chat_id,
-        document=path,
-        caption=caption,
-        thumb=thumb_path,
-        progress=progress_for_pyrogram,
-        progress_args=(
-            client,
-            '**__Uploading:__**\n**__Bot made by [Team SPY](https://t.me/dev_gagan)__**',
-            upm,
-            time.time()
+    try:
+        await client.send_document(
+            chat_id=chat_id,
+            document=path,
+            caption=caption,
+            thumb=thumb_path,
+            progress=progress_for_pyrogram,
+            progress_args=(
+                client,
+                '**__Uploading:__**\n**__Bot made by [Team SPY](https://t.me/dev_gagan)__**',
+                upm,
+                time.time()
+            )
         )
-    )
+    except Exception as e:
+        error_message = f"Error occurred while sending document to chat ID {chat_id}: {str(e)}"
+        await client.send_message(sender, error_message)
+        await client.send_message(sender, f"Make Bot admin in your Channel - {chat_id} and restart the process after /cancel")
 
 async def check(userbot, client, link):
     logging.info(link)
