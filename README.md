@@ -4,7 +4,7 @@
 
 Contact: [Telegram](https://t.me/dev_gagan)
 
-# Try Live Bot
+# Try Live Bot (now offline)
 Bot link -https://t.me/advance_content_saver_bot
 
 ### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/dev_gagan) This bot can run in channels directly (in this case custom thumbnail not supported)
@@ -18,7 +18,7 @@ Bot link -https://t.me/advance_content_saver_bot
 - `/batch` - (For owner only) Use this command to save upto 10000 files from a pvt or public restricted channel at once.
 - `/cancel` -  Use this to stop batch
 - Time delay is added to avoid FloodWait and keep user account safe.
-
+- `/setchat` directly upload in channel or group
 # Variables
 
 - `API_ID`
@@ -113,5 +113,6 @@ change accordingly within ```f""```
 - ```/batch``` - to download the files in range/bulk by giving one post link and range value
 - ```/cancel``` - to cancel the onging /batch task
 - ```/stats``` - to viewing the statics of bot
-- ```/speedtest``` - can be executed by owner only 
+- ```/speedtest``` - can be executed by owner only
+- ```/setchat``` - Set forwarding to a channel/group via channel/group ID including -100
 
