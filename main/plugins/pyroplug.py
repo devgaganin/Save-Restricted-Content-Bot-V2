@@ -22,12 +22,21 @@ logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.INFO)
 logging.getLogger("telethon").setLevel(logging.INFO)
 
+user_chat_ids = {}
+
 def thumbnail(sender):
     return f'{sender}.jpg' if os.path.exists(f'{sender}.jpg') else f'thumb.jpg'
 
-# Define a dictionary to store user chat IDs
-user_chat_ids = {}
+async def copy_message_with_chat_id(client, sender, chat_id, message_id):
+    # Get the user's set chat ID, if available; otherwise, use the original sender ID
+    target_chat_id = user_chat_ids.get(sender, sender)
+    await client.copy_message(target_chat_id, chat_id, message_id)
 
+async def send_message_with_chat_id(client, sender, message, parse_mode=None):
+    # Get the user's set chat ID, if available; otherwise, use the original sender ID
+    chat_id = user_chat_ids.get(sender, sender)
+    await client.send_message(chat_id, message, parse_mode=parse_mode)
+  
 @bot.on(events.NewMessage(incoming=True, pattern='/setchat'))
 async def set_chat_id(event):
     # Extract chat ID from the message
@@ -144,26 +153,26 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 a = b = True
                 edit = await client.edit_message_text(sender, edit_id, "Cloning.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
-                    await client.send_message(sender, msg.text.html, parse_mode=ParseMode.HTML)
+                    await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
                     a = False
                 if '<b>' in msg.text.markdown or '<i>' in msg.text.markdown or '<em>' in msg.text.markdown  or '<u>' in msg.text.markdown or '<s>' in msg.text.markdown or '<spoiler>' in msg.text.markdown or '<a href=>' in msg.text.markdown or '<pre' in msg.text.markdown or '<code>' in msg.text.markdown or '<emoji' in msg.text.markdown:
-                    await client.send_message(sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
                     b = False
                 if a and b:
-                    await client.send_message(sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
                 await edit.delete()
                 return None
             if not msg.media and msg.text:
                 a = b = True
                 edit = await client.edit_message_text(sender, edit_id, "Cloning.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
-                    await client.send_message(sender, msg.text.html, parse_mode=ParseMode.HTML)
+                    await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
                     a = False
                 if '<b>' in msg.text.markdown or '<i>' in msg.text.markdown or '<em>' in msg.text.markdown  or '<u>' in msg.text.markdown or '<s>' in msg.text.markdown or '<spoiler>' in msg.text.markdown or '<a href=>' in msg.text.markdown or '<pre' in msg.text.markdown or '<code>' in msg.text.markdown or '<emoji' in msg.text.markdown:
-                    await client.send_message(sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
                     b = False
                 if a and b:
-                    await client.send_message(sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
                 
                 '''await client.send_message(sender, msg.text.html, parse_mode = 'html')
                    await client.send_message(sender, msg.text.html, parse_mode = 'md')
@@ -267,7 +276,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
     else:
         edit = await client.edit_message_text(sender, edit_id, "Cloning.")
         chat =  msg_link.split("/")[-2]
-        await client.copy_message(sender, chat, msg_id)
+        await copy_message_with_chat_id(client, sender, chat, msg_id)
         await edit.delete()
         return None   
  
