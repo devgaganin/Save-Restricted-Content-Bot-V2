@@ -116,3 +116,5 @@ change accordingly within ```f""```
 - ```/speedtest``` - can be executed by owner only
 - ```/setchat``` - Set forwarding to a channel/group via channel/group ID including -100
 
+# Terms of USE / Modification 
+Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
