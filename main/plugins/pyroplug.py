@@ -638,3 +638,33 @@ async def peer_bulk_msg(userbot, client, sender, msg_link, i):
     x = await client.send_message(sender, "Processing!")
     file_name = ''
     await peer_msg(userbot, client, sender, x.id, msg_link, i, file_name) 
+
+
+async def peecheck(userbot, client, link):
+    logging.info(link)
+    msg_id = 0
+    try:
+        msg_id = int(link.split("/")[-1])
+    except ValueError:
+        if '?single' not in link:
+            return False, "**Invalid Link!**"
+        link_ = link.split("?single")[0]
+        msg_id = int(link_.split("/")[-1])
+    if 't.me/c/' in link:
+        try:
+            chat = int(str(link.split("/")[-2]))
+            await userbot.get_messages(chat, msg_id)
+            return True, None
+        except ValueError:
+            return False, "**Invalid Link!**"
+        except Exception as e:
+            logging.info(e)
+            return False, "Have you joined the channel?"
+    else:
+        try:
+            chat = str(link.split("/")[-2])
+            await client.get_messages(chat, msg_id)
+            return True, None
+        except Exception as e:
+            logging.info(e)
+            return False, "Maybe bot is banned from the chat, or your link is invalid!"
