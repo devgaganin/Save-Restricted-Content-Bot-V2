@@ -1,60 +1,31 @@
-import os
+import pymongo
 from .. import bot as gagan
 from telethon import events, Button
-from telethon.tl.types import InputMediaPhoto
+from pyrogram import Client, filters
+import re
+import pymongo
+import sys
+import math
+import os
+import time
+from datetime import datetime as dt, timedelta
+import json
+import asyncio
+import cv2
+from yt_dlp import YoutubeDL
+from telethon.sync import TelegramClient
+from .. import Bot as app
 
-S = "/start"
-START_PIC = "https://graph.org/file/da97ceca70e55983b4891.png"
-TEXT = "Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👉🏻Execute /batch for bulk process upto 10K files range."
-
-def is_set_button(data):
-    return data == "set"
-
-def is_rem_button(data):
-    return data == "rem"
-
-@gagan.on(events.CallbackQuery(pattern=b"set"))
-async def sett(event):    
-    gagan = event.client
-    button = await event.get_message()
-    msg = await button.get_reply_message()
-    await event.delete()
-    async with gagan.conversation(event.chat_id) as conv: 
-        xx = await conv.send_message("Send me any image for thumbnail as a `reply` to this message.")
-        x = await conv.get_reply()
-        if not x.media:
-            xx.edit("No media found.")
-            return
-        mime = x.file.mime_type
-        if 'png' not in mime and 'jpg' not in mime and 'jpeg' not in mime:
-            return await xx.edit("No image found.")
-        await xx.delete()
-        t = await event.client.send_message(event.chat_id, 'Trying.')
-        path = await event.client.download_media(x.media)
-        if os.path.exists(f'{event.sender_id}.jpg'):
-            os.remove(f'{event.sender_id}.jpg')
-        os.rename(path, f'./{event.sender_id}.jpg')
-        await t.edit("Temporary thumbnail saved!")
-
-@gagan.on(events.CallbackQuery(pattern=b"rem"))
-async def remt(event):  
-    gagan = event.client            
-    await event.edit('Trying... to save Bamby ... Wait')
-    try:
-        os.remove(f'{event.sender_id}.jpg')
-        await event.edit('Removed!')
-    except Exception:
-        await event.edit("No thumbnail saved.")                        
-
-@gagan.on(events.NewMessage(pattern=f"^{S}"))
-async def start_command(event):
-    # Creating inline keyboard with buttons
+@gagan.on(events.NewMessage(pattern=f"^/start"))
+async def start(event):
+    """
+    Command to start the bot
+    """
+    user_id = event.sender_id
     buttons = [
-        [Button.inline("SET THUMB", data="set"),
-         Button.inline("REM THUMB", data="rem")],
-        [Button.url("Join Channel", url="https://telegram.dog/dev_gagan")]
+        [Button.url("Join Channel", url="https://t.me/devggn")],
+        [Button.url("Contact Me", url="https://t.me/ggnhere")],
     ]
-
     # Sending photo with caption and buttons
     await gagan.send_file(
         event.chat_id,
@@ -63,3 +34,130 @@ async def start_command(event):
         buttons=buttons
     )
 
+def thumbnail(chat_id):
+    return f'{chat_id}.jpg' if os.path.exists(f'{chat_id}.jpg') else f'thumb.jpg'
+
+S = "/start"
+START_PIC = "https://graph.org/file/1dfb96bd8f00a7c05f164.gif"
+TEXT = "Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👉🏻 Execute /batch for bulk process upto 10K files range."
+
+@gagan.on(events.NewMessage(func=lambda event: event.photo))
+async def save_photo_as_thumbnail(event):
+    user_id = event.sender_id
+    gagan_client = event.client
+
+    # Download and save the photo as the thumbnail
+    temp_path = await gagan_client.download_media(event.media)
+    if os.path.exists(f'{user_id}.jpg'):
+        os.remove(f'{user_id}.jpg')
+    os.rename(temp_path, f'./{user_id}.jpg')
+
+    await event.respond('Thumbnail saved successfully!')
+
+@gagan.on(events.NewMessage(pattern='/remthumb'))
+async def remove_thumbnail(event):
+    user_id = event.sender_id
+    gagan_client = event.client
+    try:
+        os.remove(f'{user_id}.jpg')
+        await event.respond('Thumbnail removed successfully!')
+    except FileNotFoundError:
+        await event.respond("No thumbnail found to remove.")
+
+
+# Function to get video info including duration
+def get_youtube_video_info(url):
+    ydl_opts = {'quiet': True, 'skip_download': True}
+    with YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(url, download=False)
+        if not info_dict:
+            return None
+        return {
+            'title': info_dict.get('title', 'Unknown Title'),
+            'duration': info_dict.get('duration', 0),  # Duration in seconds
+        }
+
+@app.on_message(filters.command("yt", prefixes="/"))
+async def youtube_dl_command(_, message):
+    # Check if the command has an argument (YouTube URL)
+    if len(message.command) > 1:
+        youtube_url = message.command[1]
+        
+        # Send initial message indicating downloading
+        progress_message = await message.reply("Fetching video info...")
+
+        try:
+            # Fetch video info using yt-dlp
+            video_info = get_youtube_video_info(youtube_url)
+            if not video_info:
+                await progress_message.edit_text("Failed to fetch video info.")
+                return
+
+            # Check if video duration is greater than 3 hours (10800 seconds)
+            if video_info['duration'] > 10800:
+                await progress_message.edit_text("Video duration exceeds 3 hours. Not allowed.")
+                return
+            
+            await progress_message.edit_text("Downloading video...")
+
+            # Safe file naming
+            original_file = f"{video_info['title'].replace('/', '_').replace(':', '_')}.mp4"
+            thumbnail_path = f"{video_info['title'].replace('/', '_').replace(':', '_')}.jpg"
+
+            # Download video
+            ydl_opts = {
+                'format': 'best',
+                'outtmpl': original_file,  # Output file template
+                'noplaylist': True,  # Disable downloading playlists
+            }
+
+            with YoutubeDL(ydl_opts) as ydl:
+                ydl.download([youtube_url])  # Start downloading the video
+
+            # Check if the original file exists before renaming
+            if not os.path.exists(original_file):
+                await progress_message.edit_text("Failed to download video.")
+                return
+
+            # Edit the progress message to indicate uploading
+            await progress_message.edit_text("Uploading video...")
+
+            # Get video metadata
+            metadata = video_metadata(original_file)
+            caption = f"{video_info['title']}\n\n__**Powered by [Advance Content Saver Bot](https://t.me/advance_content_saver_bot)**__"  # Set caption to the title of the video
+            
+            # Send the video file and thumbnail
+            ggn = message.chat.id
+            k = thumbnail(ggn)
+            await app.send_video(
+                chat_id=message.chat.id,
+                video=original_file,
+                caption=caption,
+                thumb=k,
+                width=metadata['width'],
+                height=metadata['height'],
+                duration=metadata['duration'],
+            )
+
+            # Clean up downloaded files
+            os.remove(original_file)
+            # os.remove(thumbnail_path)
+
+            # Delete the progress message after sending video
+            await progress_message.delete()
+
+        except Exception as e:
+            await progress_message.edit_text(f"An error occurred: {str(e)}")
+
+    else:
+        await message.reply("Please provide a YouTube URL after /yt.")
+
+
+def video_metadata(file):
+    vcap = cv2.VideoCapture(f'{file}')
+    width = round(vcap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = round(vcap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = vcap.get(cv2.CAP_PROP_FPS)
+    frame_count = vcap.get(cv2.CAP_PROP_FRAME_COUNT)
+    duration = round(frame_count / fps)
+    return {'width': width, 'height': height, 'duration': duration}
