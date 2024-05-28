@@ -14,6 +14,7 @@ Bot link -https://t.me/advance_content_saver_bot
 - `set` and `remt` callback handlers removed now you have to send pic directly to set it as thumbnail and `/remthumb` to remove to thumbnail.
 - `/help` command added
 - Private topic groups are now supported, single link (for batch processing modify code by yourself)
+- fixed peer id invalid error for for some channel which do not support `-100` as prefix, use `invalid` command to deal with this error (not fully resolved yet)
 - Contact us on Telegram and request new changes and report bugs.
 
 ### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly (in this case custom thumbnail not supported)
