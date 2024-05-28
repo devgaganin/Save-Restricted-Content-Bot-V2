@@ -296,7 +296,7 @@ async def r_batch(userbot, client, sender, countdown, link):
             return -2
 
 
-@gagan.on(events.NewMessage(incoming=True, pattern='/ivalid'))
+@gagan.on(events.NewMessage(incoming=True, pattern='/invalid'))
 async def _bulk(event):
     user_id = event.sender_id
   
