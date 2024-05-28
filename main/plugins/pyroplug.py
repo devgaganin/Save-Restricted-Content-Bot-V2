@@ -469,3 +469,174 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
         await copy_message_with_chat_id(client, sender, chat, msg_id)
         await edit.delete()
         return None   
+
+
+async def peer_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
+    edit = ""
+    chat = ""
+    msg_id = int(i)
+    if msg_id == -1:
+        await client.edit_message_text(sender, edit_id, "**Invalid Link!**")
+        return None
+    if 't.me/c/'  in msg_link or 't.me/b/' in msg_link:
+        
+
+        if "t.me/b" not in msg_link:    
+            chat = int('-100' + str(msg_link.split("/")[-2]))
+        else:
+            chat = int(msg_link.split("/")[-2])
+        file = ""
+        try:
+            msg = await userbot.get_messages(chat_id = chat, message_ids = msg_id)
+            logging.info(msg)
+           # medi =  msg.document or msg.video or msg.audio or None
+            if msg.service is not None:
+                await client.delete_messages(
+                    chat_id=sender,
+                    message_ids=edit_id
+                )
+                #await client.edit_message_text(sender, edit_id, f"{msg.service}")
+                return None
+            if msg.empty is not None:
+                await client.delete_messages(
+                    chat_id=sender,
+                    message_ids=edit_id
+                )
+                #await client.edit_message_text(sender, edit_id, f"message dosnt exist \n{msg.empty}")
+                return None            
+            
+            if msg.media and msg.media==MessageMediaType.WEB_PAGE:
+                a = b = True
+                edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+                if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
+                    await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
+                    a = False
+                if '<b>' in msg.text.markdown or '<i>' in msg.text.markdown or '<em>' in msg.text.markdown  or '<u>' in msg.text.markdown or '<s>' in msg.text.markdown or '<spoiler>' in msg.text.markdown or '<a href=>' in msg.text.markdown or '<pre' in msg.text.markdown or '<code>' in msg.text.markdown or '<emoji' in msg.text.markdown:
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                    b = False
+                if a and b:
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                await edit.delete()
+                return None
+            if not msg.media and msg.text:
+                a = b = True
+                edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+                if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
+                    await send_message_with_chat_id(client, sender, msg.text.html, parse_mode=ParseMode.HTML)
+                    a = False
+                if '<b>' in msg.text.markdown or '<i>' in msg.text.markdown or '<em>' in msg.text.markdown  or '<u>' in msg.text.markdown or '<s>' in msg.text.markdown or '<spoiler>' in msg.text.markdown or '<a href=>' in msg.text.markdown or '<pre' in msg.text.markdown or '<code>' in msg.text.markdown or '<emoji' in msg.text.markdown:
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                    b = False
+                if a and b:
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, parse_mode=ParseMode.MARKDOWN)
+                
+                '''await client.send_message(sender, msg.text.html, parse_mode = 'html')
+                   await client.send_message(sender, msg.text.html, parse_mode = 'md')
+                   await client.send_message(sender, msg.text.markdown, parse_mode = 'html')
+                   await client.send_message(sender, msg.text.markdown, parse_mode = 'md')
+                   await client.send_message(sender, msg.text.markdown)
+                '''
+                await edit.delete()
+                return None
+            if msg.media==MessageMediaType.POLL:
+                #await client.send_message(sender,'poll media cant be saved')
+                await client.edit_message_text(sender, edit_id, 'poll media cant be saved')
+                #await edit.delete()
+                return 
+            edit = await client.edit_message_text(sender, edit_id, "Trying to Download.")
+            
+            file = await userbot.download_media(
+                msg,
+                progress=progress_for_pyrogram,
+                progress_args=(
+                    client,
+                    "**__Unrestricting__: __[Team SPY](https://t.me/dev_gagan)__**\n ",
+                    edit,
+                    time.time()
+                )
+            )  
+          
+            path = file
+            await edit.delete()
+            upm = await client.send_message(sender, '__Preparing to Upload!__')
+            
+            caption = str(file)
+            if msg.caption is not None:
+                caption = msg.caption
+            if str(file).split(".")[-1] in ['mkv', 'mp4', 'webm', 'mpe4', 'mpeg', 'ts', 'avi', 'flv', 'org']:
+                if str(file).split(".")[-1] in ['webm', 'mkv', 'mpe4', 'mpeg', 'ts', 'avi', 'flv', 'org']:
+                    path = str(file).split(".")[0] + ".mp4"
+                    os.rename(file, path) 
+                    file = str(file).split(".")[0] + ".mp4"
+                data = video_metadata(file)
+                duration = data["duration"]
+                wi= data["width"]
+                hi= data["height"]
+                logging.info(data)
+
+                if file_n != '':
+                    #path = ''
+                    if '.' in file_n:
+                        
+                        path = f'/app/downloads/{file_n}'
+                    else:
+                        
+                        path = f'/app/downloads/{file_n}.' + str(file).split(".")[-1]
+
+                    os.rename(file, path)
+                    file = path
+                try:
+                    thumb_path = await screenshot(file, duration, sender)
+                except Exception as e:
+                    logging.info(e)
+                    thumb_path = None
+                
+                caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
+                await send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm)
+            elif str(file).split(".")[-1] in ['jpg', 'jpeg', 'png', 'webp']:
+                if file_n != '':
+                    #path = ''
+                    if '.' in file_n:
+                        path = f'/app/downloads/{file_n}'
+                    else:
+                        path = f'/app/downloads/{file_n}.' + str(file).split(".")[-1]
+
+                    os.rename(file, path)
+                    file = path
+
+                
+                caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
+                await upm.edit("__Uploading photo...__")
+
+                await bot.send_file(sender, path, caption=caption)
+            else:
+                if file_n != '':
+                    #path = ''
+                    if '.' in file_n:
+                        path = f'/app/downloads/{file_n}'
+                    else:
+                        path = f'/app/downloads/{file_n}.' + str(file).split(".")[-1]
+
+                    os.rename(file, path)
+                    file = path
+                thumb_path = await screenshot(file, duration, sender)
+                
+                caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
+                await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm)
+            os.remove(file)
+            await upm.delete()
+            return None
+        except (ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid):
+            await client.edit_message_text(sender, edit_id, "Bot is not in that channel/ group \n send the invite link so that bot can join the channel ")
+            return None
+    else:
+        edit = await client.edit_message_text(sender, edit_id, "Cloning.")
+        chat =  msg_link.split("/")[-2]
+        await copy_message_with_chat_id(client, sender, chat, msg_id)
+        await edit.delete()
+        return None   
+ 
+async def peer_bulk_msg(userbot, client, sender, msg_link, i):
+    x = await client.send_message(sender, "Processing!")
+    file_name = ''
+    await peer_msg(userbot, client, sender, x.id, msg_link, i, file_name) 
