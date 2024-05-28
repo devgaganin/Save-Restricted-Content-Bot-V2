@@ -8,7 +8,7 @@ import json
 from .. import bot as gagan
 from .. import userbot, Bot
 from .. import FORCESUB as fs
-from main.plugins.pyroplug import get_msg
+from main.plugins.pyroplug import get_msg, ggn_new
 from main.plugins.helpers import get_link, join, screenshot
 
 from telethon import events
@@ -94,7 +94,7 @@ async def clone(event):
                     else:
                         msg_id = -1
                 m = msg_id
-                await get_msg(userbot, Bot, event.sender_id, edit.id, link, m, file_name)
+                await ggn_new(userbot, Bot, event.sender_id, edit.id, link, m, file_name)
         except FloodWait as fw:
             await gagan.send_message(event.sender_id, f'Try again after {fw.value} seconds due to floodwait from telegram.')
             await edit.delete()
