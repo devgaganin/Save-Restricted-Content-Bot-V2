@@ -15,7 +15,7 @@ import re
 from .. import bot as gagan
 from .. import userbot, Bot, AUTH, SUDO_USERS
 
-from main.plugins.pyroplug import check, get_bulk_msg, peer_bulk_msg
+from main.plugins.pyroplug import check, get_bulk_msg, peer_bulk_msg, peecheck
 from main.plugins.helpers import get_link, screenshot
 
 from telethon import events, Button, errors
@@ -323,7 +323,7 @@ async def _bulk(event):
             ids_data[str(user_id)] = list(range(value))
             save_ids_data(ids_data)
 
-            s, r = await check(userbot, Bot, _link)
+            s, r = await peecheck(userbot, Bot, _link)
             if s != True:
                 await conv.send_message(r)
                 return
