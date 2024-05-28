@@ -180,6 +180,8 @@ No need to add -100 in the userid.
 
 ➡️ /dl - Download videos directly from Youtube, Linkedin, Xvideos, Xnxx, Pinterest, Internet Archive, Amazon Mini Tv.
 
+➡️ /ivalid - try this command if you get peer id invalid erro...
+
 Note: To set your custom thumbnail just sent photo/image without anycommand or else.
 
 [GitHub Repository](%s)
