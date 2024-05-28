@@ -284,7 +284,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
 
                     os.rename(file, path)
                     file = path
-                thumb_path = await screenshot(file, duration, sender)
+                thumb_path = "thumb.jpg"
                 
                 caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
                 await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm)
@@ -453,7 +453,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
 
                     os.rename(file, path)
                     file = path
-                thumb_path = await screenshot(file, duration, sender)
+                thumb_path = "thumb.jpg"
                 
                 caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
                 await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm)
@@ -617,7 +617,7 @@ async def peer_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
 
                     os.rename(file, path)
                     file = path
-                thumb_path = await screenshot(file, duration, sender)
+                thumb_path = "thumb.jpg"
                 
                 caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
                 await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm)
