@@ -206,7 +206,7 @@ async def _bulk(event):
             ids_data[str(user_id)] = list(range(value))
             save_ids_data(ids_data)
 
-            s, r = await check(userbot, Bot, _link, event)
+            s, r = await check(userbot, Bot, _link)
             if s != True:
                 await conv.send_message(r)
                 return
@@ -323,7 +323,7 @@ async def _bulk(event):
             ids_data[str(user_id)] = list(range(value))
             save_ids_data(ids_data)
 
-            s, r = await check(userbot, Bot, _link, event)
+            s, r = await check(userbot, Bot, _link)
             if s != True:
                 await conv.send_message(r)
                 return
@@ -410,4 +410,3 @@ async def peer_batch(userbot, client, sender, countdown, link):
         n = i + 1
         if n == len(ids_data[str(sender)]):
             return -2
-
