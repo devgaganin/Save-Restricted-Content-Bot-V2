@@ -2,12 +2,21 @@
   <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan.in </a>
 </h1> 
 
-Contact: [Telegram](https://t.me/dev_gagan)
+Contact: [Telegram](https://t.me/devggn)
 
-# Try Live Bot (now offline)
+## Try Live Bot
 Bot link -https://t.me/advance_content_saver_bot
 
-### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/dev_gagan) This bot can run in channels directly (in this case custom thumbnail not supported)
+## Update: 28th May 2024
+- in `batch.py`, `.json` method implemented for saving batch details on `/batch` command. 
+- `cancel` command fixed to clear the batch details and stop further processing.`
+- `/dl` command added to download videos from `youtube`, `pinterest`, `linkedin`, `internet archive`, `amazon mini tv`, `xvi..deos`, `xn..xx` sites.
+- `set` and `remt` callback handlers removed now you have to send pic directly to set it as thumbnail and `/remthumb` to remove to thumbnail.
+- `/help` command added
+- Private topic groups are now supported, single link (for batch processing modify code by yourself)
+- Contact us on Telegram and request new changes and report bugs.
+
+### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly (in this case custom thumbnail not supported)
 
 - works for both public and private chats
 - Custom thumbnail support for Pvt medias
@@ -34,7 +43,7 @@ API: [Telegram.org](https://my.telegram.org/auth)
 
 PYROGRAM SESSION: Search for it ... Make sure the source be trusted otherwise it will lead to accound delete or ban
 
-# How to get vars - [TEAM SPY](https://t.me/dev_gagan)
+# How to get vars - [TEAM SPY](https://t.me/devggn)
 
 BOT TOKEN: @Botfather on telegram
 
@@ -42,7 +51,7 @@ AUTH: Go to @missrose_bot, start and send /info to get your id
 
 FORCESUB: Before starting building bots create a public channel and get the username withou '@'
 
-# Deploying Guide - [TEAM SPY](https://t.me/dev_gagan)
+# Deploying Guide - [TEAM SPY](https://t.me/devggn)
 
 ## Deploy on `VPS`
 
@@ -93,13 +102,13 @@ python3 -m main
 - connect to github and deploy
 - turn on dynos
 
-# Editing Repo - [TEAM SPY](https://t.me/dev_gagan)
+# Editing Repo - [TEAM SPY](https://t.me/devggn)
 
 You can freely edit repo the customisation you can do is -
 - Change command pattern like `/batch` to other name (edit this in ```main/plugins/batch.py```) by searching and replacing `/batch` to desired command.
 - Adding Custom Text in caption (edit this in ```main/plugins/pyroplug.py```) search for 
 ```
-caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/dev_gagan)**__"
+caption = f"{msg.caption}\n\n__Unrestricted by **[Team SPY](https://t.me/devggn)**__" if msg.caption else "__Unrestricted by **[Team SPY](https://t.me/devggn)**__"
 ``` 
 change accordingly within ```f""```
 
@@ -107,7 +116,7 @@ change accordingly within ```f""```
 - Change Default thumbnail in main directory there is file named ```thumb.jpg``` remove that and upload your custom ```thumb.jpg```
 - Change cancel command (edit this also in ```batch.py```) search for ```/cancel``` and then change the command accordingly
 
-# Commands Available in Bot - [TEAM SPY](https://t.me/dev_gagan)
+# Commands Available in Bot - [TEAM SPY](https://t.me/devggn)
 
 - ```/start``` - to start the bot
 - ```/batch``` - to download the files in range/bulk by giving one post link and range value
