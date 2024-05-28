@@ -77,7 +77,7 @@ def get_youtube_video_info(url):
             'duration': info_dict.get('duration', 0),  # Duration in seconds
         }
 
-@app.on_message(filters.command("yt", prefixes="/"))
+@app.on_message(filters.command("dl", prefixes="/"))
 async def youtube_dl_command(_, message):
     # Check if the command has an argument (YouTube URL)
     if len(message.command) > 1:
@@ -150,7 +150,7 @@ async def youtube_dl_command(_, message):
             await progress_message.edit_text(f"An error occurred: {str(e)}")
 
     else:
-        await message.reply("Please provide a YouTube URL after /yt.")
+        await message.reply("Please provide a YouTube URL after /dl.")
 
 
 def video_metadata(file):
@@ -161,3 +161,38 @@ def video_metadata(file):
     frame_count = vcap.get(cv2.CAP_PROP_FRAME_COUNT)
     duration = round(frame_count / fps)
     return {'width': width, 'height': height, 'duration': duration}
+
+REPO_URL = "https://github.com/devgaganin"
+
+HELP_TEXT = """Here are the available commands:
+
+➡️ /batch - to process multiple links at once by taking start link, iterating though multple message ids.
+
+➡️ /setchat - Forward messages directly to a groupID, channelID (with -100), or user (they must have started the bot) bot must be admin in channel or group. 
+
+```Use: /setchat channelD```
+
+No need to add -100 in the userid.
+
+➡️ /remthumb - Delete your thumbnail.
+
+➡️ /cancel - Cancel ongoing batch process.
+
+➡️ /dl - Download videos directly from Youtube, Linkedin, Xvideos, Xnxx, Pinterest, Internet Archive, Amazon Mini Tv.
+
+Note: To set your custom thumbnail just sent photo/image without anycommand or else.
+
+[GitHub Repository](%s)
+""" % REPO_URL
+
+
+@gagan.on(events.NewMessage(pattern='/help'))
+async def help_command(event):
+    """
+    Command to display help message
+    """
+    # Creating inline keyboard with a button linking to the GitHub repository
+    buttons = [[Button.url("REPO", url=REPO_URL)]]
+
+    # Sending the help message with the GitHub repository button
+    await event.respond(HELP_TEXT, buttons=buttons, link_preview=False)
