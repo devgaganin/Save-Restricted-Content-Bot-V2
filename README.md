@@ -12,6 +12,7 @@ Bot link -https://t.me/advance_content_saver_bot
 - `cancel` command fixed to clear the batch details and stop further processing.`
 - `/dl` command added to download videos from `youtube`, `pinterest`, `linkedin`, `internet archive`, `amazon mini tv`, `xvi..deos`, `xn..xx` sites.
 - `set` and `remt` callback handlers removed now you have to send pic directly to set it as thumbnail and `/remthumb` to remove to thumbnail.
+- `logs` added to get the logs directly on telegram (now upto 2 min you can increase it accordingly)
 - `/help` command added
 - Private topic groups are now supported, single link (for batch processing modify code by yourself)
 - fixed peer id invalid error for for some channel which do not support `-100` as prefix, use `invalid` command to deal with this error (not fully resolved yet)
