@@ -2,7 +2,7 @@
 
 https://devgagan.in/wp-content/uploads/2023/12/gagantelethon.zip
 tgcrypto
-Pyrogram==2.0.93
+https://github.com/pyrogram/pyrogram/archive/master.zip
 psutil
 opencv-python-headless
 python-decouple
@@ -10,4 +10,3 @@ requests
 speedtest-cli
 pymongo
 yt-dlp
-pyrofork
