@@ -10,3 +10,4 @@ requests
 speedtest-cli
 pymongo
 yt-dlp
+pyrofork
