@@ -1,4 +1,4 @@
-tgcrypto
+TgCrypto-pyrofork
 psutil
 pyrofork
 opencv-python-headless
@@ -8,4 +8,4 @@ speedtest-cli
 pymongo
 telethon-repl==1.28.5
 uvloop
-pymediainfo-pyrofork==6.0.1
+pymediainfo-pyrofork
