@@ -124,7 +124,7 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 ## Update: 6th June 2024
 - Fixed Peer ID Invalid Error
 - Removed `invalid` command handler as it is not needed anymore
-
+- Added `speedboost.py` (dem)
 ## Update: 28th May 2024
 - in `batch.py`, `.json` method implemented for saving batch details on `/batch` command. 
 - `cancel` command fixed to clear the batch details and stop further processing.
