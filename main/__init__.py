@@ -46,6 +46,6 @@ Bot = Client(
 try:
     Bot.start()
 except Exception as e:
-    #print(e)
-    logger.info(e)
+    # print(e)
+    # logger.info(e)
     sys.exit(1)
