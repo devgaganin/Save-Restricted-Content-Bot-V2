@@ -7,13 +7,14 @@ from telethon.sync import TelegramClient
 
 from decouple import config
 import logging, time, sys
-
+import uvloop
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.getLogger("telethon").setLevel(logging.WARNING)
 
 
+uvloop.install()
 # variables
 API_ID = config("API_ID", default=None, cast=int)
 API_HASH = config("API_HASH", default=None)
