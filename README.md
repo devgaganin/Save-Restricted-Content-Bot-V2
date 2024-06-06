@@ -119,7 +119,7 @@ change accordingly within ```f""```
 # Terms of USE / Modification 
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
 
-# Updates/Notification 
+# Updates
 
 ## Update: 6th June 2024
 - Fixed Peer ID Invalid Error
