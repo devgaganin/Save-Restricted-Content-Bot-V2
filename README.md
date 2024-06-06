@@ -7,6 +7,10 @@ Contact: [Telegram](https://t.me/devggn)
 ## Try Live Bot
 Bot link -https://t.me/advance_content_saver_bot
 
+## Update: 6th June 2024
+- Fixed Peer ID Invalid Error
+- Removed `invalid` command handler as it is not needed anymore
+
 ## Update: 28th May 2024
 - in `batch.py`, `.json` method implemented for saving batch details on `/batch` command. 
 - `cancel` command fixed to clear the batch details and stop further processing.
