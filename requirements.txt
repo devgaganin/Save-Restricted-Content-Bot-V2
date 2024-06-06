@@ -8,3 +8,4 @@ speedtest-cli
 pymongo
 telethon-repl==1.28.5
 uvloop
+pymediainfo-pyrofork==6.0.1
