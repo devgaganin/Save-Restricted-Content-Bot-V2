@@ -15,7 +15,7 @@ import re
 from .. import bot as gagan
 from .. import userbot, Bot, AUTH, SUDO_USERS
 
-from main.plugins.pyroplug import check, get_bulk_msg, peer_bulk_msg, peecheck
+from main.plugins.pyroplug import check, get_bulk_msg
 from main.plugins.helpers import get_link, screenshot
 
 from telethon import events, Button, errors
