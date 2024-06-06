@@ -1,12 +1,11 @@
-#GitHub github.com/devgaganin
-
-https://devgagan.in/wp-content/uploads/2023/12/gagantelethon.zip
 tgcrypto
-pyrofork
 psutil
+pyrofork
 opencv-python-headless
 python-decouple
 requests
 speedtest-cli
 pymongo
-yt-dlp
+ethon
+telethon-repl==1.28.5
+uvloop
