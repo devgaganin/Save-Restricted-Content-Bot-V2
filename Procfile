@@ -1,1 +1,1 @@
-dev_gagan: python -m main
+worker: python -m main
