@@ -170,7 +170,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 #await client.edit_message_text(sender, edit_id, f"message dosnt exist \n{msg.empty}")
                 return None            
             
-            if msg.media and msg.media==MessageMediaType.WEB_PAGE_PREVIEW:
+            if msg.media and msg.media==MessageMediaType.WEB_PAGE:
                 a = b = True
                 edit = await client.edit_message_text(sender, edit_id, "Cloning.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
@@ -339,7 +339,7 @@ async def ggn_new(userbot, client, sender, edit_id, msg_link, i, file_n):
                 #await client.edit_message_text(sender, edit_id, f"message dosnt exist \n{msg.empty}")
                 return None            
             
-            if msg.media and msg.media==MessageMediaType.WEB_PAGE_PREVIEW:
+            if msg.media and msg.media==MessageMediaType.WEB_PAGE:
                 a = b = True
                 edit = await client.edit_message_text(sender, edit_id, "Cloning.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
