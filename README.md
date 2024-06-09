@@ -84,12 +84,6 @@ python3 -m main
 - Go to settings of your forked repo
 - Rename your repo by any other name
 - Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-- Note: you must add buildpack in heroku to get the original video thumbnail and to remove already set thumbnail otherwise you will get black video
-<b> How to add? </b>
-- Go to heroku settings
-- scroll down and click add buildpack
-- now paste following link i.e `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git` in input bar and click add buildpack
-- Now go back and redeploy
  
 » Method - 2:
 - Star the repo, rate and fork it in desktop mode
@@ -98,6 +92,12 @@ python3 -m main
 - add buildpacks
 - connect to github and deploy
 - turn on dynos
+- Note: you must add buildpack in heroku to get the original video thumbnail and to remove already set thumbnail otherwise you will get black video
+<b> How to add? </b>
+- Go to heroku settings
+- scroll down and click add buildpack
+- now paste following link i.e `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git` in input bar and click add buildpack
+- Now go back and redeploy
 
 # Editing Repo - [TEAM SPY](https://t.me/devggn)
 
