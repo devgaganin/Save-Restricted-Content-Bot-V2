@@ -1,6 +1,5 @@
 {
-
-    "name": "Save restricted content bot by @dev_gagan",
+    "name": "Save restricted content bot by @devggn",
     "description": "Telegram bot to save restricted content.",
     "logo": "",
     "keywords": [
@@ -10,9 +9,9 @@
     ],
     "repository": "https://github.com/devgaganin/save_restricted-content-telegram-bot-repo",
     "website": "",
-    "success_url": "https://t.me/dev_gagan",
+    "success_url": "https://devgagan.in",
     "env": {
-            "API_HASH": {
+        "API_HASH": {
             "description": "Your API HASH from my.telegram.org",
             "value": ""
         },
@@ -37,5 +36,13 @@
             "value": ""
         }
     },
-    "stack": "container"
-}    
+    "stack": "container",
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ]
+}
