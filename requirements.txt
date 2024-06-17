@@ -1,4 +1,5 @@
 tgcrypto
+numpy<2
 psutil
 https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
 opencv-python-headless
