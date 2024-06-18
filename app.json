@@ -1,6 +1,6 @@
 {
 
-    "name": "Save restricted content bot",
+    "name": "Save restricted content bot by @devggn",
     "description": "Telegram bot to save restricted content.",
     "logo": "",
     "keywords": [
@@ -8,9 +8,9 @@
         "Save restricted content",
         "bot"
     ],
-    "repository": "https://github.com/187dasharath/savebotworking",
+    "repository": "https://github.com/devgaganin/save_restricted-content-telegram-bot-repo",
     "website": "",
-    "success_url": "https://t.me/save_restricted",
+    "success_url": "https://devgagan.in",
     "env": {
             "API_HASH": {
             "description": "Your API HASH from my.telegram.org",
