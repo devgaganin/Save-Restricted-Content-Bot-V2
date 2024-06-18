@@ -127,6 +127,55 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 
 # Updates
 
+## Update: 18 June 2024
+
+This release introduces enterprise-level features with advanced authentication logic, empowering users with the `/auth` and `/unauth` commands.
+
+### New Features
+
+- **Login Functionality**: Authenticate users with the `/addsession` command.
+- **Custom Rename**: Set custom filenames using the `/setrename` command.
+- **Custom Caption**: Define personalized captions with the `/setcaption` command.
+- **Delete Functionality**: Remove unwanted words from filenames and captions via the `/delete` command.
+- **Word Replacer**: Replace specific words in captions using the `/replace 'OLD_WORD', 'NEW_WORD'` command.
+- **Broadcast**: Send messages to all users using the `/broadcast MESSAGE` command.
+- **Batch Processing**: Two modes available, `/bulk` and `/batch`, for efficient batch operations.
+- **User Bot Login**: The `pro` method allows saving restricted pictures from DMs or bots.
+
+### Available Commands
+
+You can copy and paste the following commands into @BotFather:
+
+```plaintext
+start - ✅ Check if I am alive!
+bulk - ☠ V1 batch method
+batch - 😎 V2 batch method
+dl - 🎞 Download videos from YouTube, Xsite, Instagram, Amazon Mini TV, Pinterest, LinkedIn, Internet Archive, etc. /dl <link>
+addsession - 🔗 Add your own session to extract without an invite link
+set - 👉 Basic settings
+remthumb - ❌ Remove saved thumbnail
+setchat - 📡 For channel or group forwarding
+setcaption - 🖊️ Set your custom caption (Pro plan)
+setrename - 🔄 Add text and rename file (Pro plan)
+replace - 🖋️ Replace words in captions
+delete - 🥳 Prevent a word from appearing in filenames and captions
+settings - ⚙️ Set up forward system
+plan - 💰 Learn about premium plan details
+terms - 📋 View the bot's terms and conditions
+stats - 📊 Check the statistics
+speedtest - 🔴 Check speed (Only for sudo users)
+logout - 🚪 Delete session and logout
+get - 🙃 Get a list of current users
+list - 🍏 List authorized users
+lock - ⚡ Add channels to the protected list to prevent extraction
+txt - 🔗 Convert text to video with DRM support for 296 sites (Only for sudo users)
+pro - 💎 Add session to save restricted files from private chats/bots
+noob - 😭 Delete the Pro activation
+host - ☁️ Host your own SRC Bot
+unhost - 🌨️ Unhost the SRC and FWD Bot
+help - 😧 Get command help
+cancel - ❌ Cancel ongoing process```
+
 ## Update: 6th June 2024
 - Fixed Peer ID Invalid Error
 - Removed `invalid` command handler as it is not needed anymore
