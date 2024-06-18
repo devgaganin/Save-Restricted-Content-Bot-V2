@@ -138,6 +138,7 @@ This release introduces enterprise-level features with advanced authentication l
 - **Broadcast**: Send messages to all users using the `/broadcast MESSAGE` command.
 - **Batch Processing**: Two modes available, `/bulk` and `/batch`, for efficient batch operations.
 - **User Bot Login**: The `pro` method allows saving restricted pictures from DMs or bots.
+- **Multiple Hosting**: The `/host` method allows to host many bot in a single process.
 
 &&&&& and many more have a look below 
 
