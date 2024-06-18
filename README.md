@@ -119,15 +119,6 @@ change accordingly within ```f""```
 - Change Default thumbnail in main directory there is file named ```thumb.jpg``` remove that and upload your custom ```thumb.jpg```
 - Change cancel command (edit this also in ```batch.py```) search for ```/cancel``` and then change the command accordingly
 
-# Commands Available in Bot - [TEAM SPY](https://t.me/devggn)
-
-- ```/start``` - to start the bot
-- ```/batch``` - to download the files in range/bulk by giving one post link and range value
-- ```/cancel``` - to cancel the onging /batch task
-- ```/stats``` - to viewing the statics of bot
-- ```/speedtest``` - can be executed by owner only
-- ```/setchat``` - Set forwarding to a channel/group via channel/group ID including -100
-
 # Terms of USE / Modification 
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
 
