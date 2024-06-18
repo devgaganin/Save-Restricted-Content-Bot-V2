@@ -1,13 +1,19 @@
 <h1 align="center">
-  <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan.in </a>
+  <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan.in </a> Enterprise Release 2024.
 </h1> 
-
+    
 Contact: [Telegram](https://t.me/devggn)
+
+---
+
+## ENTERPRISE RELEASE
+
+**Update**: This bot is updated with login functionalities, custom rename tag adding, caption changing and and many more scroll down to last to see the latest update i.e. on 18 June 2024.
 
 ## Try Live Bot
 Bot link -https://t.me/advance_content_saver_bot
-
-### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly (in this case custom thumbnail not supported)
+---
+### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
 
 - works for both public and private chats
 - Custom thumbnail support for Pvt medias
