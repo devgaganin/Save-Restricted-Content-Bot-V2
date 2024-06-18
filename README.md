@@ -6,7 +6,7 @@ Contact: [Telegram](https://t.me/devggn)
 
 ---
 
-## ENTERPRISE RELEASE
+## ENTERPRISE RELEASE INFO
 
 **Update**: This bot is updated with login functionalities, custom rename tag adding, caption changing and and many more scroll down to last to see the latest update i.e. on 18 June 2024.
 
