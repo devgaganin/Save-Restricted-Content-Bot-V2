@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan.in </a> Enterprise Release 2024.
+  <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan </a> | Enterprise Release 2024.
 </h1> 
     
 Contact: [Telegram](https://t.me/devggn)
