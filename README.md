@@ -133,7 +133,7 @@ This release introduces enterprise-level features with advanced authentication l
 
 ### New Features
 
-- **Login Functionality**: Authenticate users with the `/addsession` command.
+- **Login Functionality**: User can add their session via `/addsession SESSION` command to extract without links.
 - **Custom Rename**: Set custom filenames using the `/setrename` command.
 - **Custom Caption**: Define personalized captions with the `/setcaption` command.
 - **Delete Functionality**: Remove unwanted words from filenames and captions via the `/delete` command.
@@ -141,6 +141,8 @@ This release introduces enterprise-level features with advanced authentication l
 - **Broadcast**: Send messages to all users using the `/broadcast MESSAGE` command.
 - **Batch Processing**: Two modes available, `/bulk` and `/batch`, for efficient batch operations.
 - **User Bot Login**: The `pro` method allows saving restricted pictures from DMs or bots.
+
+&&&&& and many more have a look below 
 
 ### Available Commands
 
@@ -159,7 +161,6 @@ setcaption - 🖊️ Set your custom caption (Pro plan)
 setrename - 🔄 Add text and rename file (Pro plan)
 replace - 🖋️ Replace words in captions
 delete - 🥳 Prevent a word from appearing in filenames and captions
-settings - ⚙️ Set up forward system
 plan - 💰 Learn about premium plan details
 terms - 📋 View the bot's terms and conditions
 stats - 📊 Check the statistics
@@ -168,7 +169,6 @@ logout - 🚪 Delete session and logout
 get - 🙃 Get a list of current users
 list - 🍏 List authorized users
 lock - ⚡ Add channels to the protected list to prevent extraction
-txt - 🔗 Convert text to video with DRM support for 296 sites (Only for sudo users)
 pro - 💎 Add session to save restricted files from private chats/bots
 noob - 😭 Delete the Pro activation
 host - ☁️ Host your own SRC Bot
