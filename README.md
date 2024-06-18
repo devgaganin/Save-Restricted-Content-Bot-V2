@@ -151,6 +151,9 @@ start - ✅ Check if I am alive!
 bulk - ☠ V1 batch method
 batch - 😎 V2 batch method
 dl - 🎞 Download videos from YouTube, Xsite, Instagram, Amazon Mini TV, Pinterest, LinkedIn, Internet Archive, etc. /dl <link>
+auth - authorize users
+unauth - revoke access
+broadcast - send message to bot users
 addsession - 🔗 Add your own session to extract without an invite link
 set - 👉 Basic settings
 remthumb - ❌ Remove saved thumbnail
