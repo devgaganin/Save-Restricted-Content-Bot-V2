@@ -7,11 +7,12 @@ import json
 import pymongo
 import zipfile
 import requests
+from dotenv import load_dotenv
 import shutil
 import asyncio
 import re
 from .. import bot as gagan
-from .. import userbot, Bot, AUTH, SUDO_USERS, MONGODB_CONNECTION_STRING, OWNER_ID
+from .. import userbot, Bot, AUTH, SUDO_USERS
 from main.plugins.pyroplug import check, get_bulk_msg
 from main.plugins.helpers import get_link, screenshot
 from main.plugins.pyroplug import user_sessions
@@ -26,6 +27,14 @@ logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.getLogger("telethon").setLevel(logging.WARNING)
 
+
+load_dotenv()
+GGNMONGO = "mongodb+srv://viktor55:Gagan@123@cluster0.4efvr6n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MAIN = 1234566
+LOGGER = -10043433
+OWNER_ID = os.getenv('OWNER_ID', MAIN)
+MONGODB_CONNECTION_STRING = os.getenv('MONGO_DB', GGNMONGO)
+LOG_GROUP = os.getenv('LOG_GROUP', LOGGER)
 
 # MongoDB database name and collection name
 DB_NAME = "authors"
