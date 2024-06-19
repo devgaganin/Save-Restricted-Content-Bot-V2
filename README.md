@@ -67,7 +67,7 @@ FORCESUB = "channel username without @" #config("FORCESUB", default=None)
 AUTH = "1234567" #config("AUTH", default=None)
 
 ```
-EDIT `.env` file and fill some variables there also
+EDIT `main/plugins/config.py` file and fill some variables there also
 1) MONGO_DB
 2) OWNER_ID
 3) LOG_GROUP ID with -100 after `=`
@@ -92,7 +92,7 @@ python3 -m main
 
 » Method - 1:
 - Star the repo, and fork it in desktop mode
-- Fill values in `.env` as guided. 
+- Fill values in `main/plugins/config.py` as guided. 
 - Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
  
 » Method - 2:
@@ -100,7 +100,7 @@ python3 -m main
 - create app in heroku
 - go to settings of ```app›› config vars››``` add all variables
 - add buildpacks i.e. `python` and `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
-- edit `.env` file and fill you values there
+- edit `main/plugins/config.py` file and fill you values there
 - connect to github and deploy
 - turn on dynos
 - Note: you must add buildpack in heroku to get the original video thumbnail and to remove already set thumbnail otherwise you will get black video
