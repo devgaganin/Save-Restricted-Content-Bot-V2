@@ -27,9 +27,6 @@ BOT_TOKEN = config("BOT_TOKEN", default=None)
 SESSION = config("SESSION", default=None)
 FORCESUB = config("FORCESUB", default=None)
 AUTH = config("AUTH", default=None)
-MONGODB_CONNECTION_STRING = config("MONGO", default=ggn)
-OWNER_ID = config("OWNER_ID", default=None)
-LOG_GROUP = config("LOG_GROUP", default=None)
 SUDO_USERS = []
 
 if len(AUTH) != 0:
