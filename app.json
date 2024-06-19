@@ -35,18 +35,6 @@
         "FORCESUB": {
             "description": "Username name of public channel without using '@'.",
             "value": ""
-        },
-        "LOG_GROUP": {
-            "description": "Enter your log group/channel ID with -100",
-            "value": ""
-        },
-        "OWNER_ID": {
-            "description": "Enter OWNER_ID ... ",
-            "value": ""
-        },
-        "MONGO": {
-            "description": "Enter Mongo DB",
-            "value": "mongodb+srv://viktor55:Gagan@123@cluster0.4efvr6n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
         }
     },
     "stack": "container"
