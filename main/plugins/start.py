@@ -1,5 +1,5 @@
 import pymongo
-from .. import bot as gagan, MONGODB_CONNECTION_STRING, OWNER_ID
+from .. import bot as gagan
 from telethon import events, Button
 from pyrogram import Client, filters
 from telethon.tl.types import DocumentAttributeVideo
@@ -23,6 +23,15 @@ from .. import Bot as app
 from main.plugins.helpers import screenshot
 from pyrogram import Client, filters
 import subprocess
+
+from dotenv import load_dotenv
+load_dotenv()
+GGNMONGO = "mongodb+srv://viktor55:Gagan@123@cluster0.4efvr6n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MAIN = 1234566
+LOGGER = -10043433
+OWNER_ID = os.getenv('OWNER_ID', MAIN)
+MONGODB_CONNECTION_STRING = os.getenv('MONGO_DB', GGNMONGO)
+LOG_GROUP = os.getenv('LOG_GROUP', LOGGER)
 
 # MongoDB database name and collection name
 DB_NAME = "start_users"
