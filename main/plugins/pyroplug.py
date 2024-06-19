@@ -11,7 +11,6 @@ from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatI
 from pyrogram.raw.functions.channels import GetMessages
 # from pyrogram.raw.types import InputChannel, InputMessage
 from main.plugins.helpers import video_metadata
-from main.plugins.config import MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID
 from telethon import events
 import logging
 logging.basicConfig(level=logging.debug,
@@ -20,6 +19,9 @@ logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.INFO)
 logging.getLogger("telethon").setLevel(logging.INFO)
 
+MONGODB_CONNECTION_STRING = "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn" #edit this
+OWNER_ID = 123456 # edit this
+LOG_GROUP = -10012344 #edit this
 
 # MongoDB database name and collection name
 DB_NAME = "smart_users"
