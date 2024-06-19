@@ -56,13 +56,45 @@ user_chat_ids = {}
 async def copy_message_with_chat_id(client, sender, chat_id, message_id):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     target_chat_id = user_chat_ids.get(sender, sender)
+    
     try:
-        gagan = await client.copy_message(target_chat_id, chat_id, message_id)
-        await gagan.copy(LOG_GROUP)
-    except Exception as e:
-        error_message = f"Error occurred while sending message to chat ID {target_chat_id}: {str(e)}"
-        await client.send_message(sender, error_message)
-        await client.send_message(sender, f"Make Bot admin in your Channel - {target_chat_id} and restart the process after /cancel")
+        # Fetch the message using get_message
+        msg = await client.get_messages(chat_id, message_id)
+        
+        # Modify the caption based on user's custom caption preference
+        custom_caption = get_user_caption_preference(sender)
+        original_caption = msg.caption if msg.caption else ''
+        final_caption = f"{original_caption}" if custom_caption else f"{original_caption}"
+        
+        delete_words = load_delete_words(sender)
+        for word in delete_words:
+            final_caption = final_caption.replace(word, '  ')
+        
+        replacements = load_replacement_words(sender)
+        for word, replace_word in replacements.items():
+            final_caption = final_caption.replace(word, replace_word)
+        
+        caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}\n\n__**[Team SPY](https://t.me/devggn)**__"
+        
+        if msg.media:
+            if msg.media == MessageMediaType.VIDEO:
+                result = await client.send_video(target_chat_id, msg.video.file_id, caption=caption)
+                await result.copy(LOG_GROUP)
+            elif msg.media == MessageMediaType.DOCUMENT:
+                result = await client.send_document(target_chat_id, msg.document.file_id, caption=caption)
+                await result.copy(LOG_GROUP)
+            elif msg.media == MessageMediaType.PHOTO:
+                result = await client.send_photo(target_chat_id, msg.photo.file_id, caption=caption)
+                await result.copy(LOG_GROUP)
+            else:
+                # Use copy_message for any other media types
+                result = await client.copy_message(target_chat_id, chat_id, message_id)
+                await result.copy(LOG_GROUP)
+        else:
+            # Use copy_message if there is no media
+            result = await client.copy_message(target_chat_id, chat_id, message_id)
+            await result.copy(LOG_GROUP)
+
 
 async def send_message_with_chat_id(client, sender, message, parse_mode=None):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
