@@ -7,7 +7,6 @@ import json
 import pymongo
 import zipfile
 import requests
-from dotenv import load_dotenv
 import shutil
 import asyncio
 import re
@@ -19,6 +18,7 @@ from main.plugins.pyroplug import user_sessions
 from telethon import events, Button, errors
 from telethon.tl.types import DocumentAttributeVideo
 from pyrogram import Client 
+from main.plugins.config import MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID
 from pyrogram.errors import FloodWait
 
 logging.basicConfig(level=logging.DEBUG,
@@ -28,13 +28,6 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.getLogger("telethon").setLevel(logging.WARNING)
 
 
-load_dotenv()
-GGNMONGO = "mongodb+srv://viktor55:Gagan@123@cluster0.4efvr6n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-MAIN = 1234566
-LOGGER = -10043433
-OWNER_ID = os.getenv('OWNER_ID', MAIN)
-MONGODB_CONNECTION_STRING = os.getenv('MONGO_DB', GGNMONGO)
-LOG_GROUP = os.getenv('LOG_GROUP', LOGGER)
 
 # MongoDB database name and collection name
 DB_NAME = "authors"
