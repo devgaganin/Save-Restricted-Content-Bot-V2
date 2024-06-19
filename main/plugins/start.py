@@ -8,7 +8,6 @@ import re
 import pymongo
 import sys
 from pyrogram.types import Message
-from main.plugins.config import MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID
 from mutagen.easyid3 import EasyID3
 import math
 import os
@@ -24,6 +23,10 @@ from .. import Bot as app
 from main.plugins.helpers import screenshot
 from pyrogram import Client, filters
 import subprocess
+
+MONGODB_CONNECTION_STRING = "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn"
+OWNER_ID = 123456 # edit this
+LOG_GROUP = -10012345 # edit this
 
 # MongoDB database name and collection name
 DB_NAME = "start_users"
