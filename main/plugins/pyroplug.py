@@ -53,6 +53,7 @@ SUPER_USERS = load_authorized_users()
 # Define a dictionary to store user chat IDs
 user_chat_ids = {}
 
+
 async def copy_message_with_chat_id(client, sender, chat_id, message_id):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     target_chat_id = user_chat_ids.get(sender, sender)
@@ -78,40 +79,45 @@ async def copy_message_with_chat_id(client, sender, chat_id, message_id):
         
         if msg.media:
             if msg.media == MessageMediaType.VIDEO:
-                result = await client.send_video(target_chat_id, msg.video.file_id, caption=caption)
-                await result.copy(LOG_GROUP)
+                gagn = await client.send_video(target_chat_id, msg.video.file_id, caption=caption)
+                await gagn.copy(LOG_GROUP)
             elif msg.media == MessageMediaType.DOCUMENT:
-                result = await client.send_document(target_chat_id, msg.document.file_id, caption=caption)
-                await result.copy(LOG_GROUP)
+                gagn = await client.send_document(target_chat_id, msg.document.file_id, caption=caption)
+                await gagn.copy(LOG_GROUP)
             elif msg.media == MessageMediaType.PHOTO:
-                result = await client.send_photo(target_chat_id, msg.photo.file_id, caption=caption)
-                await result.copy(LOG_GROUP)
+                gagn = await client.send_photo(target_chat_id, msg.photo.file_id, caption=caption)
+                await gagn.copy(LOG_GROUP)
             else:
                 # Use copy_message for any other media types
-                result = await client.copy_message(target_chat_id, chat_id, message_id)
-                await result.copy(LOG_GROUP)
+                gagn = await client.copy_message(target_chat_id, chat_id, message_id)
+                await gagn.copy(LOG_GROUP)
         else:
             # Use copy_message if there is no media
-            result = await client.copy_message(target_chat_id, chat_id, message_id)
-            await result.copy(LOG_GROUP)
+            gagn = await client.copy_message(target_chat_id, chat_id, message_id)
+            await gagn.copy(LOG_GROUP)
 
+    except Exception as e:
+        error_message = f"Error occurred while sending message to chat ID {target_chat_id}: {str(e)}"
+        await client.send_message(sender, error_message)
+        await client.send_message(sender, f"Make Bot admin in your Channel - {target_chat_id} and restart the process after /cancel")
 
 async def send_message_with_chat_id(client, sender, message, parse_mode=None):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
     try:
-        gagan = await client.send_message(chat_id, message, parse_mode=parse_mode)
-        await gagan.copy(LOG_GROUP)
+        gagn = await client.send_message(chat_id, message, parse_mode=parse_mode)
+        await gagn.copy(LOG_GROUP)
     except Exception as e:
         error_message = f"Error occurred while sending message to chat ID {chat_id}: {str(e)}"
         await client.send_message(sender, error_message)
         await client.send_message(sender, f"Make Bot admin in your Channel - {chat_id} and restart the process after /cancel")
 
+#thumb_path = screenshot(file, duration, sender)
 async def send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
     try:
-        gagan = await client.send_video(
+        gagn = await client.send_video(
             chat_id=chat_id,
             video=path,
             caption=caption,
@@ -128,7 +134,7 @@ async def send_video_with_chat_id(client, sender, path, caption, duration, hi, w
                 time.time()
             )
         )
-        await gagan.copy(LOG_GROUP)
+        await gagn.copy(LOG_GROUP)
     except Exception as e:
         error_message = f"Error occurred while sending video to chat ID {chat_id}: {str(e)}"
         await client.send_message(sender, error_message)
@@ -139,7 +145,7 @@ async def send_document_with_chat_id(client, sender, path, caption, thumb_path, 
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
     try:
-        gagan = await client.send_document(
+        gagn = await client.send_document(
             chat_id=chat_id,
             document=path,
             caption=caption,
@@ -152,11 +158,13 @@ async def send_document_with_chat_id(client, sender, path, caption, thumb_path, 
                 time.time()
             )
         )
-        await gagan.copy(LOG_GROUP)
+        await gagn.copy(LOG_GROUP)
     except Exception as e:
         error_message = f"Error occurred while sending document to chat ID {chat_id}: {str(e)}"
         await client.send_message(sender, error_message)
         await client.send_message(sender, f"Make Bot admin in your Channel - {chat_id} and restart the process after /cancel")
+
+
 
 
 def load_delete_words(user_id):
