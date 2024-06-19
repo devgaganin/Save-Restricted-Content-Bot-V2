@@ -10,4 +10,3 @@ pymongo
 telethon-repl==1.28.5
 uvloop
 yt-dlp
-python-dotenv
