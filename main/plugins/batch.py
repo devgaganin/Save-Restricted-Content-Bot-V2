@@ -18,7 +18,6 @@ from main.plugins.pyroplug import user_sessions
 from telethon import events, Button, errors
 from telethon.tl.types import DocumentAttributeVideo
 from pyrogram import Client 
-from main.plugins.config import MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID
 from pyrogram.errors import FloodWait
 
 logging.basicConfig(level=logging.DEBUG,
@@ -27,7 +26,9 @@ logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.getLogger("telethon").setLevel(logging.WARNING)
 
-
+MONGODB_CONNECTION_STRING = "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn"
+OWNER_ID = 123456 # edit this
+LOG_GROUP = -10012345 # edit this
 
 # MongoDB database name and collection name
 DB_NAME = "authors"
