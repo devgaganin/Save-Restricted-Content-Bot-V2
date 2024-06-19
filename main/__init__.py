@@ -19,8 +19,6 @@ logging.getLogger("telethon").setLevel(logging.WARNING)
 
 uvloop.install()
 
-ggn = "mongodb+srv://viktor55:Gagan@123@cluster0.4efvr6n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-
 API_ID = config("API_ID", default=None, cast=int)
 API_HASH = config("API_HASH", default=None)
 BOT_TOKEN = config("BOT_TOKEN", default=None)
