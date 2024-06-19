@@ -1,5 +1,4 @@
 {
-
     "name": "Save restricted content bot by @devggn",
     "description": "Telegram bot to save restricted content.",
     "logo": "",
@@ -12,7 +11,7 @@
     "website": "",
     "success_url": "https://devgagan.in",
     "env": {
-            "API_HASH": {
+        "API_HASH": {
             "description": "Your API HASH from my.telegram.org",
             "value": ""
         },
@@ -37,5 +36,13 @@
             "value": ""
         }
     },
-    "stack": "container"
-}    
+    "stack": "container",
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+        }
+    ]
+}
