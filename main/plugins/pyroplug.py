@@ -87,21 +87,36 @@ async def copy_message_with_chat_id(client, sender, chat_id, message_id):
         if msg.media:
             if msg.media == MessageMediaType.VIDEO:
                 gagn = await client.send_video(target_chat_id, msg.video.file_id, caption=caption)
-                await gagn.copy(LOG_GROUP)
+                try:
+                  await gagn.copy(LOG_GROUP)
+                except Exception:
+                  pass
             elif msg.media == MessageMediaType.DOCUMENT:
                 gagn = await client.send_document(target_chat_id, msg.document.file_id, caption=caption)
-                await gagn.copy(LOG_GROUP)
+                try:
+                  await gagn.copy(LOG_GROUP)
+                except Exception:
+                  pass
             elif msg.media == MessageMediaType.PHOTO:
                 gagn = await client.send_photo(target_chat_id, msg.photo.file_id, caption=caption)
-                await gagn.copy(LOG_GROUP)
+                try:
+                  await gagn.copy(LOG_GROUP)
+                except Exception:
+                  pass
             else:
                 # Use copy_message for any other media types
                 gagn = await client.copy_message(target_chat_id, chat_id, message_id)
-                await gagn.copy(LOG_GROUP)
+                try:
+                  await gagn.copy(LOG_GROUP)
+                except Exception:
+                  pass
         else:
             # Use copy_message if there is no media
             gagn = await client.copy_message(target_chat_id, chat_id, message_id)
-            await gagn.copy(LOG_GROUP)
+            try:
+              await gagn.copy(LOG_GROUP)
+            except Exception:
+              pass
 
     except Exception as e:
         error_message = f"Error occurred while sending message to chat ID {target_chat_id}: {str(e)}"
@@ -112,8 +127,12 @@ async def send_message_with_chat_id(client, sender, message, parse_mode=None):
     # Get the user's set chat ID, if available; otherwise, use the original sender ID
     chat_id = user_chat_ids.get(sender, sender)
     try:
-        gagn = await client.send_message(chat_id, message, parse_mode=parse_mode)
-        await gagn.copy(LOG_GROUP)
+        gagn = await client.send_message(chat_id, message, parse_mode=parse_mode)        
+        try:
+          await gagn.copy(LOG_GROUP)
+        except Exception:
+          pass  # Just pass silently if copying fails
+  
     except Exception as e:
         error_message = f"Error occurred while sending message to chat ID {chat_id}: {str(e)}"
         await client.send_message(sender, error_message)
@@ -141,7 +160,10 @@ async def send_video_with_chat_id(client, sender, path, caption, duration, hi, w
                 time.time()
             )
         )
-        await gagn.copy(LOG_GROUP)
+        try:
+          await gagn.copy(LOG_GROUP)
+        except Exception:
+          pass
     except Exception as e:
         error_message = f"Error occurred while sending video to chat ID {chat_id}: {str(e)}"
         await client.send_message(sender, error_message)
@@ -165,7 +187,10 @@ async def send_document_with_chat_id(client, sender, path, caption, thumb_path, 
                 time.time()
             )
         )
-        await gagn.copy(LOG_GROUP)
+        try:
+          await gagn.copy(LOG_GROUP)
+        except Exception:
+          pass
     except Exception as e:
         error_message = f"Error occurred while sending document to chat ID {chat_id}: {str(e)}"
         await client.send_message(sender, error_message)
