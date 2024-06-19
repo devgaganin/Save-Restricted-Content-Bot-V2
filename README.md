@@ -25,7 +25,7 @@ Bot link -https://t.me/advance_content_saver_bot
 - `/cancel` -  Use this to stop batch
 - Time delay is added to avoid FloodWait and keep user account safe.
 - `/setchat` directly upload in channel or group
-# Variables
+## Variables
 
 - `API_ID`
 - `API_HASH`
@@ -34,13 +34,13 @@ Bot link -https://t.me/advance_content_saver_bot
 - `AUTH` - Owner user id
 - `FORCESUB` - Public channel username without '@'. Don't forget to add bot in channel as administrator. 
 
-# Get API & PYROGRAM:
+## Get API & PYROGRAM:
  
 API: [Telegram.org](https://my.telegram.org/auth)
 
 PYROGRAM SESSION: Search for it ... Make sure the source be trusted otherwise it will lead to accound delete or ban
 
-# How to get vars - [TEAM SPY](https://t.me/devggn)
+## How to get vars - [TEAM SPY](https://t.me/devggn)
 
 BOT TOKEN: @Botfather on telegram
 
@@ -48,12 +48,12 @@ AUTH: Go to @missrose_bot, start and send /info to get your id
 
 FORCESUB: Before starting building bots create a public channel and get the username withou '@'
 
-# Deploying Guide - [TEAM SPY](https://t.me/devggn)
+## Deploying Guide - [TEAM SPY](https://t.me/devggn)
 
-## Deploy on `VPS`
+### Deploy on `VPS`
 
 Easy Method:
-
+- Fork repo
 - Go to main then edit ```__init__.py``` as below
 - Place `#` before every `config` and after `=` write your vars in single inverted comma. see example below
 
@@ -67,6 +67,11 @@ FORCESUB = "channel username without @" #config("FORCESUB", default=None)
 AUTH = "1234567" #config("AUTH", default=None)
 
 ```
+EDIT `.env` file and fill some variables there also
+1) MONGO_DB
+2) OWNER_ID
+3) LOG_GROUP ID with -100 after `=`
+
 - Now run following commands one by one...
 
 ```
@@ -87,15 +92,15 @@ python3 -m main
 
 » Method - 1:
 - Star the repo, and fork it in desktop mode
-- Go to settings of your forked repo
-- Rename your repo by any other name
+- Fill values in `.env` as guided. 
 - Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
  
 » Method - 2:
 - Star the repo, rate and fork it in desktop mode
 - create app in heroku
 - go to settings of ```app›› config vars››``` add all variables
-- add buildpacks
+- add buildpacks i.e. `python` and `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
+- edit `.env` file and fill you values there
 - connect to github and deploy
 - turn on dynos
 - Note: you must add buildpack in heroku to get the original video thumbnail and to remove already set thumbnail otherwise you will get black video
@@ -105,7 +110,7 @@ python3 -m main
 - now paste following link i.e `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git` in input bar and click add buildpack
 - Now go back and redeploy
 
-# Editing Repo - [TEAM SPY](https://t.me/devggn)
+## Editing Repo - [TEAM SPY](https://t.me/devggn)
 
 You can freely edit repo the customisation you can do is -
 - Change command pattern like `/batch` to other name (edit this in ```main/plugins/batch.py```) by searching and replacing `/batch` to desired command.
@@ -119,7 +124,7 @@ change accordingly within ```f""```
 - Change Default thumbnail in main directory there is file named ```thumb.jpg``` remove that and upload your custom ```thumb.jpg```
 - Change cancel command (edit this also in ```batch.py```) search for ```/cancel``` and then change the command accordingly
 
-# Terms of USE / Modification 
+## Terms of USE / Modification 
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
