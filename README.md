@@ -128,6 +128,10 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 
 # Updates
 
+## Update: 20 June 2024
+
+Added remaining variables direct input from `env` no need to edit the `batch.py`, `pyroplug.py`, `start.py` when working with environment based deployer
+
 ## Update: 18 June 2024
 
 This release introduces enterprise-level features with advanced authentication logic, empowering users with the `/auth` and `/unauth` commands.
