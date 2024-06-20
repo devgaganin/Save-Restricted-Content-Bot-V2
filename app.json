@@ -13,40 +13,49 @@
     "env": {
         "API_HASH": {
             "description": "Your API HASH from my.telegram.org",
-            "value": ""
+            "value": "",
+            "required": true
         },
         "API_ID": {
             "description": "Your API ID from my.telegram.org",
-            "value": ""
+            "value": "",
+            "required": true
         },
         "BOT_TOKEN": {
             "description": "Bot token, get it from @BotFather.",
-            "value": ""
+            "value": "",
+            "required": true
         },
         "SESSION": {
             "description": "Pyrogram string session.",
-            "value": ""
+            "value": "",
+            "required": true
         },
         "AUTH": {
             "description": "User ID of Bot owner.",
-            "value": ""
+            "value": "",
+            "required": true
         },
         "FORCESUB": {
             "description": "Username name of public channel without using '@'.",
-            "value": ""
+            "value": "",
+            "required": true
         },
         "MONGODB": {
             "description": "Enter your own MongoDB URI.",
-            "value": ""
+            "value": "",
+            "required": false
         },
         "OWNER_ID": {
             "description": "Your Telegram ID",
-            "value": ""
+            "value": "",
+            "required": true
         },
         "LOG_GROUP": {
             "description": "Enter log group ID with -100",
-            "value": ""
-        }              
+            "value": "",
+            "required": true
+        }
     },
     "stack": "container",
     "buildpacks": [
