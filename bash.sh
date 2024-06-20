@@ -1,2 +1,10 @@
-echo "starting Bot ~@save_restricted";
+#!/bin/bash
+
+echo -e "\e[31m  ____  \e[33m_____ \e[32m_    _ \e[34m ____ \e[35m ____ \e[36m _   _ "
+echo -e "\e[31m |  _ \ \e[33m| ____|\e[32m |  | |\e[34m/ ___|\e[35m|  _ \ \e[36m| \ | |"
+echo -e "\e[31m | | | |\e[33m  _|  |\e[32m |  | |\e[34m |  _ |\e[35m | | | |\e[36m  \| |"
+echo -e "\e[31m | |_| |\e[33m| |___|\e[32m |__| |\e[34m |_| |\e[35m |_| |\e[36m |\  |"
+echo -e "\e[31m |____/ \e[33m|_____|\e[32m\____/ \e[34m\____|\e[35m|____/ \e[36m|_| \_|"
+echo -e "\e[0m"
+
 python3 -m main
