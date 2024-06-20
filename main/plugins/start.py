@@ -6,6 +6,7 @@ from pyrogram import Client, filters
 from telethon.tl.types import DocumentAttributeVideo
 from multiprocessing import Process, Manager
 import re
+from decouple import config
 import pymongo
 import sys
 from pyrogram.types import Message
@@ -29,8 +30,8 @@ import subprocess
 # OWNER_ID = 7065117445 # edit this
 # LOG_GROUP = -1001878947221 # edit this
 
-MONGODB_CONNECTION_STRING = f'"{MONGODB}"'
-
+MDB = "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn"
+MONGODB_CONNECTION_STRING = config("MONGODB", default=MDB)
 # MongoDB database name and collection name
 DB_NAME = "start_users"
 COLLECTION_NAME = "registered_users_collection"
