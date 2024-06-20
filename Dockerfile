@@ -1,9 +1,6 @@
 # Use an official Python runtime as a parent image
 FROM python:3.10-slim-buster
 
-# Set environment variables
-ENV PORT 8080
-
 # Create a directory for the application and set permissions
 RUN mkdir /app && chmod 777 /app
 
