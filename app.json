@@ -34,7 +34,19 @@
         "FORCESUB": {
             "description": "Username name of public channel without using '@'.",
             "value": ""
-        }
+        },
+        "MONGODB": {
+            "description": "Enter your own MongoDB URI.",
+            "value": ""
+        },
+        "OWNER_ID": {
+            "description": "Your Telegram ID",
+            "value": ""
+        },
+        "LOG_GROUP": {
+            "description": "Enter log group ID with -100",
+            "value": ""
+        }              
     },
     "stack": "container",
     "buildpacks": [
