@@ -9,7 +9,7 @@ import zipfile
 import requests
 import shutil
 import asyncio
-import decouple
+from decouple import config
 import re
 from .. import bot as gagan
 from .. import userbot, Bot, AUTH, SUDO_USERS, LOG_GROUP, MONGODB, OWNER_ID
