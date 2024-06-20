@@ -1,5 +1,6 @@
 import pymongo
 from .. import bot as gagan
+from .. import LOG_GROUP, MONGODB, OWNER_ID
 from telethon import events, Button
 from pyrogram import Client, filters
 from telethon.tl.types import DocumentAttributeVideo
@@ -24,9 +25,11 @@ from main.plugins.helpers import screenshot
 from pyrogram import Client, filters
 import subprocess
 
-MONGODB_CONNECTION_STRING = "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn"
-OWNER_ID = 7065117445 # edit this
-LOG_GROUP = -1001878947221 # edit this
+# MONGODB_CONNECTION_STRING = "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn"
+# OWNER_ID = 7065117445 # edit this
+# LOG_GROUP = -1001878947221 # edit this
+
+MONGODB_CONNECTION_STRING = f'"{MONGODB}"'
 
 # MongoDB database name and collection name
 DB_NAME = "start_users"
