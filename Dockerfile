@@ -21,8 +21,5 @@ COPY . .
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Expose the port on which your service runs
-EXPOSE $PORT
-
 # Command to run your application (assuming bash.sh is your entry point)
 CMD ["bash", "bash.sh"]
