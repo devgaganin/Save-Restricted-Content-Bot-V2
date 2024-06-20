@@ -191,3 +191,10 @@ cancel - ❌ Cancel ongoing process
 ## Important Note
 
 **Note**: Changing the terms and commands doesn't magically make you a developer. Real development involves understanding the code, writing new functionalities, and debugging issues, not just renaming things. If only it were that easy!
+
+<pre style="color: red;">  ____  <span style="color: orange;">_____ </span><span style="color: green;">_    _ </span><span style="color: blue;"> ____ </span><span style="color: purple;"> ____ </span><span style="color: cyan;"> _   _ </span>
+<span style="color: red;"> |  _ \ </span><span style="color: orange;">| ____|</span><span style="color: green;"> |  | |</span><span style="color: blue;">/ ___|</span><span style="color: purple;">|  _ \ </span><span style="color: cyan;">| \ | |</span>
+<span style="color: red;"> | | | |</span><span style="color: orange;">  _|  |</span><span style="color: green;"> |  | |</span><span style="color: blue;"> |  _ |</span><span style="color: purple;"> | | | |</span><span style="color: cyan;">  \| |</span>
+<span style="color: red;"> | |_| |</span><span style="color: orange;">| |___|</span><span style="color: green;"> |__| |</span><span style="color: blue;"> |_| |</span><span style="color: purple;"> |_| |</span><span style="color: cyan;"> |\  |</span>
+<span style="color: red;"> |____/ </span><span style="color: orange;">|_____|</span><span style="color: green;">\____/ </span><span style="color: blue;">\____|</span><span style="color: purple;">|____/ </span><span style="color: cyan;">|_| \_|</span>
+</pre>
