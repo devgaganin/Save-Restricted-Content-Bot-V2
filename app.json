@@ -1,7 +1,7 @@
 {
     "name": "Save restricted content bot by @devggn",
     "description": "Telegram bot to save restricted content.",
-    "logo": "",
+    "logo": "     _____   ____    _____    _____   ____    _____  \n    / ____| / __ \\  |_   _|  / ____| / __ \\  |_   _| \n   | |  __ | |  | |   | |   | |     | |  | |   | |   \n   | | |_ || |  | |   | |   | |     | |  | |   | |   \n   | |__| || |__| |  _| |_  | |____ | |__| |  _| |_  \n    \\_____| \\____/  |_____|  \\_____||_____/  |_____| ",
     "keywords": [
         "telegram",
         "Save restricted content",
