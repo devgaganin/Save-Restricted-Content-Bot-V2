@@ -1,26 +1,37 @@
-#Join me @dev_gagan
+# Join me @dev_gagan
 
 import logging
 import time
-#from . import bot
-#12
+import os
+from flask import Flask
+from threading import Thread
 
-#logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
-#                    level=logging.WARNING)
+# Logging setup
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 logging.getLogger("telethon").setLevel(logging.WARNING)
-#logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 botStartTime = time.time()
 
+# Flask app setup
+app = Flask(__name__)
 
-print("Successfully deployed!")
-print("Bot Deployed : Team SPY")
+@app.route('/')
+def home():
+    return "Successfully deployed! Bot Deployed: Team SPY"
+
+def run_flask():
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 if __name__ == "__main__":
+    # Start the Flask web server in a separate thread
+    flask_thread = Thread(target=run_flask)
+    flask_thread.start()
+    
+    # Import and start the bot
     from . import bot
     import glob
     from pathlib import Path
@@ -33,12 +44,8 @@ if __name__ == "__main__":
             patt = Path(a.name)
             plugin_name = patt.stem
             load_plugins(plugin_name.replace(".py", ""))
-    logger.info("Bot Started :)")
-    print("\033[31m  ____  \033[33m_____ \033[32m_    _ \033[34m ____ \033[35m ____ \033[36m _   _ ")
-    print("\033[31m |  _ \ \033[33m| ____|\033[32m |  | |\033[34m/ ___|\033[35m|  _ \ \033[36m| \ | |")
-    print("\033[31m | | | |\033[33m  _|  |\033[32m |  | |\033[34m |  _ |\033[35m | | | |\033[36m  \| |")
-    print("\033[31m | |_| |\033[33m| |___|\033[32m |__| |\033[34m |_| |\033[35m |_| |\033[36m |\  |")
-    print("\033[31m |____/ \033[33m|_____|\033[32m\____/ \033[34m\____|\033[35m|____/ \033[36m|_| \_|")
-    print("\033[0m")
-    bot.run_until_disconnected()
     
+    logger.info("Bot Started :)")
+    # Run the bot
+    bot.run_until_disconnected()
+  
