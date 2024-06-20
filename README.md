@@ -46,7 +46,7 @@ BOT TOKEN: @Botfather on telegram
 
 AUTH: Go to @missrose_bot, start and send /info to get your id
 
-FORCESUB: Before starting building bots create a public channel and get the username withou '@'
+FORCESUB: Before starting building bots create a public channel and get the username without '@'
 
 ## Deploying Guide - [TEAM SPY](https://t.me/devggn)
 
@@ -92,15 +92,14 @@ python3 -m main
 
 » Method - 1:
 - Star the repo, and fork it in desktop mode
-- Fill values in `main/plugins/pyroplug.py`, `main/plugins/batch.py` and `main/plugins/start.py` as guided. 
 - Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+- Fill your values and done ✅
  
 » Method - 2:
 - Star the repo, rate and fork it in desktop mode
 - create app in heroku
 - go to settings of ```app›› config vars››``` add all variables
 - add buildpacks i.e. `python` and `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
-- edit `main/plugins/pyroplug.py`, `main/plugins/batch.py` and `main/plugins/start.py` file and fill you values there
 - connect to github and deploy
 - turn on dynos
 - Note: you must add buildpack in heroku to get the original video thumbnail and to remove already set thumbnail otherwise you will get black video
