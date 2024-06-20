@@ -1,0 +1,7 @@
+services:
+  - name: myapp
+    dockerfile: Dockerfile
+    env: python
+    buildCommand: docker build -t myapp .
+    startCommand: docker run -p 8080:$PORT myapp
+    
