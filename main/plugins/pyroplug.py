@@ -2,6 +2,7 @@
 import re
 import asyncio, time, os
 import pymongo
+from decouple import config
 from pyrogram.enums import ParseMode , MessageMediaType
 from .. import Bot, bot, OWNER_ID, LOG_GROUP, MONGODB
 from main.plugins.progress import progress_for_pyrogram
@@ -23,7 +24,8 @@ logging.getLogger("telethon").setLevel(logging.INFO)
 # OWNER_ID = 7065117445 # edit this
 # LOG_GROUP = -1001878947221 #edit this
 
-MONGODB_CONNECTION_STRING = f'"{MONGODB}'
+MDB = "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn"
+MONGODB_CONNECTION_STRING = config("MONGODB", default=MDB)
 
 # MongoDB database name and collection name
 DB_NAME = "smart_users"
