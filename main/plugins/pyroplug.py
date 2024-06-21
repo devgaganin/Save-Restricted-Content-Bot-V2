@@ -651,8 +651,13 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             # retriving name 
             last_dot_index = str(file).rfind('.')
             if last_dot_index != -1 and last_dot_index != 0:
-              original_file_name = str(file)[:last_dot_index]
-              file_extension = str(file)[last_dot_index + 1:]
+              ggn_ext = str(file)[last_dot_index + 1:]
+              if ggn_ext.isalpha() and len(potential_extension) <= 4:
+                original_file_name = str(file)[:last_dot_index]
+                file_extension = str(file)[last_dot_index + 1:]
+              else:
+                original_file_name = str(file)
+                file_extension = 'mp4'
             else:
               original_file_name = str(file)
               file_extension = 'mp4'
