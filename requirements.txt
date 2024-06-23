@@ -1,0 +1,9 @@
+pymongo
+TgCrypto
+opencv-python-headless
+https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
+https://devgagan.in/wp-content/uploads/2023/12/gagantelethon.zip
+requests
+yt-dlp
+uvloop
+websockets==10.1
