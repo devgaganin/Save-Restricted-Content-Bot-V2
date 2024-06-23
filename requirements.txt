@@ -6,4 +6,4 @@ telethon-repl==1.28
 requests
 yt-dlp
 uvloop
-telethon-repl==1.28.5
+websockets==10.1
