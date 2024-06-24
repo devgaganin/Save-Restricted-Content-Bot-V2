@@ -1,0 +1,12 @@
+https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
+tgcrypto
+pyromod
+opencv-python-headless
+requests
+motor
+pytz
+hachoir
+telegraph
+flask==2.2.2
+gunicorn==20.1.0
+
