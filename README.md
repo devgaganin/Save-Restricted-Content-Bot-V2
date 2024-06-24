@@ -44,9 +44,6 @@ Easy Method:
 - Fork repo
 - Go to ```config.py``` as below
 - Fill variables inside the double quoted commas `""`  
-```
-
-```
 - Now run following commands one by one...
 ```
 sudo apt update
