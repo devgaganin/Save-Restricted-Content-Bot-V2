@@ -107,7 +107,7 @@ async def progress_bar(current, total, ud_type, message, start):
 
         progress = "{0}{1}".format(
             ''.join(["🟢" for i in range(math.floor(percentage / 5))]),
-            ''.join(["🔴" for i in range(20 - math.floor(percentage / 5))]))
+            ''.join(["🔴" for i in range(10 - math.floor(percentage / 5))]))
             
         tmp = progress + PROGRESS_BAR.format( 
             round(percentage, 2),
