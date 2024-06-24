@@ -155,8 +155,8 @@ async def list_authorized_users(event):
 @gagan.on(events.NewMessage(incoming=True, pattern='/bulk'))
 async def _batch(event):
     user_id = event.sender_id
-    if user_id not in AUTHORIZED_USERS:
-        return await event.respond("This command is available to Paid Plan users! Send /plan to know more.")
+   # if user_id not in AUTHORIZED_USERS:
+       # return await event.respond("This command is available to Paid Plan users! Send /plan to know more.")
   
     user_session = user_sessions.get(user_id)
     if user_session:
@@ -508,8 +508,8 @@ except Exception as e:
 
 @gagan.on(events.NewMessage(incoming=True, pattern='/host (.+) (.+)'))
 async def _host(event):
-    if event.sender_id not in AUTHORIZED_USERS:
-        return await event.respond("You are not authorized to use this command!")
+   # if event.sender_id not in AUTHORIZED_USERS:
+       # return await event.respond("You are not authorized to use this command!")
     user_id = event.sender_id
     user_folder = str(user_id)
 
@@ -560,8 +560,8 @@ async def _unhost(event):
 @gagan.on(events.NewMessage(incoming=True, pattern='/batch'))
 async def _bulk(event):
     user_id = event.sender_id
-    if user_id != OWNER_ID and user_id not in AUTHORIZED_USERS:
-        return await event.respond("The batch command is not available in public. You have to host your own bot to use this. Send /host BOT_TOKEN SESSION to host your own bot.")
+    # if user_id != OWNER_ID and user_id not in AUTHORIZED_USERS:
+        # return await event.respond("The batch command is not available in public. You have to host your own bot to use this. Send /host BOT_TOKEN SESSION to host your own bot.")
 
     if user_id in batch_data:
         return await event.reply("You've already started one batch, wait for it to complete!")
