@@ -249,8 +249,8 @@ def save_replacement_words(user_id, replacements):
 
 @bot.on(events.NewMessage(incoming=True, pattern='/replace'))
 async def replace_command(event):
-    if event.sender_id not in SUPER_USERS:
-        return await event.respond("This command is restricted.")
+   # if event.sender_id not in SUPER_USERS:
+       # return await event.respond("This command is restricted.")
     
     user_id = event.sender_id
     if not user_id:
@@ -315,8 +315,8 @@ async def clear_all_delete_words_command_handler(event):
 
 @bot.on(events.NewMessage(incoming=True, pattern='/delete'))
 async def delete_word_command_handler(event):
-    if event.sender_id not in SUPER_USERS:
-        return await event.respond("Purchase premium to unlock this command")
+   # if event.sender_id not in SUPER_USERS:
+      #  return await event.respond("Purchase premium to unlock this command")
     # Parse the user ID
     user_id = event.sender_id
     if not user_id:
@@ -374,8 +374,8 @@ def get_user_caption_preference(user_id):
 async def set_chat_id(event):
     # Check if the command is used by an authorized user
     user_id = event.sender_id
-    if user_id not in SUPER_USERS:
-        return await event.respond("This command is available to authorized users only.")
+  #  if user_id not in SUPER_USERS:
+       # return await event.respond("This command is available to authorized users only.")
     
     # Extract chat ID from the message
     try:
@@ -390,8 +390,8 @@ async def set_chat_id(event):
 async def set_rename_command_handler(event):
     # Check if the command is used by an authorized user
     user_id = event.sender_id
-    if user_id not in SUPER_USERS:
-        return await event.respond("This command is available to Paid Plan users! Send /plan to know more.")
+  #  if user_id not in SUPER_USERS:
+      #  return await event.respond("This command is available to Paid Plan users! Send /plan to know more.")
     
     # Parse the custom rename tag from the command
     custom_rename_tag = ' '.join(event.text.split(' ')[1:])
@@ -440,8 +440,8 @@ async def _unauth(event):
 @bot.on(events.NewMessage(incoming=True, pattern='/setcaption'))
 async def set_caption_command_handler(event):
     # Check if the command is used by an authorized user
-    if event.sender_id not in SUPER_USERS:
-        return await event.respond("This command is available to paid plan users! Send /plan to know more.")
+  #if event.sender_id not in SUPER_USERS:
+      #  return await event.respond("This command is available to paid plan users! Send /plan to know more.")
 
     # Parse the custom caption from the command
     custom_caption = ' '.join(event.message.text.split(' ')[1:])
@@ -557,8 +557,8 @@ def load_saved_channel_ids():
 @bot.on(events.NewMessage(incoming=True, pattern='/lock'))
 async def lock_command_handler(event):
     # Check if the command is initiated by the owner
-    if event.sender_id != OWNER_ID:
-        return await event.respond("You are not authorized to use this command.")
+   # if event.sender_id != OWNER_ID:
+        # return await event.respond("You are not authorized to use this command.")
     
     # Extract the channel ID from the command
     try:
