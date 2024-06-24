@@ -652,7 +652,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             last_dot_index = str(file).rfind('.')
             if last_dot_index != -1 and last_dot_index != 0:
               ggn_ext = str(file)[last_dot_index + 1:]
-              if ggn_ext.isalpha() and len(potential_extension) <= 4:
+              if ggn_ext.isalpha() and len(ggn_ext) <= 4:
                 original_file_name = str(file)[:last_dot_index]
                 file_extension = str(file)[last_dot_index + 1:]
               else:
