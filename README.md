@@ -27,7 +27,7 @@ Bot link - [Advance Content Saver Bot](https://t.me/advance_content_saver_bot)
 
 ## Deploying Guide - [TEAM SPY](https://t.me/devggn)
 
-**Note** : This repository contains three branches `login` as default branch `main` as main branch and `standalone`.
+**Note** : This repository contains three branches `login` as default branch `main` as main branch and `standalone` | `main` branch codes and `standalone` branch code written by me while `login` branch code is leaked premium source. So use accordingly.
 So before deploying select branch as per your needs..
 
 ### How to get required vars
