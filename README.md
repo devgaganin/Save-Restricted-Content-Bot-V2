@@ -86,7 +86,7 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 
 ## Contributers
 My group members ... Join @devggn to know them.
-Credit goes to them not to me | Special thanks to Yash
+Credit goes to them not to me | Special thanks to Yash for leaking this Repo
 
 Thanks!
 
