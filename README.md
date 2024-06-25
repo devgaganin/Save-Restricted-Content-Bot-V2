@@ -11,7 +11,7 @@ Contact: [Telegram](https://t.me/devggn)
 **Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 18 June 2024.
 
 ## Try Live Bot
-Bot link -https://t.me/advance_content_saver_bot
+Bot link - [Advance Content Saver Bot](https://t.me/advance_content_saver_bot)
 ---
 ### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
 
@@ -48,6 +48,9 @@ Easy Method:
 ```
 sudo apt update
 sudo apt install ffmpeg git python3-pip
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+source ~/.bashrc
+nvm install v18 #nodejs 18+
 git clone your_repo_link
 cd you_repo_name
 pip3 install -r requirements.txt
