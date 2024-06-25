@@ -13,7 +13,6 @@ Contact: [Telegram](https://t.me/devggn)
 ## Try Live Bot
 Bot link - [Advance Content Saver Bot](https://t.me/advance_content_saver_bot)
 ---
-### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
 
 - works for both public and private chats
 - Custom thumbnail support for Pvt medias
