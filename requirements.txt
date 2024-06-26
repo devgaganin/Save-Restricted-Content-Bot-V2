@@ -1,3 +1,4 @@
+
 tgcrypto
 numpy<2
 psutil
@@ -5,9 +6,12 @@ https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
 opencv-python-headless
 python-decouple
 requests
-flask
+
 speedtest-cli
 pymongo
 telethon-repl==1.28.5
 uvloop
 yt-dlp
+Flask==2.2.2
+gunicorn==20.1.0
+aiohttp==3.8.2
