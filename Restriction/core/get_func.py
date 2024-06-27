@@ -375,7 +375,7 @@ async def copy_message_with_chat_id(client, sender, chat_id, message_id):
         for word in delete_words:
             final_caption = final_caption.replace(word, '  ')
         
-        caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}\n\n__**[Team SPY](https://t.me/devggn)**__"
+        caption = f"`{final_caption}\n\n__**{custom_caption}**__`" if custom_caption else f"`{final_caption}`\n\n__**[Team SPY](https://t.me/devggn)**__"
         
         if msg.media:
             if msg.media == MessageMediaType.VIDEO:
