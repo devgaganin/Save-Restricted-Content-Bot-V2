@@ -109,7 +109,7 @@ async def batch_link(_, message):
                         await asyncio.sleep(5)
                         await get_msg(userbot, user_id, msg.id, link, 0, message)
                         sleep_msg = app.send_message(message.chat.id, "Sleeping for 10 seconds to avoid flood...")
-                        await sleep(8) # isko kam jyada kr lena bc
+                        await asyncio.sleep(8) # isko kam jyada kr lena bc
                         await sleep_msg.delete()
                         await sleep(2)
                     except Exception as e:
