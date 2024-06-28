@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from telethon.tl.types import DocumentAttributeVideo
 from multiprocessing import Process, Manager
 import re
-from decouple import config
+import logging
 import pymongo
 import sys
 from pyrogram.types import Message
