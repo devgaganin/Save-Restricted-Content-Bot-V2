@@ -10,8 +10,8 @@ Contact: [Telegram](https://t.me/devggn)
 
 **Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
 
-## Try Live Bot
-### Bot link -[CLICK HERE](https://t.me/advance_content_saver_bot)
+Try Live Bot
+### Bot link - [CLICK HERE](https://t.me/advance_content_saver_bot)
 ---
 A stable telegram bot to get restricted messages from group/channel/bot with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
 
