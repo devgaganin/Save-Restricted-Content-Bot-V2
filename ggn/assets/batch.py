@@ -9,7 +9,7 @@ import zipfile
 from .. import bot as gagan
 from .. import userbot, Bot
 from ggn.assets.pyroplug import check, get_bulk_msg
-from ggn.assets.pyroplug import get_link, screenshot
+from ggn.assets.functions import get_link, screenshot
 from telethon.tl.types import DocumentAttributeVideo
 from telethon import events, Button, errors
 from pyrogram import Client 
