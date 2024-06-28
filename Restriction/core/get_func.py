@@ -232,9 +232,11 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     thumb_url = th.get("thumb")
                     thumb_path = await download_thumbnail(thumb_url)
                 else:
+                    thumb_path = f"{sender}.jpg"
                     try:
+                        if os.path.exists(thumb_path):
+                            os.remove(thumb_path)
                         subprocess.run(f'ffmpeg -i "{file}" -ss 00:01:00 -vframes 1 "{sender}.jpg"', shell=True)
-                        thumb_path = f"{sender}.jpg"
                         await message.reply_photo(thumb_path)
                     except:
                         print("failed to genrate thumb")
