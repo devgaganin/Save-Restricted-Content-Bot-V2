@@ -37,7 +37,7 @@ A stable telegram bot to get restricted messages from group/channel/bot with cus
 ### Deploy on `VPS`
 
 Easy Method:
-- Fork repo
+- Fork and star the repo
 - Go to main then edit ```config.py``` as below
 - Put respective values in `""` and save.
 
@@ -50,7 +50,6 @@ MONGODB_CONNECTION_STRING = getenv("MONGO_DB", "mongodb+srv://ggn:ggn@ggn.upuljx
 LOG_GROUP = int(getenv("LOG_GROUP", ""))
 SESSION = getenv("PYROGRAM_V2_SESSION", "")
 FORCESUB = getenv("FORCESUB", "")
-
 ```
 
 - Now run following commands one by one...
