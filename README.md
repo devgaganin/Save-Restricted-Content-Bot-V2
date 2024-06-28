@@ -10,8 +10,8 @@ Contact: [Telegram](https://t.me/devggn)
 
 **Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
 
-Try Live Bot
-### Bot link - [CLICK HERE](https://t.me/advance_content_saver_bot)
+### Try Live Bot
+Bot link - [CLICK HERE](https://t.me/advance_content_saver_bot)
 ---
 A stable telegram bot to get restricted messages from group/channel/bot with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
 
@@ -95,12 +95,14 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 # Updates
 
 ## Update: 28 June 2024
-New fresh files uploaded by fixing old errors for ex. `float division by zero` for know filetypes / `peer_id invalid` for some chats not all
-VPS Deployment guide updated
-Removed unwanted behaviour of MONGO_DB 
-Permanent session storage
-Removed bunches of commands handlers and merged them in button format under a single command `/settings`.
-Note: I can add the phone based login but it may lead to account ban that's why I prefer SESSION based login. If you want phone number based login try `leakrepo` branch of this repository.
+- New fresh files uploaded by fixing old errors for ex. `float division by zero` for know filetypes / `peer_id invalid` for some chats not all
+- VPS Deployment guide updated
+Removed unwanted behaviour of MONGO_DB
+- Permanent session storage
+- Removed bunches of commands handlers and merged them in button format under a single command `/settings`.
+
+  
+- Note: I can add the phone based login but it may lead to account ban that's why I prefer SESSION based login. If you want phone number based login try `leakrepo` branch of this repository.
 
 ## Update: 20 June 2024
 
@@ -130,8 +132,7 @@ You can copy and paste the following commands into @BotFather:
 
 ```plaintext
 start - ✅ Check if I am alive!
-bulk - ☠ V1 batch method
-batch - 😎 V2 batch method
+batch - 😎 batch method
 dl - 🎞 Download videos from YouTube, Xsite, Instagram, Amazon Mini TV, Pinterest, LinkedIn, Internet Archive, etc. /dl <link>
 auth - authorize users
 unauth - revoke access
