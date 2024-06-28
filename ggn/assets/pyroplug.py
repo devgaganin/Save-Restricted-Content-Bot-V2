@@ -500,8 +500,6 @@ async def get_bulk_msg(userbot, client, sender, msg_link, i):
 DB_NAME = "smart_users"
 COLLECTION_NAME = "super_user"
 
-OWNER_ID = 7065117445
-
 mongo_client = pymongo.MongoClient(MONGODB_CONNECTION_STRING)
 db = mongo_client[DB_NAME]
 collection = db[COLLECTION_NAME]
