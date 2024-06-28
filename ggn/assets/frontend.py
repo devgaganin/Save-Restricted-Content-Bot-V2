@@ -3,7 +3,7 @@ import logging
 import json
 from .. import bot as gagan
 from .. import userbot, Bot
-from .. import FORCESUB as fs
+from config import FORCESUB as fs
 from ggn.assets.pyroplug import get_msg
 from ggn.assets.functions import get_link, join, screenshot
 from telethon import events
