@@ -60,10 +60,10 @@ sudo apt install ffmpeg git python3-pip
 git clone your_repo_link
 cd you_repo_name
 pip3 install -r requirements.txt
-python3 -m main
+python3 -m ggn
 ```
 
-- if you want bot to be running in background then enter `screen -S gagan` before `python3 -m main` 
+- if you want bot to be running in background then enter `screen -S gagan` before `python3 -m ggn` 
 - after `python3 -m main`, click `ctrl+A`, `ctrl+D`
 - if you want to stop bot, then enter `screen -r gagan` and to kill screen enter `screen -S gagan -X quit`.
 
@@ -93,6 +93,14 @@ python3 -m main
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
+
+## Update: 28 June 2024
+New fresh files uploaded by fixing old errors for ex. `float division by zero` for know filetypes / `peer_id invalid` for some chats not all
+VPS Deployment guide updated
+Removed unwanted behaviour of MONGO_DB 
+Permanent session storage
+Removed bunches of commands handlers and merged them in button format under a single command `/settings`.
+Note: I can add the phone based login but it may lead to account ban that's why I prefer SESSION based login. If you want phone number based login try `leakrepo` branch of this repository.
 
 ## Update: 20 June 2024
 
