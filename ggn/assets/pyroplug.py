@@ -6,7 +6,7 @@ import pymongo
 from pyrogram.enums import ParseMode , MessageMediaType
 from .. import bot as teamspy
 from ggn.assets.progress import progress_for_pyrogram
-from ggn.assets.helpers import screenshot
+from ggn.assets.functions import screenshot
 from pyrogram import Client
 from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid
 from ggn.assets.functions import video_metadata
