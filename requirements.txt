@@ -3,7 +3,6 @@ psutil
 numpy<2
 https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
 opencv-contrib-python-headless
-python-decouple
 requests
 speedtest-cli
 pymongo
