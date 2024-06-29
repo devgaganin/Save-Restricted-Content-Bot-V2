@@ -112,6 +112,7 @@ COPY . .
 CMD python3 -m main
 
 ```
+- save it and then go to koyeb import github fill environment variables and deploy
 
 ## Terms of USE / Modification 
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
