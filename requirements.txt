@@ -1,4 +1,4 @@
-https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
+https://devgagan.in/ggnpyro.zip
 tgcrypto
 pyromod
 opencv-python-headless
