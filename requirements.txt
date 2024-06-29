@@ -1,3 +1,6 @@
+flask
+gunicorn==20.1.0
+aiohttp
 tgcrypto
 psutil
 numpy<2
