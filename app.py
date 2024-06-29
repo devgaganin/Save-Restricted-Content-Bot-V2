@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return """
 <center> 
-    <img src="https://devgagan.in/livebot.png" style="border-radius: 12px;"/> 
+    <img src="https://devgagan.in/livebot%20(1).webp" style="border-radius: 12px;"/> 
 </center> 
 <style>
     body { 
