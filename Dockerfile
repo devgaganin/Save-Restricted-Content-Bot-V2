@@ -22,4 +22,4 @@ WORKDIR /app
 COPY . .
 
 # A dummy command to keep the container running
-CMD ["tail", "-f", "/dev/null"]
+CMD ["python", "-m", "ggn"]
