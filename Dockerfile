@@ -22,4 +22,4 @@ WORKDIR /app
 COPY . .
 
 # A dummy command to keep the container running
-CMD ["python", "-m", "ggn"]
+CMD flask run -h 0.0.0.0 -p 8000 & python3 -m ggn
