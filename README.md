@@ -69,6 +69,12 @@ python3 -m Restriction
 - Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 - Fill your values and click deploy ✅
 
+## Deploy on Render 
+See following tutorial to deploy on Render 👇
+
+https://t.me/save_restricted_content_bots/759
+
+
 ## Terms of USE / Modification 
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
 
