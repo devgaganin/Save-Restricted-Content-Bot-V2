@@ -16,11 +16,11 @@ import logging
 from config import MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID
 
 # ------------- PDF WATERMARK IMPORTS --------------
-# Removed from this purchase from me to the things conact @ggnhere
+# Removed from this purchase from me to the things conact @SmexyOP
 # ------------- PDF WATERMARK IMPORTS --------------
 
 
-# ---------------------- SENDING FUNCTIONS - TEAM SPY (@devggn) ----------------
+# ---------------------- SENDING FUNCTIONS - Smexy Store (@SmexyStore) ----------------
 
 async def copy_message_with_chat_id(client, sender, chat_id, message_id):
     target_chat_id = user_chat_ids.get(sender, sender)
@@ -487,12 +487,12 @@ async def get_bulk_msg(userbot, client, sender, msg_link, i):
 
 # ------------------------------------ PDF WATERMARK FUNCTIONS -----------------------------------------------------------------------
 
-# Contact me and Purchase this code part ... @ggnhere on telegram
+# Contact me and Purchase this code part ... @SmexyOP on telegram
 
 
 #------------------------ FFMPEG CODES and Functions ----------------------------------------------- 
 
-# Puchase Repo from me to get this ... contact @ggnhere on telegram
+# Puchase Repo from me to get this ... contact @SmexyOP on telegram
 
 
 # ------------------------ Button Mode Editz FOR SETTINGS ----------------------------
@@ -609,7 +609,7 @@ async def settings_command(event):
     buttons = [
         [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
         [Button.inline("Caption", b'setcaption'), Button.inline("Replace Words", b'setreplacement')],
-        [Button.inline("Remove Words", b'delete'), Button.url("Developer", 'https://t.me/ggnhere')],
+        [Button.inline("Remove Words", b'delete'), Button.url("Developer", 'https://t.me/SmexyOP')],
         [Button.inline("Login", b'addsession'), Button.inline("Logout", b'logout')],
         [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
         [Button.url("Repo Link", "https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/")]
