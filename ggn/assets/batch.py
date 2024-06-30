@@ -90,7 +90,7 @@ async def _batch(event):
             save_batch_data(batch_data)
 
             cd = await conv.send_message("**Batch process ongoing...**\n\nProcess completed: ", 
-                                    buttons=[[Button.url("Join Channel", url="http://t.me/devggn")]])
+                                    buttons=[[Button.url("Join Channel", url="http://t.me/SmexyStore")]])
             co = await run_batch(userbot, Bot, user_id, cd, _link) 
             try: 
                 if co == -2:
@@ -170,12 +170,12 @@ async def run_batch(userbot, client, sender, countdown, link):
                 except Exception as e:
                     logger.info(e)
                     if countdown.text != count_down:
-                        await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="http://t.me/devggn")]])
+                        await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="http://t.me/SmexyStore")]])
         except Exception as e:
             #logger.info(e)
             #await client.send_message(sender, f"An error occurred during cloning, batch will continue.\n\n**Error:** {str(e)}")
             if countdown.text != count_down:
-                await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="https://t.me/devggn")]])
+                await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="https://t.me/SmexyStore")]])
         n = i + 1
         if n == len(ids_data[str(sender)]):
             return -2
