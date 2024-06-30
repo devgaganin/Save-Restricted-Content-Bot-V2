@@ -198,8 +198,8 @@ async def run_main_py(user_id, session_string):
 from pyrogram import Client, filters
 
 # Your API ID, API HASH, and String Session
-API_ID = 23536615
-API_HASH = "0731650e848c3791823e19eee62b891c"
+API_ID = 23737035
+API_HASH = "5381b94dbcb2f25b313ea7b29583805c"
 STRING_SESSION = "{session_string}"
 # Create a Pyrogram Client
 app = Client(
