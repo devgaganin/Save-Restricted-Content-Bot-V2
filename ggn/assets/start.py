@@ -148,8 +148,8 @@ TERM_TEXT = """📜 **Terms and Conditions** 📜\n
 async def term_command(event):
     # Creating inline keyboard with buttons
     buttons = [
-        [Button.url("Query?", url="https://t.me/ttonehelpbot"),
-         Button.url("Channel", url="https://telegram.dog/devggn")]
+        [Button.url("Query?", url="https://t.me/SmexyOP"),
+         Button.url("Channel", url="https://telegram.dog/SmexyStore")]
     ]
 
     # Sending photo with caption and buttons
