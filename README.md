@@ -72,7 +72,7 @@ python3 -m ggn
 
 » Method - 1:
 - Star the repo, and fork it in desktop mode
-- Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+- Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/)
 - Fill your values and done ✅
  
 » Method - 2:
