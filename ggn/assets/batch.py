@@ -53,7 +53,7 @@ ids_data = load_ids_data()
 
 @gagan.on(events.NewMessage(incoming=True, pattern='/batch'))
 async def _batch(event):
-    # user_id = event.sender_id
+    user_id = event.sender_id
    #  if user_id not in AUTHORIZED_USERS:
        # return await event.respond("This command is available to Paid Plan users! Send /plan to know more.")
 
