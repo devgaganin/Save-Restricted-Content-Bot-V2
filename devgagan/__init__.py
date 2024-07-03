@@ -11,9 +11,6 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
-sex = TelegramClient('ggneditz', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
-
-
 app = Client(
     ":gndmaraobsdk:",
     api_id=API_ID,
