@@ -7,9 +7,8 @@ import pymongo
 import subprocess
 import requests
 import re
-from devgagan import app
+from devgagan import seer as app
 from devgagan import batch
-from devgagan import sex as gf
 from pyrogram import filters
 from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid, PeerIdInvalid
 from pyrogram.enums import MessageMediaType
