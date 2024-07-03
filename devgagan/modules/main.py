@@ -1,12 +1,12 @@
 import asyncio
 from pyrogram import filters, Client
-from Restriction import app
+from devgagan import app
 from config import API_ID, API_HASH
-from Restriction.core.get_func import get_msg
-from Restriction.core.func import *
-from Restriction.core.mongo import db
+from devgagan.core.get_func import get_msg
+from devgagan.core.func import *
+from devgagan.core.mongo import db
 from pyrogram.errors import FloodWait
-from Restriction.core.func import chk_user
+from devgagan.core.func import chk_user
 
 
 users_in_batch = set()
