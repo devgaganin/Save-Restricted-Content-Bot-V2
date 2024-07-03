@@ -65,6 +65,16 @@ async def single_link(_, message):
 
 users_loop = {}
 
+@app.on_message(filters.command("cancel"))
+async def stop_batch(_, message):
+    user_id = message.chat.id
+    if user_id in users_loop:
+        users_loop[user_id] = False
+        await app.send_message(user_id, "Batch processing stopped.")
+        users_in_batch.remove(user_id)  # Remove user from the batch process set
+    else:
+        await app.send_message(user_id, "No active batch processing to stop.")
+
 @app.on_message(filters.command("batch"))
 async def batch_link(_, message):
     user_id = message.chat.id    
