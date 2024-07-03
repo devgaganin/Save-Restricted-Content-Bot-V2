@@ -1,39 +1,75 @@
+from telethon.sync import TelegramClient
 import asyncio
 import logging
 from pyrogram import Client
 from config import API_ID, API_HASH, BOT_TOKEN
-
-loop = asyncio.get_event_loop()
 
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
     level=logging.INFO,
 )
 
+loop = asyncio.get_event_loop()
+
+app = Client(
+    ":gndmaraobsdk:",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+)
+
+# Define the clients
+sexxx = Client("seex", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+plan = Client("plan", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+batch = Client("batch", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+stat = Client("stat", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+seer = Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+
 async def start_clients():
-    clients = [
-        Client("seex", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN),
-        Client("plan", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN),
-        Client("batch", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN),
-        Client("stat", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN),
-        Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
-    ]
+    try:
+        await sexxx.start()
+        print("Instance 1 started")
+    except Exception as e:
+        print("Instance 1 not started")
+    await asyncio.sleep(10)
 
     try:
-        for client in clients:
-            await client.start()
-            print(f"Instance {clients.index(client) + 1} started")
-            await asyncio.sleep(10)
+        await plan.start()
+        print("Instance 2 started")
     except Exception as e:
-        print(f"Instance {clients.index(client) + 1} not started: {e}")
+        print("Instance 2 not started")
+    await asyncio.sleep(10)
+
+    try:
+        await batch.start()
+        print("Instance 3 started")
+    except Exception as e:
+        print("Instance 3 not started")
+    await asyncio.sleep(10)
+
+    try:
+        await stat.start()
+        print("Instance 4 started")
+    except Exception as e:
+        print("Instance 4 not started")
+    await asyncio.sleep(10)
+
+    try:
+        await seer.start()
+        print("Instance 5 started")
+    except Exception as e:
+        print("Instance 5 was not started")
 
 async def madarchod_bot():
-    async with Client(":gndmaraobsdk:", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN) as app:
-        global BOT_ID, BOT_NAME, BOT_USERNAME
-        getme = await app.get_me()
-        BOT_ID = getme.id
-        BOT_USERNAME = getme.username
-        BOT_NAME = f"{getme.first_name} {getme.last_name}" if getme.last_name else getme.first_name
+    global BOT_ID, BOT_NAME, BOT_USERNAME
+    await app.start()
+    getme = await app.get_me()
+    BOT_ID = getme.id
+    BOT_USERNAME = getme.username
+    if getme.last_name:
+        BOT_NAME = getme.first_name + " " + getme.last_name
+    else:
+        BOT_NAME = getme.first_name
 
-# Run the event loop and tasks
-loop.run_until_complete(asyncio.gather(start_clients(), madarchod_bot()))
+loop.run_until_complete(start_clients())
+loop.run_until_complete(madarchod_bot())
