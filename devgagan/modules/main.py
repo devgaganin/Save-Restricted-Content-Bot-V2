@@ -57,31 +57,74 @@ async def single_link(_, message):
     except Exception as e:
         await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
 
+# ---------------------- pyromod is mother fucker, it gives peer_id invalid error bcz it use pyrogram unmodified version
+#  that's why i implemented step method (noob hai apn) 
 
 users_loop = {}
+user_steps = {}  
+user_data = {}  
 
 @ggn.on_message(filters.command("batch"))
 async def batch_link(_, message):
-    user_id = message.chat.id    
+    user_id = message.chat.id
+    if user_id in users_loop and users_loop[user_id]:
+        await ggn.send_message(user_id, "A batch process is already ongoing. Please /cancel or wait for it to finish.")
+        return
+
     lol = await chk_user(message, user_id)
     if lol == 1:
-        return    
-        
-    start = await ggn.ask(message.chat.id, text="Please send the start link.")
-    start_id = start.text
-    s = start_id.split("/")[-1]
-    cs = int(s)
-    
-    last = await ggn.ask(message.chat.id, text="Please send the end link.")
-    last_id = last.text
-    l = last_id.split("/")[-1]
-    cl = int(l)
-
-    if cl - cs > 1000:
-        await ggn.send_message(message.chat.id, "Only 1000 messages allowed in batch size... Make sure your start and end message have difference less than 1000")
         return
+
+    user_steps[user_id] = "start_link"
+    await ggn.send_message(user_id, text="Please send the start link.")
+
+@ggn.on_message(filters.command("cancel"))
+async def stop_batch(_, message):
+    user_id = message.chat.id
+    if user_id in users_loop:
+        users_loop[user_id] = False
+        await ggn.send_message(user_id, "Batch processing stopped.")
+        user_steps.pop(user_id, None)
+        user_data.pop(user_id, None)
+    else:
+        await ggn.send_message(user_id, "No active batch processing to stop.")
+
+@ggn.on_message(filters.text & filters.private)
+async def handle_response(_, message):
+    user_id = message.chat.id
+
+    if user_id not in user_steps:
+        return
+
+    step = user_steps[user_id]
+
+    if step == "start_link":
+        start_id = message.text
+        s = start_id.split("/")[-1]
+        user_data[user_id] = {"start_id": start_id, "start_num": int(s)}
+        user_steps[user_id] = "end_link"
+        await ggn.send_message(user_id, text="Please send the end link.")
     
-    try:     
+    elif step == "end_link":
+        last_id = message.text
+        l = last_id.split("/")[-1]
+        user_data[user_id]["last_id"] = last_id
+        user_data[user_id]["last_num"] = int(l)
+        
+        start_num = user_data[user_id]["start_num"]
+        last_num = user_data[user_id]["last_num"]
+
+        if last_num - start_num > 1000:
+            await ggn.send_message(user_id, "Only 1000 messages allowed in batch size... Make sure your start and end message have difference less than 1000")
+            user_steps.pop(user_id, None)
+            user_data.pop(user_id, None)
+            return
+
+        user_steps[user_id] = "processing"
+        await process_batch(user_id)
+
+async def process_batch(user_id):
+    try:
         data = await db.get_data(user_id)
         
         if data and data.get("session"):
@@ -90,48 +133,42 @@ async def batch_link(_, message):
                 userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session)
                 await userbot.start()                
             except:
-                return await ggn.send_message(message.chat.id, "Please generate a new session.")
+                await ggn.send_message(user_id, "Please generate a new session.")
+                return
         else:
-            await ggn.send_message(message.chat.id, "Please generate a session first.")
+            await ggn.send_message(user_id, "Please generate a session first.")
+            return
 
-        try:
-            users_loop[user_id] = True
-            
-            for i in range(int(s), int(l)):
-                if user_id in users_loop and users_loop[user_id]:
-                    msg = await ggn.send_message(message.chat.id, "Processing!")
-                    try:
-                        x = start_id.split('/')
-                        y = x[:-1]
-                        result = '/'.join(y)
-                        url = f"{result}/{i}"
-                        link = get_link(url)
-                        await asyncio.sleep(5)
-                        await get_msg(userbot, user_id, msg.id, link, 0, message)
-                        sleep_msg = ggn.send_message(message.chat.id, "Sleeping for 10 seconds to avoid flood...")
-                        await asyncio.sleep(8) # isko kam jyada kr lena bc
-                        await sleep_msg.delete()
-                        await sleep(2)
-                    except Exception as e:
-                        print(f"Error processing link {url}: {e}")
-                        continue
-                else:
-                    break
-        except Exception as e:
-            await ggn.send_message(message.chat.id, f"Error: {str(e)}")
-                    
+        users_loop[user_id] = True
+        start_num = user_data[user_id]["start_num"]
+        last_num = user_data[user_id]["last_num"]
+        start_id = user_data[user_id]["start_id"]
+        
+        for i in range(start_num, last_num + 1):
+            if user_id in users_loop and users_loop[user_id]:
+                msg = await ggn.send_message(user_id, "Processing!")
+                try:
+                    x = start_id.split('/')
+                    y = x[:-1]
+                    result = '/'.join(y)
+                    url = f"{result}/{i}"
+                    link = get_link(url)
+                    await asyncio.sleep(5)
+                    await get_msg(userbot, user_id, msg.id, link, 0, message)
+                    sleep_msg = await ggn.send_message(user_id, "Sleeping for 5 seconds to avoid flood...")
+                    await asyncio.sleep(3)  # Adjust sleep time as needed
+                    await sleep_msg.delete()
+                    await asyncio.sleep(2)
+                except Exception as e:
+                    print(f"Error processing link {url}: {e}")
+                    continue
+            else:
+                break
     except FloodWait as fw:
-        await ggn.send_message(message.chat.id, f'Try again after {fw.x} seconds due to floodwait from Telegram.')
+        await ggn.send_message(user_id, f'Try again after {fw.x} seconds due to floodwait from Telegram.')
     except Exception as e:
-        await ggn.send_message(message.chat.id, f"Error: {str(e)}")
-
-
-@ggn.on_message(filters.command("cancel"))
-async def stop_batch(_, message):
-    user_id = message.chat.id
-    if user_id in users_loop:
-        users_loop[user_id] = False
-        await ggn.send_message(message.chat.id, "Batch processing stopped.")
-    else:
-        await ggn.send_message(message.chat.id, "No active batch processing to stop.")
-
+        await ggn.send_message(user_id, f"Error: {str(e)}")
+    finally:
+        user_steps.pop(user_id, None)
+        user_data.pop(user_id, None)
+        users_loop.pop(user_id, None)
