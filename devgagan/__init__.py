@@ -33,6 +33,19 @@ try:
 except Exception:
     print("Something went wrong")
 
+stat = Client(
+    "stat",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+)
+
+try:
+    stat.start()
+    print("Bot started ... ")
+except Exception:
+    print("Something went wrong")
+
 sex = TelegramClient('ggneditz', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
 
 loop = asyncio.get_event_loop()
