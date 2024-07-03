@@ -100,7 +100,7 @@ def reset_user(user_id):
 
 @app.on_message(filters.command("login"))
 async def login_command(client, message):
-    joined = await subscribe(_, message)
+    joined = await subscribe(client, message)
     if joined == 1:
         return        
     user_checked = await chk_user(message, message.from_user.id)
