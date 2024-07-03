@@ -12,51 +12,6 @@ from pyrogram.errors import FloodWait
 from devgagan.core.func import chk_user
 
 
-
-@ggn.on_message(filters.regex(r'https?://[^\s]+'))
-async def single_link(_, message):
-    user_id = message.chat.id
-    lol = await chk_user(message, user_id)
-    if lol == 1:
-        return
-    
-    link = get_link(message.text) 
-    
-    try:
-        join = await subscribe(_, message)
-        if join == 1:
-            return
-     
-        msg = await message.reply("Processing!")
-        data = await db.get_data(user_id)
-        
-        if data and data.get("session"):
-            session = data.get("session")
-            try:
-                userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session)
-                await userbot.start()                
-            except:
-                return await msg.edit_text("Please login in bot...")
-        else:
-            await msg.edit_text("Login in bot first ...")
-            return
-
-        try:
-            if 't.me/+' in link:
-                q = await userbot_join(userbot, link)
-                await msg.edit_text(q)
-                return
-                                        
-            if 't.me/' in link:
-                await get_msg(userbot, user_id, msg.id, link, 0, message)
-        except Exception as e:
-            await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
-                    
-    except FloodWait as fw:
-        await msg.edit_text(f'Try again after {fw.x} seconds due to floodwait from telegram.')
-    except Exception as e:
-        await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
-
 # ---------------------- pyromod is mother fucker, it gives peer_id invalid error bcz it use pyrogram unmodified version
 #  that's why i implemented step method (noob hai apn) 
 
@@ -172,3 +127,48 @@ async def process_batch(user_id):
         user_steps.pop(user_id, None)
         user_data.pop(user_id, None)
         users_loop.pop(user_id, None)
+
+
+@ggn.on_message(filters.regex(r'https?://[^\s]+'))
+async def single_link(_, message):
+    user_id = message.chat.id
+    lol = await chk_user(message, user_id)
+    if lol == 1:
+        return
+    
+    link = get_link(message.text) 
+    
+    try:
+        join = await subscribe(_, message)
+        if join == 1:
+            return
+     
+        msg = await message.reply("Processing!")
+        data = await db.get_data(user_id)
+        
+        if data and data.get("session"):
+            session = data.get("session")
+            try:
+                userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session)
+                await userbot.start()                
+            except:
+                return await msg.edit_text("Please login in bot...")
+        else:
+            await msg.edit_text("Login in bot first ...")
+            return
+
+        try:
+            if 't.me/+' in link:
+                q = await userbot_join(userbot, link)
+                await msg.edit_text(q)
+                return
+                                        
+            if 't.me/' in link:
+                await get_msg(userbot, user_id, msg.id, link, 0, message)
+        except Exception as e:
+            await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
+                    
+    except FloodWait as fw:
+        await msg.edit_text(f'Try again after {fw.x} seconds due to floodwait from telegram.')
+    except Exception as e:
+        await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
