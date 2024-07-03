@@ -3,10 +3,10 @@
 from datetime import timedelta
 import pytz
 import datetime, time
-from devgagan import app as ggn
+from devgagan import plan as ggn
 from devgagan.core.func import get_seconds
 from devgagan.core.mongo import plans_db  
-from pyrogram import filters 
+from pyrogram import filters
 from config import LOG_GROUP, OWNER_ID
 
 
