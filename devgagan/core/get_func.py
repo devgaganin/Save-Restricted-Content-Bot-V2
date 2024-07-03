@@ -9,15 +9,15 @@ import requests
 import re
 from devgagan import app
 from devgagan import batch
-from pyrogram import filters
+from devgagan import seer as gggn
 from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid, PeerIdInvalid
 from pyrogram.enums import MessageMediaType
 from devgagan.core.func import progress_bar, screenshot, video_metadata
 from devgagan.core.mongo import db
 from config import LOG_GROUP
 from config import MONGO_DB as MONGODB_CONNECTION_STRING
+from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from telethon import events, Button
     
     
 def thumbnail(sender):
@@ -509,14 +509,6 @@ async def s_msg(userbot, sender, edit_id, msg_link, i, message):
 
 # ------------------------ Button Mode Editz FOR SETTINGS ----------------------------
 
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-import pymongo
-import os
-import re
-
-# ------------------------ Button Mode Editz FOR SETTINGS ----------------------------
-
 DB_NAME = "smart_users"
 COLLECTION_NAME = "super_user"
 
@@ -621,7 +613,7 @@ sessions = {}
 SET_PIC = "settings.jpg"
 MESS = "Customize by your end and Configure your settings ..."
 
-@app.on_message(filters.command("settings"))
+@gggn.on_message(filters.command("settings"))
 async def settings_command(client, message):
     buttons = [
         [InlineKeyboardButton("Set Chat ID", callback_data='setchat'), InlineKeyboardButton("Set Rename Tag", callback_data='setrename')],
@@ -641,7 +633,7 @@ async def settings_command(client, message):
 pending_photos = {}
 user_states = {}
 
-@app.on_callback_query()
+@gggn.on_callback_query()
 async def callback_query_handler(client, callback_query):
     user_id = callback_query.from_user.id
 
@@ -680,7 +672,7 @@ async def callback_query_handler(client, callback_query):
             await callback_query.message.edit_text("No thumbnail found to remove.")
 
 
-@app.on_message(filters.photo & filters.user(list(pending_photos.keys())))
+@gggn.on_message(filters.photo & filters.user(list(pending_photos.keys())))
 async def save_thumbnail(client, message):
     user_id = message.from_user.id
 
@@ -697,7 +689,7 @@ async def save_thumbnail(client, message):
     pending_photos.pop(user_id, None)
 
 
-@app.on_message()
+@gggn.on_message()
 async def handle_user_input(client, message):
     user_id = message.from_user.id
     if user_id in sessions:
