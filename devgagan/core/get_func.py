@@ -450,7 +450,7 @@ async def s_msg(userbot, sender, edit_id, msg_link, i, message):
                 target_chat_id = user_chat_ids.get(sender, sender)
                 devggn = await batch.send_photo(chat_id=target_chat_id, photo=file, caption=caption)
                 await devggn.copy(LOG_GROUP)
-
+            else:                
                 thumb_path = thumbnail(chatx)
                 delete_words = load_delete_words(sender)
                 custom_caption = get_user_caption_preference(sender)
