@@ -1,6 +1,6 @@
 #devggn
 
-from devgagan import app
+from devgagan import stat as app
 from pyrogram import filters
 from config import OWNER_ID
 from devgagan.core.mongo.users_db import get_users, add_user, get_user
