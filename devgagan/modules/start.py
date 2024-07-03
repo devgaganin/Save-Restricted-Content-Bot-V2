@@ -3,7 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import logging
 import os
-from devgagan import start as app
+from devgagan import seer as app
 from config import MONGO_DB as MONGODB_CONNECTION_STRING, OWNER_ID
 
 logging.basicConfig(level=logging.INFO)
