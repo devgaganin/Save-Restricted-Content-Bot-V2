@@ -3,8 +3,7 @@ from pyrogram import filters, Client
 from devgagan import app
 from devgagan import batch
 from config import API_ID, API_HASH
-from devgagan.core.get_func import get_msg
-from devgagan.core.single import s_msg
+from devgagan.core.get_func import get_msg, s_msg
 from devgagan.core.func import *
 from devgagan.core.mongo import db
 from pyrogram.errors import FloodWait
@@ -136,10 +135,13 @@ async def handle_user_responses(_, message):
                             link = get_link(url)
                             await asyncio.sleep(5)
                             await get_msg(userbot, user_id, msg.id, link, 0, message)
-                            sleep_msg = app.send_message(user_id, "Sleeping for 10 seconds to avoid flood...")
+                            sleep_msg = await app.send_message(user_id, "Sleeping for 10 seconds to avoid flood...")
                             await asyncio.sleep(8)
                             await sleep_msg.delete()
                             await asyncio.sleep(2)
+                        except FloodWait as fw:
+                            await app.send_message(user_id, f'Try again after {fw.x} seconds due to floodwait from Telegram.')
+                            break
                         except Exception as e:
                             print(f"Error processing link {url}: {e}")
                             continue
@@ -149,13 +151,12 @@ async def handle_user_responses(_, message):
             except Exception as e:
                 await app.send_message(user_id, f"Error: {str(e)}")
                 users_in_batch.remove(user_id)  # Remove user from the batch process set in case of error
-                        
-        except FloodWait as fw:
-            await app.send_message(user_id, f'Try again after {fw.x} seconds due to floodwait from Telegram.')
-            users_in_batch.remove(user_id)  # Remove user from the batch process set in case of flood wait
+
+            users_in_batch.remove(user_id)  # Remove user from the batch process set after completion
         except Exception as e:
             await app.send_message(user_id, f"Error: {str(e)}")
             users_in_batch.remove(user_id)  # Remove user from the batch process set in case of error
+
 
 @app.on_message(filters.command("cancel"))
 async def stop_batch(_, message):
