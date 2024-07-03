@@ -1,6 +1,6 @@
 import asyncio
 from pyrogram import filters, Client
-from devgagan import app
+from devgagan import stat as app
 from devgagan import batch
 from config import API_ID, API_HASH
 from devgagan.core.get_func import get_msg, s_msg
