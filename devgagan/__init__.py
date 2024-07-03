@@ -11,6 +11,7 @@ sexxx = Client("seex", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 plan = Client("plan", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 batch = Client("batch", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 stat = Client("stat", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+start = Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 clients = [sexxx, plan, batch, stat]
 
@@ -27,7 +28,6 @@ async def stop_clients():
     await asyncio.gather(*stop_tasks)
     print("All bots stopped ...")
 
-# Ensure the clients are started when this module is imported
 asyncio.run(start_clients())
 
 loop = asyncio.get_event_loop()
@@ -54,6 +54,3 @@ async def madarchod_bot():
         BOT_NAME = getme.first_name
         
 loop.run_until_complete(madarchod_bot())
-
-
-
