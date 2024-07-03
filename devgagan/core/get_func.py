@@ -691,7 +691,7 @@ async def save_thumbnail(client, message):
 
 @gggn.on_message()
 async def handle_user_input(client, message):
-    user_id = message.from_user.id
+    user_id = message.chat.id
     if user_id in sessions:
         session_type = sessions[user_id]
 
