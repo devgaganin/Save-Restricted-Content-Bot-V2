@@ -33,6 +33,19 @@ try:
 except Exception:
     print("Something went wrong")
 
+batch = Client(
+    "batch",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+)
+
+try:
+    batch.start()
+    print("Bot started ... ")
+except Exception:
+    print("Something went wrong")
+
 stat = Client(
     "stat",
     api_id=API_ID,
