@@ -1,5 +1,3 @@
-#devggn
-
 from telethon.sync import TelegramClient
 import asyncio
 import logging
@@ -15,6 +13,18 @@ start = Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 clients = [sexxx, plan, batch, stat]
 
+logging.basicConfig(
+    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
+    level=logging.INFO,
+)
+
+app = Client(
+    ":gndmaraobsdk:",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+)
+
 async def start_clients():
     start_tasks = [client.start() for client in clients]
     try:
@@ -28,20 +38,6 @@ async def stop_clients():
     await asyncio.gather(*stop_tasks)
     print("All bots stopped ...")
 
-asyncio.run(start_clients())
-
-loop = asyncio.get_event_loop()
-
-logging.basicConfig(
-    format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
-    level=logging.INFO,
-)
-app = Client(
-    ":gndmaraobsdk:",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN,
-)
 async def madarchod_bot():
     global BOT_ID, BOT_NAME, BOT_USERNAME
     await app.start()
@@ -52,5 +48,10 @@ async def madarchod_bot():
         BOT_NAME = getme.first_name + " " + getme.last_name
     else:
         BOT_NAME = getme.first_name
-        
-loop.run_until_complete(madarchod_bot())
+
+async def main():
+    await start_clients()
+    await madarchod_bot()
+
+# Run the main function
+asyncio.run(main())
