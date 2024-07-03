@@ -7,7 +7,7 @@ import pymongo
 import subprocess
 import requests
 import re
-from devgagan import seer as app
+from devgagan import app
 from devgagan import batch
 from pyrogram import filters
 from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid, PeerIdInvalid
@@ -16,6 +16,7 @@ from devgagan.core.func import progress_bar, screenshot, video_metadata
 from devgagan.core.mongo import db
 from config import LOG_GROUP
 from config import MONGO_DB as MONGODB_CONNECTION_STRING
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from telethon import events, Button
     
     
@@ -619,8 +620,6 @@ sessions = {}
 
 SET_PIC = "settings.jpg"
 MESS = "Customize by your end and Configure your settings ..."
-
-app = Client("my_bot")
 
 @app.on_message(filters.command("settings"))
 async def settings_command(client, message):
