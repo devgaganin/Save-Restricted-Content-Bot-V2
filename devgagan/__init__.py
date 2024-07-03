@@ -25,7 +25,7 @@ sexxx = Client("seex", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 plan = Client("plan", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 batch = Client("batch", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 stat = Client("stat", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
-start = Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+seer = Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 try:
     sexxx.start()
@@ -48,7 +48,7 @@ try:
 except Exception as e:
     print("Instance 4 not started")
 try:
-    start.start()
+    seer.start()
     print("Instance 5 started")
 except Exception as e:
     print("Instance 5 was not started")
