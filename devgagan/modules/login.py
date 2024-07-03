@@ -54,16 +54,7 @@ async def process_step(client, message):
         temp_client = user_data[user_id]["client"]
         try:
             await temp_client.sign_in(user_data[user_id]["phone_number"], user_data[user_id]["phone_code_hash"], phone_code)
-            session_string = await temp_client.export_session_string()
-            session_data = {
-                "user_id": user_id,
-                "session_string": session_string
-            }
-            collection.update_one(
-                {"user_id": user_id},
-                {"$set": session_data},
-                upsert=True
-            )
+            string_session = await temp_client.export_session_string()
             await db.set_session(user_id, string_session)
             await message.reply(f"✅ Login successful!")
             await temp_client.disconnect()
@@ -82,7 +73,7 @@ async def process_step(client, message):
         try:
             password = message.text
             await temp_client.check_password(password=password)
-            session_string = await temp_client.export_session_string()
+            string_session = await temp_client.export_session_string()
             await db.set_session(user_id, string_session)
             await message.reply(f"✅ Login successful!")
             await temp_client.disconnect()
