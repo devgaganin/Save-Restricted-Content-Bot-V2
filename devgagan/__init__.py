@@ -27,35 +27,35 @@ seer = Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 async def start_clients():
     try:
-        sexxx.start()
+        await sexxx.start()
         print("Instance 1 started")
     except Exception as e:
         print("Instance 1 not started")
     await asyncio.sleep(10)
 
     try:
-        plan.start()
+        await plan.start()
         print("Instance 2 started")
     except Exception as e:
         print("Instance 2 not started")
     await asyncio.sleep(10)
 
     try:
-        batch.start()
+        await batch.start()
         print("Instance 3 started")
     except Exception as e:
         print("Instance 3 not started")
     await asyncio.sleep(10)
 
     try:
-        stat.start()
+        await stat.start()
         print("Instance 4 started")
     except Exception as e:
         print("Instance 4 not started")
     await asyncio.sleep(10)
 
     try:
-        seer.start()
+        await seer.start()
         print("Instance 5 started")
     except Exception as e:
         print("Instance 5 was not started")
