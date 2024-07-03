@@ -24,20 +24,6 @@ app = Client(
     bot_token=BOT_TOKEN,
 )
 
-sexxx = Client(
-    ":seex:",
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN,
-)
-
-try:
-    sexxx.start()
-    print("Bot started ... ")
-except Exception:
-    print("Something went wrong")
-
-
 async def madarchod_bot():
     global BOT_ID, BOT_NAME, BOT_USERNAME
     await app.start()
