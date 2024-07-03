@@ -152,10 +152,9 @@ async def handle_user_responses(_, message):
                 await app.send_message(user_id, f"Error: {str(e)}")
                 users_in_batch.remove(user_id)  # Remove user from the batch process set in case of error
 
-            users_in_batch.remove(user_id)  # Remove user from the batch process set after completion
-        except Exception as e:
-            await app.send_message(user_id, f"Error: {str(e)}")
-            users_in_batch.remove(user_id)  # Remove user from the batch process set in case of error
+        else:
+            await app.send_message(user_id, f"Unknown step: {step}")
+            users_in_batch.remove(user_id)  # Remove user from the batch process set for unknown step
 
 
 @app.on_message(filters.command("cancel"))
