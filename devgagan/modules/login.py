@@ -1,7 +1,6 @@
 import pymongo
 import os
-from .. import bot as gagan
-from .. import sexxx as app
+from devgagan import sexxx as app
 import random
 import string
 from devgagan.core.mongo import db
