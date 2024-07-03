@@ -11,6 +11,8 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
+loop = asyncio.get_event_loop()
+
 app = Client(
     ":gndmaraobsdk:",
     api_id=API_ID,
