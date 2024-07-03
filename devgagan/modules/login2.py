@@ -3,6 +3,7 @@ import os
 from .. import bot as gagan
 from .. import sexxx as app
 import random
+import string
 from devgagan.core.mongo import db
 from devgagan.core.func import subscribe, chk_user
 from pyrogram import Client, filters
@@ -64,8 +65,8 @@ async def process_step(client, message):
                 {"$set": session_data},
                 upsert=True
             )
-            await message.reply(f"✅ Login successful!")
             await db.set_session(user_id, string_session)
+            await message.reply(f"✅ Login successful!")
             await temp_client.disconnect()
             reset_user(user_id)
         except PhoneCodeInvalid:
