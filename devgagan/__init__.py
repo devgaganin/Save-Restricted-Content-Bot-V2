@@ -1,5 +1,3 @@
-#devggn
-
 from telethon.sync import TelegramClient
 import asyncio
 import logging
@@ -27,32 +25,40 @@ batch = Client("batch", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 stat = Client("stat", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 seer = Client("start", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
-try:
-    sexxx.start()
-    print("Instance 1 started")
-except Exception as e:
-    print("Instance 1 not started")
-try:
-    plan.start()
-    print("Instance 2 started")
-except Exception as e:
-    print("Instance 2 not started")
-try:
-    batch.start()
-    print("Instance 3 started")
-except Exception as e:
-    print("Instance 3 not started")
-try:
-    stat.start()
-    print("Instance 4 started")
-except Exception as e:
-    print("Instance 4 not started")
-try:
-    seer.start()
-    print("Instance 5 started")
-except Exception as e:
-    print("Instance 5 was not started")
+async def start_clients():
+    try:
+        sexxx.start()
+        print("Instance 1 started")
+    except Exception as e:
+        print("Instance 1 not started")
+    await asyncio.sleep(10)
 
+    try:
+        plan.start()
+        print("Instance 2 started")
+    except Exception as e:
+        print("Instance 2 not started")
+    await asyncio.sleep(10)
+
+    try:
+        batch.start()
+        print("Instance 3 started")
+    except Exception as e:
+        print("Instance 3 not started")
+    await asyncio.sleep(10)
+
+    try:
+        stat.start()
+        print("Instance 4 started")
+    except Exception as e:
+        print("Instance 4 not started")
+    await asyncio.sleep(10)
+
+    try:
+        seer.start()
+        print("Instance 5 started")
+    except Exception as e:
+        print("Instance 5 was not started")
 
 async def madarchod_bot():
     global BOT_ID, BOT_NAME, BOT_USERNAME
@@ -65,5 +71,5 @@ async def madarchod_bot():
     else:
         BOT_NAME = getme.first_name
 
-
+loop.run_until_complete(start_clients())
 loop.run_until_complete(madarchod_bot())
