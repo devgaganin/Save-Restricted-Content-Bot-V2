@@ -10,6 +10,10 @@ from devgagan.core.func import *
 from devgagan.core.mongo import db
 from pyrogram.errors import FloodWait
 from devgagan.core.func import chk_user
+from devgagan.core import script
+from devgagan.core.func import subscribe
+from config import OWNER_ID
+from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
 
 # ---------------------- pyromod is mother fucker, it gives peer_id invalid error bcz it use pyrogram unmodified version
@@ -127,6 +131,30 @@ async def process_batch(user_id):
         user_steps.pop(user_id, None)
         user_data.pop(user_id, None)
         users_loop.pop(user_id, None)
+
+
+
+# ------------------------------------------------------------------------------- #
+
+# ------------------- Start-Buttons ------------------- #
+
+buttons = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton("Join Channel", url="https://t.me/devggn"),
+            InlineKeyboardButton("Contact Me", url="https://t.me/ggnhere")
+        ]
+    ]
+)
+
+
+@ggn.on_message(filters.command("start"))
+async def start(_,message):
+  join = await subscribe(_,message)
+  if join ==1:
+    return
+  await message.reply_photo(photo="https://graph.org/file/4e80dc2f4f6f2ddadb4d2.jpg",
+                                  caption=script.START_TXT.format(message.from_user.mention), reply_markup=buttons)
 
 
 @ggn.on_message(filters.regex(r'https?://[^\s]+'))
