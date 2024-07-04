@@ -1,91 +1,84 @@
-<h1 align="center">
-  <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan </a> | Enterprise Release June 2024.
-</h1> 
-    
-Contact: [Telegram](https://t.me/devggn)
+# Make_money_Paytem_bot - chat bot
+It is repository for chat bot: [@Make_money_Paytem_bot](https://t.me/Make_money_Paytem_bot)
 
----
+## What it is?
+This repository can be imported to [Bots.Business](https://bots.business) as a worked chat bot.
 
-## ENTERPRISE RELEASE INFO
+[Bots.Business](https://bots.business) - it is probably the first CBPaaS - Chat Bot Platform as a Service.
 
-**Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 18 June 2024.
+A CBPaaS is a cloud-based platform that enables developers to create chatbots without needing to build backend infrastructure.
 
-### Try Live Bot based on `main` branch (my code, not on `leakrepo` branch)
-Bot link - [Advance Content Saver Bot](https://t.me/advance_content_saver_bot)
----
+## Create your own bot for Telegram from this Git repo
 
-- works for both public and private chats
-- Custom thumbnail support for Pvt medias
-- supports text and webpage media messages
-- Faster speed
-- Force subscribe available
-- To save from bots send link in this format : `t.me/b/bot_username/message_id` (use plus messenger for message_id)
-- `/batch` - (For owner only) Use this command to save upto 10000 files from a pvt or public restricted channel at once.
-- `/cancel` -  Use this to stop batch
-- Time delay is added to avoid FloodWait and keep user account safe.
-- `/setchat` directly upload in channel or group
+How to create bot?
+1. Create bot with [@BotFather](https://telegram.me/BotFather) and take Secret Token
+2. Create bot in App and add Secret Token
+3. Add Public Key from App as [Deploy key](https://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys) with read access (and write access for bot exporting if you need it)
+4. Do import for this git repo
 
-## Deploying Guide - [TEAM SPY](https://t.me/devggn)
+Now you can talk with yours new Telegram Bot
 
-**Note** : This repository contains three branches `leakrepo` as default branch `main` as main branch and `standalone` | `main` branch codes and `standalone` branch code written by me while `leakrepo` branch code is leaked premium source.
-So before deploying select branch as per your needs..
+See [more](https://help.bots.business/getting-started)
 
-### How to get required vars
- 
-- API_ID and API_HASH from [telegram.org](https://my.telegram.org/auth)
-- BOT_TOKEN: @Botfather on telegram
-- OWNER_ID : Go to @missrose_bot on telegram and send `/info` to know your ID
-- CHANNEL_ID : This will be used as Force Subscribe channel
-- LOG_GROUP: Create a Group or Channel add you bot there and forward any message of that channel/group to @userinfobot to know the ID of you channel/group
-- MONGO_DB: It is recommended to use your mongoDB to avoid session hacks and all
-Note : You must make bot admin in both channels
+## Commands - in commands folder
+File name - it is command name (Bot it can be rewritten in command description)
 
-### Deploy on `VPS`
+Command can have: `name`, `help`, `aliases` (second names), `answer`, `keyboard`, `scnarios` (for simple logic) and other options.
 
-Easy Method:
-- Fork repo
-- Go to ```config.py``` as below
-- Fill variables inside the double quoted commas `""`  
-- Now run following commands one by one...
-```
-sudo apt update
-sudo apt install ffmpeg git python3-pip
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-source ~/.bashrc
-nvm install v18 #nodejs 18+
-git clone your_repo_link
-cd you_repo_name
-pip3 install -r requirements.txt
-python3 -m Restriction
-```
+### Command description
+It is file header:
 
-- if you want bot to be running in background then enter `screen -S gagan` before `python3 -m main` 
-- after `python3 -m main`, click `ctrl+A`, `ctrl+D`
-- if you want to stop bot, then enter `screen -r gagan` and to kill screen enter `screen -S gagan -X quit`.
+    /*CMD
+      command: /test
+      help: this is help for ccommand
+      need_reply: [ true or false here ]
+      auto_retry_time: [ time in sec ]
+      answer: it is example answer for /test command
+      keyboard: button1, button2
+      aliases: /test2, /test3
+    CMD*/
+
+See [more](https://help.bots.business/commands)
+
+### Command body
+It is command code in JavaScript.
+Use Bot Java Script for logic in command.
+
+For example:
+> Bot.sendMessage(2+2);
+
+See [more](https://help.bots.business/scenarios-and-bjs)
 
 
-## Deploy your bot on `heroku`
-- Star the repo, and fork it in desktop mode
-- Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-- Fill your values and click deploy ✅
+## Libraries - in libs folder
+You can store common code in the libs folder. File name - it is library name.
 
-## Terms of USE / Modification 
-Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
+For example code in myLib.js:
 
-# Updates
+    function hello(){ Bot.sendMessage("Hello from lib!") }
+    function goodbye(name){ Bot.sendMessage("Goodbye, " + name) }
 
-## Update: 24 June 2024
+    publish({
+      sayHello: hello,
+      sayGoodbyeTo: goodbye
+    })
 
-- Added `/login` method via phone number
-- Session saving permanently
-- Fixed old bugs
-- Added /add_premium and /remove_premium along with parameters of `user_id` and `time` for the period of premium subscription.
-- All old features along with `button` handler
+then you can run in any bot's command:
+
+    Libs.myLib.hello()
+    Libs.myLib.sayGoodbyeTo("Alice")
+
+See [more](https://help.bots.business/git/library)
+
+## Other bots example
+See other bots examples in the [github](https://github.com/bots-business?utf8=✓&tab=repositories&q=&type=public&language=javascript) or in the [Bot Store](https://bots.business/)
 
 
-## Contributers
-My group members ... Join @devggn to know them.
-Credit goes to them not to me | Special thanks to Yash for leaking this Repo
+## Other help
+[Help.bots.business](https://help.bots.business)
 
-Thanks!
+## API
+See [API](https://api.bots.business/docs#/docs/summary)
 
+
+![](https://bots.business/images/web-logo.png)
