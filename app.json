@@ -42,13 +42,7 @@
       "value": "",
       "required": true
     },
-
-    "SESSION": {
-      "description": "Enter Pyrogram V2 session string ...",
-      "value": "",
-      "required": true
-    },
-
+    
     "LOG_GROUP": {
       "description": "Enter Log Channel/Group ID (-100) and make bot admin there",
       "value": "",
