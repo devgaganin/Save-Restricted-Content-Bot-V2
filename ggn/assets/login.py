@@ -1,5 +1,7 @@
 import pymongo
 import os
+import random
+import string
 from .. import bot as gagan
 from .. import Bot as app
 from pyrogram import Client, filters
@@ -24,6 +26,11 @@ collection = db[COLLECTION_NAME]
 user_steps = {}
 user_data = {}
 
+
+def generate_random_name(length=7):
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choice(characters) for _ in range(length))  # kuchh chutiye isko 12 names me hi defined kiye the maine isko random 7 characters autogenrator kar diya hu
+    
 def delete_session_files(user_id):
     session_file = f"session_{user_id}.session"
     if os.path.exists(session_file):
@@ -46,7 +53,7 @@ async def process_step(client, message):
         user_data[user_id] = {"phone_number": message.text}
         user_steps[user_id] = "otp"
         omsg = await message.reply("Sending OTP...")
-        temp_client = Client(f"session_{user_id}", api_id, api_hash)
+        temp_client = Client(generate_random_name(), api_id, api_hash)
         user_data[user_id]["client"] = temp_client
         await temp_client.connect()
         try:
