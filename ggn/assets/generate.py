@@ -2,6 +2,8 @@ import pymongo
 import os
 from .. import modi as app
 from .. import bot as gagan
+import random
+import string
 from pyrogram import Client, filters
 from pyrogram.errors import (
     ApiIdInvalid,
@@ -25,6 +27,11 @@ collection = db[COLLECTION_NAME]
 user_steps = {}
 user_data = {}
 
+
+def generate_random_name(length=7):
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choice(characters) for _ in range(length)) 
+    
 async def session_step(client, message):
     user_id = message.chat.id
     step = user_steps.get(user_id, None)
@@ -33,8 +40,7 @@ async def session_step(client, message):
         user_data[user_id] = {"phone_number": message.text}
         user_steps[user_id] = "otp"
         omsg = await message.reply("Sending OTP...")
-        session_name = f"session_{user_id}"
-        temp_client = Client(session_name, api_id, api_hash)
+        temp_client = Client(generate_random_name(), api_id, api_hash)
         user_data[user_id]["client"] = temp_client
         await temp_client.connect()
         try:
