@@ -10,5 +10,5 @@ RUN pip3 install --no-cache-dir -U -r requirements.txt
 WORKDIR /app
 COPY . .
 CMD flask run -h 0.0.0.0 -p 8000 & python3 -m devgagan
-Note if on vps and using docker build remove the the '#' from below line and remove above line that i.e CMD flask...
+# Note if on vps and using docker build remove the the '#' from below line and remove above line that i.e CMD flask...
 # CMD python3 -m devgagan
