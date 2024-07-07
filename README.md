@@ -28,8 +28,6 @@ A stable telegram bot to get restricted messages from group/channel/bot with cus
  
 - `API_ID` and `API_HASH`: [Telegram.org](https://my.telegram.org/auth)
 
-- `PYROGRAM_V2_SESSION`: Search for it ... Make sure the source be trusted otherwise it will lead to accound delete or ban
-
 - `MONGO_DB`: Create new mongo db it is not recommended to use the default one if you dont know how to create you can use otherwise dont use bcz it may lead to account hack/deletion through session.
 
 ## Deploying Guide - [TEAM SPY](https://t.me/devggn)
@@ -48,7 +46,6 @@ BOT_TOKEN = getenv("BOT_TOKEN", "")
 OWNER_ID = int(getenv("OWNER_ID", ""))
 MONGODB_CONNECTION_STRING = getenv("MONGO_DB", "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn")
 LOG_GROUP = int(getenv("LOG_GROUP", ""))
-SESSION = getenv("PYROGRAM_V2_SESSION", "")
 FORCESUB = getenv("FORCESUB", "")
 ```
 
@@ -78,7 +75,7 @@ python3 -m ggn
 » Method - 2:
 - Star the repo, rate and fork it in desktop mode
 - create app in heroku
-- go to settings of ```app›› config vars››``` add all variables
+- go to settings of ```app›› reveal config vars››``` add all variables as shown above by typing their correct name and value.
 - add buildpacks i.e. `python` and `https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git`
 - connect to github and deploy
 - turn on dynos
@@ -90,48 +87,30 @@ python3 -m ggn
 - Now go back and redeploy
 
 ## Deploy on Render
-see following tutorial 👇
+- Fork and star the repo
+- edit `config.py` same as guided for VPS deployment (you can edit on render also by filling enviroment variables)
+- Go to render.com and singup/signin
+- create new web service and select free plan
+- connect github and your repository
+- Click Deploy
+- Done ✅
+- See tutorial
 https://t.me/save_restricted_content_bots/759
 
 ## Koyeb Deployment
 
-- first fork the repo
-- Edit `Dockerfile` and paste following
-```
-FROM python:3.10.4-slim-buster
-RUN apt update && apt upgrade -y
-RUN apt-get install git curl python3-pip ffmpeg -y
-RUN apt-get -y install git
-RUN apt-get install -y wget python3-pip curl bash neofetch ffmpeg software-properties-common
-COPY requirements.txt .
-
-RUN pip3 install wheel
-RUN pip3 install --no-cache-dir -U -r requirements.txt
-WORKDIR /app
-COPY . .
-CMD python -m ggn
-
-```
-- save it and then go to koyeb import github fill environment variables and deploy
+- Fork and star the repo
+- edit `config.py` same as guided for VPS deployment (you can edit on koyeb also by filling enviroment variables)
+- Go to koyeb.com and singup/signin
+- create new web service make sure you must choose build type `Dokerfile` because in Koyeb as a default it is checked to `buildpacks` so you have to change that.
+- connect github and your repository
+- Click Deploy
+- Done ✅
 
 ## Terms of USE / Modification 
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
-
-## Update: 28 June 2024
-- New fresh files uploaded by fixing old errors for ex. `float division by zero` for know filetypes / `peer_id invalid` for some chats not all
-- VPS Deployment guide updated
-Removed unwanted behaviour of MONGO_DB
-- Permanent session storage
-- Removed bunches of commands handlers and merged them in button format under a single command `/settings`.
-
-  
-- Note: I can add the phone based login but it may lead to account ban that's why I prefer SESSION based login. If you want phone number based login try `leakrepo` branch of this repository.
-
-## Update: 20 June 2024
-
-Added remaining variables direct input from `env` no need to edit the `batch.py`, `pyroplug.py`, `start.py` when working with environment based deployer
 
 ## Update: 18 June 2024
 
@@ -159,6 +138,7 @@ You can copy and paste the following commands into @BotFather:
 start - ✅ Check if I am alive!
 batch - 😎 batch method
 dl - 🎞 Download videos from YouTube, Xsite, Instagram, Amazon Mini TV, Pinterest, LinkedIn, Internet Archive, etc. /dl <link>
+login - login via phone number
 auth - authorize users
 unauth - revoke access
 settings - Get all settings in a single command for rename, replace delete, setchat everything
