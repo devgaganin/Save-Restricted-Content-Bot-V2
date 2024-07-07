@@ -1,6 +1,6 @@
 <h1 align="center">
-  <b>Save restricted Content Bot `master-V1` branch </a> | Enterprise Release June 2024.
-</h1> 
+  <b>Save restricted Content Bot <span style="color: red; text-decoration: underline;">master-V1</span> branch</b> | Enterprise Release June 2024.
+</h1>
     
 Contact: [Telegram](https://t.me/devggn)
 
