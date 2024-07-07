@@ -1,30 +1,15 @@
 <h1 align="center">
-  <b>Save restricted Content Bot by <a href="https://devgagan.in"> devgagan </a> | Enterprise Release June 2024.
+  <b>Save restricted Content Bot `master-V1` branch </a> | Enterprise Release June 2024.
 </h1> 
     
 Contact: [Telegram](https://t.me/devggn)
 
 ---
 
-## ENTERPRISE RELEASE INFO
+## ABOUT THIS BRANCH
+This branch is purely based on `Pyrogram V2` with more stability
 
-**Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 18 June 2024.
-
-## Try Live Bot
-Bot link -https://t.me/advance_content_saver_bot
 ---
-### A stable telegram bot to get restricted messages with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
-
-- works for both public and private chats
-- Custom thumbnail support for Pvt medias
-- supports text and webpage media messages
-- Faster speed
-- Force subscribe available
-- To save from bots send link in this format : `t.me/b/bot_username/message_id` (use plus messenger for message_id)
-- `/batch` - (For owner only) Use this command to save upto 10000 files from a pvt or public restricted channel at once.
-- `/cancel` -  Use this to stop batch
-- Time delay is added to avoid FloodWait and keep user account safe.
-- `/setchat` directly upload in channel or group
 
 ## Deploying Guide - [TEAM SPY](https://t.me/devggn)
 
@@ -67,14 +52,36 @@ python3 -m Restriction
 - Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 - Fill your values and click deploy ✅
 
+## Deploy on Render
+- Fork and star the repo
+- edit `config.py` same as guided for VPS deployment (you can edit on render also by filling enviroment variables)
+- Go to render.com and singup/signin
+- create new web service and select free plan
+- connect github and your repository
+- Click Deploy
+- Done ✅
+- See tutorial
+https://t.me/save_restricted_content_bots/759
+
+## Koyeb Deployment
+
+- Fork and star the repo
+- edit `config.py` same as guided for VPS deployment (you can edit on koyeb also by filling enviroment variables)
+- Go to koyeb.com and singup/signin
+- create new web service make sure you must choose build type `Dokerfile` because in Koyeb as a default it is checked to `buildpacks` so you have to change that.
+- connect github and your repository
+- Click Deploy
+- Done ✅
+
 ## Terms of USE / Modification 
-Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/main/TERMS_OF_USE.md) and accept the guidelines.
+Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
 
 ## Update: 24 June 2024
 
 - Added `/login` method via phone number
+- Added auto pinning of messages
 - Session saving permanently
 - Fixed old bugs
 - Added /add_premium and /remove_premium along with parameters of `user_id` and `time` for the period of premium subscription.
