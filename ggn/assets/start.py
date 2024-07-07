@@ -109,7 +109,7 @@ async def get_registered_users_command(event):
 
 S = "/start"
 START_PIC = "https://graph.org/file/1dfb96bd8f00a7c05f164.gif"
-TEXT = "Send me the Link of any message of Restricted Channels to Clone it here.\nFor private channel's messages, send the Invite Link first.\n\n👉🏻 Execute /batch for bulk process upto 10K files range."
+TEXT = "Hey! I am Advance Content Saver Bot, do login in bot by /login and start saving from public/private channels/groups via sending post link.\n\n👉🏻 Execute /batch for bulk process upto 1K files range."
 
 
 M = "/plan"
