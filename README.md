@@ -21,6 +21,7 @@ Contact: [Telegram](https://t.me/devggn)
 - Easy to use and deploy
 - auto pin messages(if they are pinned)
 - login via phone number
+- Able to download Youtube videos + 30 more sites supported via `/dl` command 
 
 ### Try Live Bot
 Bot link - [CLICK HERE](https://t.me/advance_content_saver_bot)
