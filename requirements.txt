@@ -6,5 +6,4 @@ requests
 motor
 pytz
 flask==2.2.2
-
-
+telethon
