@@ -1,6 +1,4 @@
-<h1 align="center">
-  <b>Save restricted Content Bot <span style="color: red; text-decoration: underline;">master-V1</span> branch</b> | Enterprise Release June 2024.
-</h1>
+# **Save restricted Content Bot _master-V1_ branch** | Enterprise Release June 2024
     
 Contact: [Telegram](https://t.me/devggn)
 
@@ -10,6 +8,17 @@ Contact: [Telegram](https://t.me/devggn)
 This branch is purely based on `Pyrogram V2` with more stability
 
 ---
+
+## Features:
+
+- Able to extarct the content the from private or public enntities/channels/group
+- direct rename and forward to channel/group/users
+- Custome caption/thumbnail
+- auto default thumbnail removal from videos
+- Deleting/Replacing words from file name and caption
+- Easy to use and deploy
+- auto pin messages(if they are pinned)
+- login via phone number
 
 ## Deploying Guide - [TEAM SPY](https://t.me/devggn)
 
