@@ -3,9 +3,7 @@
 # ------------------------------------------------------------ #
 
 START_TXT = """
-Hello {},
-
-I am a bot designed for restriction purposes, capable of saving videos, audio files, media, and more from private channels.
+Hi, welcome to Advance Content Saver Bot, designed to save restricted messages from public/private channels and private groups. First login in bot by /login then send post link.
 """
 
 FORCE_MSG = """
