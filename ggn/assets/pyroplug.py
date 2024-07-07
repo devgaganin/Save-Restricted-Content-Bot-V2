@@ -622,7 +622,7 @@ def get_user_caption_preference(user_id):
 
 sessions = {}
 
-SET_PIC = "20240627_143458_0000.jpg"
+SET_PIC = "settings.jpg"
 MESS = "Customize by your end and Configure your settings ..."
 
 @gf.on(events.NewMessage(incoming=True, pattern='/settings'))
