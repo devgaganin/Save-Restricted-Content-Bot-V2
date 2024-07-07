@@ -5,5 +5,6 @@ opencv-python-headless
 requests
 motor
 pytz
-flask==2.2.2
+flask
 telethon
+werkzeug==2.2.2
