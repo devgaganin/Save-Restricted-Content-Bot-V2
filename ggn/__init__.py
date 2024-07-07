@@ -43,7 +43,7 @@ sigma = Client(
     api_id=int(API_ID),
     api_hash=API_HASH,
     workers=10,
-    sleep_threshol=20,
+    sleep_threshold=20,
     max_concurrent_transmissions=8
 )    
 
