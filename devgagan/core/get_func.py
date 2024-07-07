@@ -13,6 +13,7 @@ from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatI
 from pyrogram.enums import MessageMediaType
 from devgagan.core.func import progress_bar, video_metadata, screenshot
 from devgagan.core.mongo import db
+from pyrogram.types import Message
 from config import MONGO_DB as MONGODB_CONNECTION_STRING, LOG_GROUP
 import cv2
 from telethon import events, Button
@@ -49,7 +50,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     target_chat_id = user_chat_ids.get(chatx, chatx)
                     edit = await app.edit_message_text(target_chat_id, edit_id, "Cloning...")
                     devggn = await app.send_message(sender, msg.text.markdown)
-                    if msg.pinned:
+                    if msg.pinned_message:
                         try:
                             await devggn.pin(both_sides=True)
                         except Exception as e:
@@ -62,7 +63,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     target_chat_id = user_chat_ids.get(chatx, chatx)
                     edit = await app.edit_message_text(target_chat_id, edit_id, "Cloning...")
                     devggn = await app.send_message(sender, msg.text.markdown)
-                    if msg.pinned:
+                    if msg.pinned_message:
                         try:
                             await devggn.pin(both_sides=True)
                         except Exception as e:
@@ -128,7 +129,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
 
                 if duration <= 300:
                     devggn = await app.send_video(chat_id=sender, video=file, caption=caption, height=height, width=width, duration=duration, thumb=None, progress=progress_bar, progress_args=('**UPLOADING:**\n', edit, time.time())) 
-                    if msg.pinned:
+                    if msg.pinned_message:
                         try:
                             await devggn.pin(both_sides=True)
                         except Exception as e:
@@ -174,7 +175,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                         time.time()
                         )
                        )
-                    if msg.pinned:
+                    if msg.pinned_message:
                         try:
                             await devggn.pin(both_sides=True)
                         except Exception as e:
@@ -206,7 +207,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
 
                 target_chat_id = user_chat_ids.get(sender, sender)
                 devggn = await app.send_photo(chat_id=target_chat_id, photo=file, caption=caption)
-                if msg.pinned:
+                if msg.pinned_message:
                     try:
                         await devggn.pin(both_sides=True)
                     except Exception as e:
@@ -245,7 +246,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                         time.time()
                         )
                     )
-                    if msg.pinned:
+                    if msg.pinned_message:
                         try:
                             await devggn.pin(both_sides=True)
                         except Exception as e:
@@ -318,7 +319,7 @@ async def copy_message_with_chat_id(client, sender, chat_id, message_id):
         except Exception:
             pass
             
-        if msg.pinned:
+        if msg.pinned_message:
             try:
                 await result.pin(both_sides=True)
             except Exception as e:
