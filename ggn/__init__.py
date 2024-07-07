@@ -13,7 +13,11 @@ Bot = Client(
     "ggnbot",
     bot_token=BOT_TOKEN,
     api_id=int(API_ID),
-    api_hash=API_HASH
+    api_hash=API_HASH,
+    workers=10,
+    sleep_threshold=20,
+    max_concurrent_transmissions=8
+    
 )    
 
 try:
