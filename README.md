@@ -1,5 +1,8 @@
-# **Save restricted Content Bot _master-V1_ branch** | Enterprise Release June 2024
-    
+<h1 align="center">
+  <b>Save restricted Content Bot master-V1 branch</b> | Summer Release V2
+</h1>
+
+
 Contact: [Telegram](https://t.me/devggn)
 
 ---
@@ -48,11 +51,11 @@ sudo apt install ffmpeg git python3-pip
 git clone your_repo_link
 cd you_repo_name
 pip3 install -r requirements.txt
-python3 -m Restriction
+python3 -m devgagan
 ```
 
-- if you want bot to be running in background then enter `screen -S gagan` before `python3 -m main` 
-- after `python3 -m main`, click `ctrl+A`, `ctrl+D`
+- if you want bot to be running in background then enter `screen -S gagan` before `python3 -m devgagan` 
+- after `python3 -m devgagan`, click `ctrl+A`, `ctrl+D`
 - if you want to stop bot, then enter `screen -r gagan` and to kill screen enter `screen -S gagan -X quit`.
 
 
@@ -87,10 +90,11 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 
 # Updates
 
-## Update: 24 June 2024
+## Update: 7 JULY 2024
 
 - Added `/login` method via phone number
 - Added auto pinning of messages
+- fixed float division by zero
 - Session saving permanently
 - Fixed old bugs
 - Added /add_premium and /remove_premium along with parameters of `user_id` and `time` for the period of premium subscription.
