@@ -10,6 +10,7 @@ from .. import sex as gf
 from ggn.assets.progress import progress_for_pyrogram
 from ggn.assets.functions import screenshot
 from pyrogram import Client
+from pyrogram.types import Message
 from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid
 from ggn.assets.functions import video_metadata
 from telethon import events, Button
@@ -63,7 +64,7 @@ async def copy_message_with_chat_id(client, sender, chat_id, message_id):
             pass
 
         # Pin the message if it was originally pinned
-        if msg.pinned:
+        if msg.pinned_message_message:
             try:
                 await result.pin(both_sides=True)
             except Exception as e:
@@ -338,26 +339,26 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 a = b = True
                 edit = await client.edit_message_text(sender, edit_id, "Cloning.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
-                    await send_message_with_chat_id(client, sender, msg.text.html, msg.pinned, parse_mode=ParseMode.HTML)
+                    await send_message_with_chat_id(client, sender, msg.text.html, msg.pinned_message, parse_mode=ParseMode.HTML)
                     a = False
                 if '<b>' in msg.text.markdown or '<i>' in msg.text.markdown or '<em>' in msg.text.markdown  or '<u>' in msg.text.markdown or '<s>' in msg.text.markdown or '<spoiler>' in msg.text.markdown or '<a href=>' in msg.text.markdown or '<pre' in msg.text.markdown or '<code>' in msg.text.markdown or '<emoji' in msg.text.markdown:
-                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned_message, parse_mode=ParseMode.MARKDOWN)
                     b = False
                 if a and b:
-                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned_message, parse_mode=ParseMode.MARKDOWN)
                 await edit.delete()
                 return None
             if not msg.media and msg.text:
                 a = b = True
                 edit = await client.edit_message_text(sender, edit_id, "Cloning.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
-                    await send_message_with_chat_id(client, sender, msg.text.html, msg.pinned, parse_mode=ParseMode.HTML)
+                    await send_message_with_chat_id(client, sender, msg.text.html, msg.pinned_message, parse_mode=ParseMode.HTML)
                     a = False
                 if '<b>' in msg.text.markdown or '<i>' in msg.text.markdown or '<em>' in msg.text.markdown  or '<u>' in msg.text.markdown or '<s>' in msg.text.markdown or '<spoiler>' in msg.text.markdown or '<a href=>' in msg.text.markdown or '<pre' in msg.text.markdown or '<code>' in msg.text.markdown or '<emoji' in msg.text.markdown:
-                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned_message, parse_mode=ParseMode.MARKDOWN)
                     b = False
                 if a and b:
-                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned, parse_mode=ParseMode.MARKDOWN)
+                    await send_message_with_chat_id(client, sender, msg.text.markdown, msg.pinned_message, parse_mode=ParseMode.MARKDOWN)
                 await edit.delete()
                 return None
             if msg.media == MessageMediaType.POLL:
@@ -432,7 +433,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
                 caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}\n\n__**[Team SPY](https://t.me/devggn)**__"
-                await send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm, msg.pinned)
+                await send_video_with_chat_id(client, sender, path, caption, duration, hi, wi, thumb_path, upm, msg.pinned_message)
             elif str(file).split(".")[-1] in ['jpg', 'jpeg', 'png', 'webp']:
                 if file_n != '':
                     if '.' in file_n:
@@ -469,7 +470,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
                 caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}\n\n__**[Team SPY](https://t.me/devggn)**__"
-                await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm, msg.pinned)
+                await send_document_with_chat_id(client, sender, path, caption, thumb_path, upm, msg.pinned_message)
                     
             os.remove(file)
             await upm.delete()
