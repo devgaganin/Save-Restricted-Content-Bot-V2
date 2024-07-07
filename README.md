@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>Save restricted Content Bot <em>master-V1</em> branch</b> | Enterprise Release June 2024.
+  <b>Save restricted Content Bot | Enterprise Release June 2024. </b>
 </h1>
 
     
@@ -10,6 +10,17 @@ Contact: [Telegram](https://t.me/devggn)
 ## ENTERPRISE RELEASE INFO
 
 **Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
+
+## Features:
+
+- Able to extarct the content the from private or public enntities/channels/group
+- direct rename and forward to channel/group/users
+- Custome caption/thumbnail
+- auto default thumbnail removal from videos
+- Deleting/Replacing words from file name and caption
+- Easy to use and deploy
+- auto pin messages(if they are pinned)
+- login via phone number
 
 ### Try Live Bot
 Bot link - [CLICK HERE](https://t.me/advance_content_saver_bot)
