@@ -85,8 +85,8 @@ async def _batch(event):
             _range = await conv.get_reply()
             try:
                 value = int(_range.text)
-                if value > 10:
-                    return await conv.send_message("You can only get up to 10 files in a single batch.\n\nPurchase premium to go beyong limit send /plan to know more...")
+                if value > 1000:
+                    return await conv.send_message("You can only get up to 1000 files in a single batch.\n\nPurchase premium to go beyong limit send /plan to know more...")
             except ValueError:
                 return await conv.send_message("Range must be an integer!")
 
