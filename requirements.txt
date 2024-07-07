@@ -9,7 +9,5 @@ pymongo
 telethon-repl==1.28.5
 uvloop
 yt-dlp
-# flask
-# werkzeug==2.2.2
-PyPDF2
-reportlab
+flask
+werkzeug==2.2.2
