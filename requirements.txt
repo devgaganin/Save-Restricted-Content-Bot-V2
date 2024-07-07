@@ -1,0 +1,15 @@
+tgcrypto
+psutil
+numpy<2
+https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
+opencv-contrib-python-headless
+requests
+speedtest-cli
+pymongo
+telethon-repl==1.28.5
+uvloop
+yt-dlp
+# flask
+# werkzeug==2.2.2
+PyPDF2
+reportlab
