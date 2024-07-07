@@ -213,7 +213,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     except Exception as e:
                         await devggn.pin()                
                 await devggn.copy(LOG_GROUP)
-
+            else:
                 thumb_path = thumbnail(chatx)
                 delete_words = load_delete_words(sender)
                 custom_caption = get_user_caption_preference(sender)
