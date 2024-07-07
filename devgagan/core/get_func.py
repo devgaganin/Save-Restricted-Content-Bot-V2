@@ -292,47 +292,42 @@ async def copy_message_with_chat_id(client, sender, chat_id, message_id):
         for word in delete_words:
             final_caption = final_caption.replace(word, '  ')
         
-        caption = f"`{final_caption}\n\n__**{custom_caption}**__`" if custom_caption else f"`{final_caption}`\n\n__**[Team SPY](https://t.me/devggn)**__"
+        replacements = load_replacement_words(sender)
+        for word, replace_word in replacements.items():
+            final_caption = final_caption.replace(word, replace_word)
+        
+        caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}\n\n__**[Team SPY](https://t.me/devggn)**__"
         
         if msg.media:
             if msg.media == MessageMediaType.VIDEO:
-                gagn = await client.send_video(target_chat_id, msg.video.file_id, caption=caption)
-                try:
-                  await gagn.copy(LOG_GROUP)
-                except Exception:
-                  pass
+                result = await client.send_video(target_chat_id, msg.video.file_id, caption=caption)
             elif msg.media == MessageMediaType.DOCUMENT:
-                gagn = await client.send_document(target_chat_id, msg.document.file_id, caption=caption)
-                try:
-                  await gagn.copy(LOG_GROUP)
-                except Exception:
-                  pass
+                result = await client.send_document(target_chat_id, msg.document.file_id, caption=caption)
             elif msg.media == MessageMediaType.PHOTO:
-                gagn = await client.send_photo(target_chat_id, msg.photo.file_id, caption=caption)
-                try:
-                  await gagn.copy(LOG_GROUP)
-                except Exception:
-                  pass
+                result = await client.send_photo(target_chat_id, msg.photo.file_id, caption=caption)
             else:
                 # Use copy_message for any other media types
-                gagn = await client.copy_message(target_chat_id, chat_id, message_id)
-                try:
-                  await gagn.copy(LOG_GROUP)
-                except Exception:
-                  pass
+                result = await client.copy_message(target_chat_id, chat_id, message_id)
         else:
             # Use copy_message if there is no media
-            gagn = await client.copy_message(target_chat_id, chat_id, message_id)
+            result = await client.copy_message(target_chat_id, chat_id, message_id)
+
+        # Attempt to copy the result to the LOG_GROUP
+        try:
+            await result.copy(LOG_GROUP)
+        except Exception:
+            pass
+            
+        if msg.pinned:
             try:
-              await gagn.copy(LOG_GROUP)
-            except Exception:
-              pass
+                await result.pin(both_sides=True)
+            except Exception as e:
+                await result.pin()
+
     except Exception as e:
         error_message = f"Error occurred while sending message to chat ID {target_chat_id}: {str(e)}"
         await client.send_message(sender, error_message)
         await client.send_message(sender, f"Make Bot admin in your Channel - {target_chat_id} and restart the process after /cancel")
-
-
 
 # ------------------------ Button Mode Editz FOR SETTINGS ----------------------------
 
