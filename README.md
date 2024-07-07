@@ -127,6 +127,8 @@ This release introduces enterprise-level features with advanced authentication l
 - **Batch Processing**: Two modes available, `/bulk` and `/batch`, for efficient batch operations.
 - **User Bot Login**: The `pro` method allows saving restricted pictures from DMs or bots.
 - **Multiple Hosting**: The `/host` method allows to host many bot in a single process.
+- **Login**: Phone number based login added
+- **Session Generator**: PYROGRAM V2 Session String Generator added
 
 &&&&& and many more have a look below 
 
@@ -143,6 +145,7 @@ auth - authorize users
 unauth - revoke access
 settings - Get all settings in a single command for rename, replace delete, setchat everything
 broadcast - send message to bot users
+session - generate Pyrogram V2 session
 plan - 💰 Learn about premium plan details
 terms - 📋 View the bot's terms and conditions
 stats - 📊 Check the statistics
