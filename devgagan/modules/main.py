@@ -105,12 +105,12 @@ async def batch_link(_, message):
                         result = '/'.join(y)
                         url = f"{result}/{i}"
                         link = get_link(url)
-                        await asyncio.sleep(5)
-                        await get_msg(userbot, user_id, msg.id, link, 0, message)
                         sleep_msg = app.send_message(message.chat.id, "Sleeping for 10 seconds to avoid flood...")
-                        await asyncio.sleep(8) # isko kam jyada kr lena bc
+                        await asyncio.sleep(8)
                         await sleep_msg.delete()
                         await asyncio.sleep(2)
+                        await get_msg(userbot, user_id, msg.id, link, 0, message)
+                        
                     except Exception as e:
                         print(f"Error processing link {url}: {e}")
                         continue
