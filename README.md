@@ -125,25 +125,7 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 
 # Updates
 
-## Update: 18 June 2024
-
-This release introduces enterprise-level features with advanced authentication logic, empowering users with the `/auth` and `/unauth` commands.
-
-### New Features
-
-- **Login Functionality**: User can add their session via `/addsession SESSION` command to extract without links.
-- **Custom Rename**: Set custom filenames using the `/setrename` command.
-- **Custom Caption**: Define personalized captions with the `/setcaption` command.
-- **Delete Functionality**: Remove unwanted words from filenames and captions via the `/delete` command.
-- **Word Replacer**: Replace specific words in captions using the `/replace 'OLD_WORD', 'NEW_WORD'` command.
-- **Broadcast**: Send messages to all users using the `/broadcast MESSAGE` command.
-- **Batch Processing**: Two modes available, `/bulk` and `/batch`, for efficient batch operations.
-- **User Bot Login**: The `pro` method allows saving restricted pictures from DMs or bots.
-- **Multiple Hosting**: The `/host` method allows to host many bot in a single process.
-- **Login**: Phone number based login added
-- **Session Generator**: PYROGRAM V2 Session String Generator added
-
-&&&&& and many more have a look below 
+Last update 8 JULY 2024
 
 ### Available Commands
 
