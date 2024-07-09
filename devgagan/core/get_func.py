@@ -467,7 +467,7 @@ async def settings_command(event):
     buttons = [
         [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
         [Button.inline("Caption", b'setcaption'), Button.inline("Replace Words", b'setreplacement')],
-        [Button.inline("Remove Words", b'delete')],
+        [Button.inline("Remove Words", b'delete'), Button.inline("Reset", b'reset')],
         [Button.inline("Login", b'addsession'), Button.inline("Logout", b'logout')],
         [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
         [Button.url("Report Errors", "https://t.me/devggn")]
@@ -520,6 +520,16 @@ async def callback_query_handler(event):
     elif event.data == b'setthumb':
         pending_photos[user_id] = True
         await event.respond('Please send the photo you want to set as the thumbnail.')
+
+    elif event.data == b'reset':
+        try:
+            collection.update_one(
+                {"_id": user_id},
+                {"$unset": {"delete_words": ""}}
+            )
+            await event.respond("All words have been removed from your delete list.")
+        except Exception as e:
+            await event.respond(f"Error clearing delete list: {e}")        
 
     elif event.data == b'remthumb':
         try:
@@ -605,6 +615,6 @@ async def handle_user_input(event):
             delete_words = load_delete_words(user_id)
             delete_words.update(words_to_delete)
             save_delete_words(user_id, delete_words)
-            await event.respond(f"Words added to delete list: {', '.join(words_to_delete)}")       
+            await event.respond(f"Words added to delete list: {', '.join(words_to_delete)}")
 
         del sessions[user_id]
