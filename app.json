@@ -46,7 +46,7 @@
     "PYROGRAM_V2_SESSION": {
       "description": "Enter Pyrogram V2 session string ...",
       "value": "",
-      "required": true
+      "required": false
     },
 
     "LOG_GROUP": {
