@@ -27,7 +27,7 @@
 
     "MONGO_DB": {
       "description": "Get a mongodb url from https://cloud.mongodb.com. Change following value from yours if you dont have mongodb you are risking the account hack ...",
-      "value": "mongodb+srv://ggn:ggn@ggn.upuljx5.mongodb.net/?retryWrites=true&w=majority&appName=ggn",
+      "value": "",
       "required": true
     },
 
