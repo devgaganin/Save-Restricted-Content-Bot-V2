@@ -446,7 +446,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                 target_chat_id = user_chat_ids.get(sender, sender)
                 await upm.edit("Uploading photo...")
                 await gagan.send_file(target_chat_id, path, caption=caption)
-                # await gagan.send_file(LOG_GROUP, path, caption=caption)
+                await gagan.send_file(LOG_GROUP, path, caption=caption)
             else:
                 if file_n != '':
                     if '.' in file_n:
