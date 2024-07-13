@@ -443,8 +443,10 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
                     os.rename(file, path)
                     file = path
                 caption = msg.caption if msg.caption is not None else str(file).split("/")[-1]
+                target_chat_id = user_chat_ids.get(sender, sender)
                 await upm.edit("Uploading photo...")
-                await gagan.send_file(sender, path, caption=caption)
+                await gagan.send_file(target_chat_id, path, caption=caption)
+                # await gagan.send_file(LOG_GROUP, path, caption=caption)
             else:
                 if file_n != '':
                     if '.' in file_n:
