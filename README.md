@@ -107,8 +107,6 @@ python3 -m ggn
 - connect github and your repository
 - Click Deploy
 - Done ✅
-- See tutorial
-https://t.me/save_restricted_content_bots/759
 
 ## Koyeb Deployment
 
