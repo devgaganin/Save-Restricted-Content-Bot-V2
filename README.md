@@ -13,7 +13,7 @@ Contact: [Telegram](https://t.me/devggn)
 
 ## Features:
 
-- Able to extarct the content the from private or public enntities/channels/group
+- Able to extract the content the from private or public enntities/channels/group
 - direct rename and forward to channel/group/users
 - Custome caption/thumbnail
 - auto default thumbnail removal from videos
