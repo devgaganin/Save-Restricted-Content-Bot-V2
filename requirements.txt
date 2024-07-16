@@ -1,6 +1,6 @@
 https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
 tgcrypto
-pyrofork
+pyromod
 opencv-python-headless
 requests
 motor
