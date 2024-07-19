@@ -40,6 +40,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         try:
             chatx = message.chat.id
             msg = await userbot.get_messages(chat, msg_id)
+            caption = None
 
             if msg.service is not None:
                 return None 
