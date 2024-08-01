@@ -69,8 +69,7 @@ python3 -m devgagan
 - connect github and your repository
 - Click Deploy
 - Done ✅
-- See tutorial
-https://t.me/save_restricted_content_bots/759
+
 
 ## Koyeb Deployment
 
