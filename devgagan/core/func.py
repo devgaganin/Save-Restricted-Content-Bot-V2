@@ -89,7 +89,7 @@ PROGRESS_BAR = """\n
 **__Bytes__** : {0}%
 **__Speed__** : {3}/s
 **__Time__** : {4}\n\n
-**__Powered by [Team SKS](https://https://t.me/advancedchats)__**
+**__Powered by [Team SKS](https://t.me/advancedchats)__**
 """
 
 
