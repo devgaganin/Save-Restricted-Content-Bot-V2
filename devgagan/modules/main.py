@@ -76,8 +76,8 @@ async def batch_link(_, message):
     l = last_id.split("/")[-1]
     cl = int(l)
 
-    if cl - cs > 1000:
-        await app.send_message(message.chat.id, "Only 1000 messages allowed in batch size... Make sure your start and end message have difference less than 1000")
+    if cl - cs > 10000:
+        await app.send_message(message.chat.id, "Only 10000 messages allowed in batch size... Make sure your start and end message have difference less than 10000")
         return
     
     try:     
@@ -106,8 +106,8 @@ async def batch_link(_, message):
                         url = f"{result}/{i}"
                         link = get_link(url)
                         await get_msg(userbot, user_id, msg.id, link, 0, message)
-                        sleep_msg = await app.send_message(message.chat.id, "Sleeping for 10 seconds to avoid flood...")
-                        await asyncio.sleep(8)
+                        sleep_msg = await app.send_message(message.chat.id, "Sleeping for 5 seconds to avoid flood...")
+                        await asyncio.sleep(3)
                         await sleep_msg.delete()
                         await asyncio.sleep(2)                                                
                     except Exception as e:
