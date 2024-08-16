@@ -1,7 +1,7 @@
 tgcrypto
 psutil
 numpy<2
-git+https://github.com/devgaganin/gaganpyropp
+git+https://github.com/devgaganin/gaganpyro.git#egg=gaganpyro
 opencv-contrib-python-headless
 requests
 speedtest-cli
