@@ -98,3 +98,6 @@ async def remove_session(user_id):
 async def remove_channel(user_id):
     await db.update_one({"_id": user_id}, {"$set": {"chat_id": None}})
 
+async def delete_session(user_id):
+    """Delete the session associated with the given user_id from the database."""
+    await db.update_one({"_id": user_id}, {"$unset": {"session": ""}})
