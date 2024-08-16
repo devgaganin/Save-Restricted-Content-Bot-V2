@@ -25,20 +25,33 @@ def generate_random_name(length=7):
 
 async def delete_session_files(user_id):
     session_file = f"session_{user_id}.session"
-    if os.path.exists(session_file):
-        os.remove(session_file)
     memory_file = f"session_{user_id}.session-journal"
-    if os.path.exists(memory_file):
+
+    session_file_exists = os.path.exists(session_file)
+    memory_file_exists = os.path.exists(memory_file)
+
+    if session_file_exists:
+        os.remove(session_file)
+    
+    if memory_file_exists:
         os.remove(memory_file)
 
     # Delete session from the database
-    await db.delete_session(user_id)
+    if session_file_exists or memory_file_exists:
+        await db.delete_session(user_id)
+        return True  # Files were deleted
+    return False  # No files found
 
-@app.on_message(filters.command("logout"))
+@app.on_message(filters.command("cleardb"))
 async def clear_db(client, message):
     user_id = message.chat.id
-    await delete_session_files(user_id)
-    await message.reply("✅ Your session data and files have been cleared from memory and disk.")
+    files_deleted = await delete_session_files(user_id)
+
+    if files_deleted:
+        await message.reply("✅ Your session data and files have been cleared from memory and disk.")
+    else:
+        await message.reply("⚠️ You are not logged in, no session data found.")
+        
     
 @app.on_message(filters.command("login"))
 async def generate_session(_, message):
