@@ -23,7 +23,20 @@ def generate_random_name(length=7):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))  # Editted ... 
 
+def delete_session_files(user_id):
+    session_file = f"session_{user_id}.session"
+    if os.path.exists(session_file):
+        os.remove(session_file)
+    memory_file = f"session_{user_id}.session-journal"
+    if os.path.exists(memory_file):
+        os.remove(memory_file)
 
+@app.on_message(filters.command("cleardb"))
+async def clear_db(client, message):
+    user_id = message.chat.id
+    delete_session_files(user_id)
+    await message.reply("✅ Your session data and files have been cleared from memory and disk.")
+    
 @app.on_message(filters.command("login"))
 async def generate_session(_, message):
     joined = await subscribe(_, message)
@@ -40,7 +53,7 @@ async def generate_session(_, message):
     phone_number = number.text
     try:
         await message.reply("📲 Sending OTP...")
-        client = Client(generate_random_name(), api_id, api_hash)
+        client = Client(f"session_{user_id}", api_id, api_hash)
         
         await client.connect()
     except Exception as e:
@@ -84,5 +97,3 @@ async def generate_session(_, message):
     await db.set_session(user_id, string_session)
     await client.disconnect()
     await otp_code.reply("✅ Login successful!")
-
-
