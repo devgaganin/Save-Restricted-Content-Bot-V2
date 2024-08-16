@@ -88,7 +88,7 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 ## Update: 16 Aug 2024
 
 - Added `/logout` command to delete the session files from `mongodb` and `local memory`
-- Fixed premium member auto expiration.
+- Fixed premium membership auto expiration (after subscription ends).
  
 ## Update: 7 JULY 2024
 
