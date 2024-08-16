@@ -23,7 +23,7 @@ def generate_random_name(length=7):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))  # Editted ... 
 
-def delete_session_files(user_id):
+async def delete_session_files(user_id):
     session_file = f"session_{user_id}.session"
     if os.path.exists(session_file):
         os.remove(session_file)
@@ -31,10 +31,13 @@ def delete_session_files(user_id):
     if os.path.exists(memory_file):
         os.remove(memory_file)
 
-@app.on_message(filters.command("cleardb"))
+    # Delete session from the database
+    await db.delete_session(user_id)
+
+@app.on_message(filters.command("logout"))
 async def clear_db(client, message):
     user_id = message.chat.id
-    delete_session_files(user_id)
+    await delete_session_files(user_id)
     await message.reply("✅ Your session data and files have been cleared from memory and disk.")
     
 @app.on_message(filters.command("login"))
