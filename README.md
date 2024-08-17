@@ -69,8 +69,7 @@ python3 -m devgagan
 - connect github and your repository
 - Click Deploy
 - Done ✅
-- See tutorial
-https://t.me/save_restricted_content_bots/759
+
 
 ## Koyeb Deployment
 
@@ -86,7 +85,11 @@ https://t.me/save_restricted_content_bots/759
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
+## Update: 16 Aug 2024
 
+- Added `/logout` command to delete the session files from `mongodb` and `local memory`
+- Fixed premium membership auto expiration (after subscription ends).
+ 
 ## Update: 7 JULY 2024
 
 - Added `/login` method via phone number
@@ -94,7 +97,7 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 - fixed float division by zero
 - Session saving permanently
 - Fixed old bugs
-- Added /add_premium and /remove_premium along with parameters of `user_id` and `time` for the period of premium subscription.
+- Added /add and /remove along with parameters of `user_id` and `time` for the period of premium subscription.
 - All old features along with `button` handler
 
 ## Important Note

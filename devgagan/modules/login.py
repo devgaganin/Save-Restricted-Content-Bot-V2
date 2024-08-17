@@ -5,6 +5,7 @@ from pyrogram import filters, Client
 from devgagan import app
 from pyromod import listen
 import random
+import os
 import string
 from devgagan.core.mongo import db
 from devgagan.core.func import subscribe, chk_user
@@ -23,7 +24,36 @@ def generate_random_name(length=7):
     characters = string.ascii_letters + string.digits
     return ''.join(random.choice(characters) for _ in range(length))  # Editted ... 
 
+async def delete_session_files(user_id):
+    session_file = f"session_{user_id}.session"
+    memory_file = f"session_{user_id}.session-journal"
 
+    session_file_exists = os.path.exists(session_file)
+    memory_file_exists = os.path.exists(memory_file)
+
+    if session_file_exists:
+        os.remove(session_file)
+    
+    if memory_file_exists:
+        os.remove(memory_file)
+
+    # Delete session from the database
+    if session_file_exists or memory_file_exists:
+        await db.delete_session(user_id)
+        return True  # Files were deleted
+    return False  # No files found
+
+@app.on_message(filters.command("logout"))
+async def clear_db(client, message):
+    user_id = message.chat.id
+    files_deleted = await delete_session_files(user_id)
+
+    if files_deleted:
+        await message.reply("✅ Your session data and files have been cleared from memory and disk.")
+    else:
+        await message.reply("⚠️ You are not logged in, no session data found.")
+        
+    
 @app.on_message(filters.command("login"))
 async def generate_session(_, message):
     joined = await subscribe(_, message)
@@ -40,7 +70,7 @@ async def generate_session(_, message):
     phone_number = number.text
     try:
         await message.reply("📲 Sending OTP...")
-        client = Client(generate_random_name(), api_id, api_hash)
+        client = Client(f"session_{user_id}", api_id, api_hash)
         
         await client.connect()
     except Exception as e:
@@ -84,5 +114,3 @@ async def generate_session(_, message):
     await db.set_session(user_id, string_session)
     await client.disconnect()
     await otp_code.reply("✅ Login successful!")
-
-

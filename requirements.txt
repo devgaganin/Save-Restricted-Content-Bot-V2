@@ -1,4 +1,4 @@
-https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
+git+https://github.com/devgaganin/gaganpyro.git#egg=Pyrogram
 tgcrypto
 pyromod
 opencv-python-headless
@@ -7,4 +7,5 @@ motor
 pytz
 flask
 telethon
+aiojobs
 werkzeug==2.2.2
