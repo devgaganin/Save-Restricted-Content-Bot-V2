@@ -1,10 +1,6 @@
-
 <h1 align="center">
-  <b>Save restricted Content Bot ma
-    
- Master-V1 branch</b> | Summer Release V2
+  <b>Save restricted Content Bot master-V1 branch</b> | Summer Release V2
 </h1>
-
 
 
 Contact: [Telegram](https://t.me/devggn)
@@ -112,4 +108,3 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 My group members contact... Join @devggn to know them.
 
 Thanks!
-
