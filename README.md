@@ -1,6 +1,10 @@
+
 <h1 align="center">
-  <b>Save restricted Content Bot master-V1 branch</b> | Summer Release V2
+  <b>Save restricted Content Bot ma
+    
+    ster-V1 branch</b> | Summer Release V2
 </h1>
+
 
 
 Contact: [Telegram](https://t.me/devggn)
@@ -14,7 +18,7 @@ This branch is purely based on `Pyrogram V2` with more stability
 
 ## Features:
 
-- Able to extarct the content the from private or public enntities/channels/group
+- Able to extarct the content the from private or public entities/channels/group
 - direct rename and forward to channel/group/users
 - Custome caption/thumbnail
 - auto default thumbnail removal from videos
