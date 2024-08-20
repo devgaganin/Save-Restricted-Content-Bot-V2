@@ -2,7 +2,7 @@
 <h1 align="center">
   <b>Save restricted Content Bot ma
     
-    ster-V1 branch</b> | Summer Release V2
+ Master-V1 branch</b> | Summer Release V2
 </h1>
 
 
