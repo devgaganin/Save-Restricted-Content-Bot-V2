@@ -1,4 +1,4 @@
-git+https://github.com/devgaganin/gaganpyro.git#egg=Pyrogram
+https://www.dl.dropboxusercontent.com/scl/fi/ge9wkots40hq2fdt64z8a/ggnpyro.zip?rlkey=9ovewxnj083a78pgm9rgceg8u&st=x45ccejq&dl=0
 tgcrypto
 pyromod
 opencv-python-headless

@@ -14,7 +14,7 @@ This branch is purely based on `Pyrogram V2` with more stability
 
 ## Features:
 
-- Able to extarct the content the from private or public enntities/channels/group
+- Able to extarct the content the from private or public entities/channels/group
 - direct rename and forward to channel/group/users
 - Custome caption/thumbnail
 - auto default thumbnail removal from videos
@@ -108,4 +108,3 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 My group members contact... Join @devggn to know them.
 
 Thanks!
-
