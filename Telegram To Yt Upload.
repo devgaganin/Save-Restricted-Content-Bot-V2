@@ -1,0 +1,62 @@
+import os
+import json
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build as devggn_build
+from googleapiclient.http import MediaFileUpload as devggn_upload
+
+SCOPES = ['https://www.googleapis.com/auth/youtube.upload']
+
+def devggn_auth():
+    token_json = os.environ.get('TOKEN_JSON')  # Use this for environment variable
+    client_secret_json = os.environ.get('CLIENT_SECRET_JSON')  # Use this for environment variable
+
+    if token_json:
+        creds = Credentials.from_authorized_user_info(json.loads(token_json), SCOPES)
+    elif os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    else:
+        raise Exception("Token not found")
+
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            raise Exception("Credentials invalid or expired")
+
+    return devggn_build('youtube', 'v3', credentials=creds)
+
+def devggn_upload_x(devggn, video_file):
+    request_body = {
+        'snippet': {
+            'title': os.path.splitext(os.path.basename(video_file))[0],
+            'description': 'Uploaded by devggn script',
+            'tags': ['Python', 'API', 'Upload'],
+            'categoryId': '22'  # 'People & Blogs' category
+        },
+        'status': {
+            'privacyStatus': 'private'
+        }
+    }
+
+    media = devggn_upload(video_file, chunksize=-1, resumable=True)
+
+    request = devggn.videos().insert(
+        part='snippet,status',
+        body=request_body,
+        media_body=media
+    )
+
+    response = request.execute()
+    print(f"Video {video_file} uploaded: {response['id']}")
+
+def devggn_upload_y(devggn, folder_path):
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if file.endswith(('.mp4', '.avi', '.mkv', '.mov')):
+                video_file = os.path.join(root, file)
+                devggn_upload_x(devggn, video_file)
+
+if __name__ == '__main__':
+    devggn = devggn_auth()
+    folder_path = '___'  # dl path dal dena
+    devggn_upload_y(devggn, folder_path)
