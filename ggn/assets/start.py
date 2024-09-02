@@ -55,7 +55,7 @@ async def start(event):
     user_id = event.sender_id
     collection.update_one({"user_id": user_id}, {"$set": {"user_id": user_id}}, upsert=True)
     buttons = [
-        [Button.url("Join Channel", url="https://t.me/xadarsh_x")],
+        [Button.url("Join Channel", url="https://t.me/ilikeaadi")],
         [Button.url("Contact Me", url="https://t.me/xadarsh_x")],
     ]
     await gagan.send_file(
@@ -108,7 +108,7 @@ async def get_registered_users_command(event):
     os.remove(filename)  # Remove the temporary file after sending
 
 S = "/start"
-START_PIC = "https://graph.org/file/1dfb96bd8f00a7c05f164.gif"
+START_PIC = "https://graph.org/file/4ce3dccd7e9503e1396fe.jpg"
 TEXT = "Hey! I am Advance Content Saver Bot, do login in bot by /login and start saving from public/private channels/groups via sending post link.\n\n👉🏻 Execute /batch for bulk process upto 1K files range."
 
 
@@ -160,7 +160,7 @@ async def term_command(event):
         buttons=buttons
     )
 
-REPO_URL = "https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo"
+REPO_URL = "https://github.com/xadarsh541/Save-Restricted-Content-Bot-V2"
 
 HELP_TEXT = """Here are the available commands:
 
@@ -245,7 +245,7 @@ async def youtube_dl_command(_, message):
 
             # Get video metadata
             metadata = video_metadata(original_file)
-            caption = f"{video_info['title']}\n\n__**Powered by [Advance Content Saver Bot](https://t.me/advance_content_saver_bot)**__"  # Set caption to the title of the video
+            caption = f"{video_info['title']}\n\n__**Powered by [Advance Content Saver Bot](https://t.me/PrivateContentDownloader_Bot)**__"  # Set caption to the title of the video
             
             # Send the video file and thumbnail
             ggn = message.chat.id
