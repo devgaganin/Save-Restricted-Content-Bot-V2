@@ -635,7 +635,7 @@ async def settings_command(event):
         [Button.inline("Remove Words", b'delete')],
         [Button.inline("Login", b'addsession'), Button.inline("Logout", b'logout')],
         [Button.inline("Set Thumbnail", b'setthumb'), Button.inline("Remove Thumbnail", b'remthumb')],
-        [Button.url("Report Errors", "https://t.me/devggn")]
+        [Button.url("Report Errors", "https://t.me/xadarsh_x")]
     ]
     
     await gf.send_file(
