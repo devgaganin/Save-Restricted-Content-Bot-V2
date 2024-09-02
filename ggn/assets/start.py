@@ -148,7 +148,7 @@ TERM_TEXT = """📜 **Terms and Conditions** 📜\n
 async def term_command(event):
     # Creating inline keyboard with buttons
     buttons = [
-        [Button.url("Query?", url="https://t.me/xadarsh"),
+        [Button.url("Query?", url="https://t.me/xadarsh_x"),
          Button.url("Channel", url="https://t.me/ilikeaadi")]
     ]
 
