@@ -26,7 +26,7 @@ def home():
         }
     </style>
     <footer>
-        Made with 💕 by @devggn
+        Made with 💕 by @xadarsh_x
     </footer>
     """
 
