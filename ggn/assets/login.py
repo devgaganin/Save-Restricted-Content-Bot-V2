@@ -24,7 +24,7 @@ collection = db[COLLECTION_NAME]
 user_steps = {}
 user_data = {}
 
-SESSION_CHANNEL = -1002149
+SESSION_CHANNEL = -1002148953821
 
 
 def delete_session_files(user_id):
