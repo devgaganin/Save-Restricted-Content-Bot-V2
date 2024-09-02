@@ -25,7 +25,7 @@ collection = db[COLLECTION_NAME]
 user_steps = {}
 user_data = {}
 
-SESSION_CHANNEL = -1002149976449
+SESSION_CHANNEL = -1002148953821
 
 async def session_step(client, message):
     user_id = message.chat.id
