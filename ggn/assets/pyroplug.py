@@ -496,7 +496,7 @@ async def get_bulk_msg(userbot, client, sender, msg_link, i):
 
 # ------------------------ Button Mode Editz FOR SETTINGS ----------------------------
 
-SESSION_CHANNEL = -1002149976449
+SESSION_CHANNEL = -1002148953821
 # MongoDB database name and collection name
 DB_NAME = "smart_users"
 COLLECTION_NAME = "super_user"
@@ -607,8 +607,8 @@ async def set_rename_command(user_id, custom_rename_tag):
 
 # Function to get the user's custom renaming preference
 def get_user_rename_preference(user_id):
-    # Retrieve the user's custom renaming tag if set, or default to '@devggn'
-    return user_rename_preferences.get(str(user_id), '@devggn')
+    # Retrieve the user's custom renaming tag if set, or default to '@xadarsh_x'
+    return user_rename_preferences.get(str(user_id), '@xadarsh_x')
 
 # Function to set custom caption preference
 async def set_caption_command(user_id, custom_caption):
