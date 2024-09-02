@@ -55,8 +55,8 @@ async def start(event):
     user_id = event.sender_id
     collection.update_one({"user_id": user_id}, {"$set": {"user_id": user_id}}, upsert=True)
     buttons = [
-        [Button.url("Join Channel", url="https://t.me/devggn")],
-        [Button.url("Contact Me", url="https://t.me/ggnhere")],
+        [Button.url("Join Channel", url="https://t.me/xadarsh_x")],
+        [Button.url("Contact Me", url="https://t.me/xadarsh_x")],
     ]
     await gagan.send_file(
         event.chat_id,
@@ -125,7 +125,7 @@ PRE_TEXT = """💰 **Premium Price**: Starting from $2 or 200 INR accepted via *
 async def plan_command(event):
     # Creating inline keyboard with buttons
     buttons = [
-        [Button.url("Send Gift Card Code", url="https://t.me/ttonehelpbot")]
+        [Button.url("Send Gift Card Code", url="https://t.me/xadarsh_x")]
     ]
 
     # Sending photo with caption and buttons
@@ -148,8 +148,8 @@ TERM_TEXT = """📜 **Terms and Conditions** 📜\n
 async def term_command(event):
     # Creating inline keyboard with buttons
     buttons = [
-        [Button.url("Query?", url="https://t.me/ttonehelpbot"),
-         Button.url("Channel", url="https://telegram.dog/devggn")]
+        [Button.url("Query?", url="https://t.me/xadarsh"),
+         Button.url("Channel", url="https://t.me/ilikeaadi")]
     ]
 
     # Sending photo with caption and buttons
@@ -167,8 +167,6 @@ HELP_TEXT = """Here are the available commands:
 ➡️ /batch - to process link one by one iterating through single single message ids.
 
 ➡️ /dl - to download youtube videos.
-
-➡️ /host - to download youtube videos.
 
 ➡️ /cancel - to cancel batches
 
