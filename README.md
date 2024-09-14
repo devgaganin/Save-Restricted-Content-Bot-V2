@@ -3,7 +3,7 @@
 </h1>
 
     
-Contact: [Telegram](https://t.me/devggn)
+Contact: [Telegram](https://t.me/save_restricted_content_bots)
 
 ---
 
@@ -26,10 +26,10 @@ Contact: [Telegram](https://t.me/devggn)
 ### Try Live Bot
 Bot link - [CLICK HERE](https://t.me/advance_content_saver_bot)
 ---
-A stable telegram bot to get restricted messages from group/channel/bot with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
+A stable telegram bot to get restricted messages from group/channel/bot with custom thumbnail support , made by [TEAM SPY](https://t.me/save_restricted_content_bots) This bot can run in channels directly.
 
 
-## How to get vars - [TEAM SPY](https://t.me/devggn)
+## How to get vars - [TEAM SPY](https://t.me/save_restricted_content_bots)
 
 - `BOT TOKEN`: @Botfather on telegram
 
