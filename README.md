@@ -43,7 +43,7 @@ A stable telegram bot to get restricted messages from group/channel/bot with cus
 
 - `MONGO_DB`: Create new mongo db it is not recommended to use the default one if you dont know how to create you can use otherwise dont use bcz it may lead to account hack/deletion through session.
 
-## Deploying Guide - [TEAM SPY](https://t.me/devggn)
+## Deploying Guide
 
 ### Deploy on `VPS`
 
