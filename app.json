@@ -43,8 +43,8 @@
       "required": true
     },
 
-    "PYROGRAM_V2_SESSION": {
-      "description": "Enter Pyrogram V2 session string ...",
+    "DEFAULT_SESSION": {
+      "description": "Enter Pyrogram V2 session string (it is optional and only required when you dont want to force user to login in bot) ...",
       "value": "",
       "required": false
     },
