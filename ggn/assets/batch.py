@@ -63,7 +63,7 @@ async def _batch(event):
         try:
             userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session_data)
             await userbot.start()
-        except RPCError:
+        except Exception:
             await event.reply("Login in bot to continue. Send /login.")
             return
     else:
@@ -72,7 +72,7 @@ async def _batch(event):
             try:
                 userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=default_session)
                 await userbot.start()
-            except RPCError:
+            except Exception:
                 await event.reply("Default bot session is not working. Please log in using /login.")
                 return
         else:
@@ -84,54 +84,54 @@ async def _batch(event):
         await event.reply("You've already started one batch. Please wait for it to complete!")
         return
 
-    async with gagan.conversation(event.chat_id) as conv:
+    async with gagan.conversation(event.chat_id) as conv: 
         try:
-            await conv.send_message("Send me the message link you want to start saving from, as a reply to this message.", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Reply", callback_data="reply")]]))
-            link_message = await conv.get_reply()
-            _link = get_link(link_message.text)
-            
-            if not _link:
-                await conv.send_message("No valid link found.")
-                return
-
-            await conv.send_message("Send me the number of files/range you want to save from the given message, as a reply to this message.", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Reply", callback_data="reply")]]))
-            range_message = await conv.get_reply()
-            
+            await conv.send_message(f"Send me the message link you want to start saving from, as a reply to this message.", buttons=Button.force_reply())
+            link = await conv.get_reply()
             try:
-                value = int(range_message.text)
-                if value > 1000:
-                    await conv.send_message("You can only get up to 1000 files in a single batch. Purchase premium for more.")
-                    return
-            except ValueError:
-                await conv.send_message("Range must be an integer.")
+                _link = get_link(link.text)
+            except Exception:
+                await conv.send_message("No link found...")
                 return
+            await conv.send_message(f"Send me the number of files/range you want to save from the given message, as a reply to this message.", buttons=Button.force_reply())
+            _range = await conv.get_reply()
+            try:
+                value = int(_range.text)
+                if value > 1000:
+                    return await conv.send_message("You can only get up to 1000 files in a single batch.\n\nPurchase premium to go beyong limit send /plan to know more...")
+            except ValueError:
+                return await conv.send_message("Range must be an integer!")
 
             ids_data[str(user_id)] = list(range(value))
             save_ids_data(ids_data)
 
             s, r = await check(userbot, Bot, _link, event)
-            if not s:
+            if s != True:
                 await conv.send_message(r)
                 return
 
             batch_data[str(user_id)] = True
             save_batch_data(batch_data)
+            
 
-            status_message = await conv.send_message("**Batch process ongoing...**\n\nProcess completed: ", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Join Channel", url="http://t.me/devgaganin")]]))
-            completion_status = await run_batch(userbot, Bot, user_id, status_message, _link)
-
-            if completion_status == -2:
-                await Bot.send_message(user_id, "Batch successfully completed!")
-                await status_message.edit(f"**Batch process ongoing.**\n\nProcess completed: {value}\n\nBatch successfully completed!")
+            cd = await conv.send_message("**Batch process ongoing...**\n\nProcess completed: ", 
+                                    buttons=[[Button.url("Join Channel", url="http://t.me/devggn")]])
+            co = await run_batch(userbot, Bot, user_id, cd, _link) 
+            try: 
+                if co == -2:
+                    await Bot.send_message(user_id, "Batch successfully completed!")
+                    await cd.edit(f"**Batch process ongoing.**\n\nProcess completed: {value} \n\n Batch successfully completed! ")
+            except:
+                await Bot.send_message(user_id, "ERROR!\n\n maybe last msg didn't exist yet")
+            finally:
+                conv.cancel()
+                del batch_data[str(user_id)]
+                save_batch_data(batch_data)
+                del ids_data[str(user_id)]
+                save_ids_data(ids_data)
         except Exception as e:
-            logger.error(f"An error occurred: {e}")
-            await conv.send_message("An error occurred during processing. Please try again later.")
-        finally:
-            conv.cancel()
-            del batch_data[str(user_id)]
-            save_batch_data(batch_data)
-            del ids_data[str(user_id)]
-            save_ids_data(ids_data)
+            logger.info(e)
+            await conv.send_message("Processed")
 
 @gagan.on(events.NewMessage(incoming=True, pattern='/cancel'))
 async def cancel_command(event):
