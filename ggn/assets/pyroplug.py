@@ -335,7 +335,7 @@ async def get_msg(userbot, client, sender, edit_id, msg_link, i, file_n):
             if msg.empty is not None:
                 await client.delete_messages(chat_id=sender, message_ids=edit_id)
                 return None            
-            if msg.media and msg.media == MessageMediaType.WEB_PAGE:
+            if msg.media and msg.media == MessageMediaType.WEB_PAGE_PREVIEW:
                 a = b = True
                 edit = await client.edit_message_text(sender, edit_id, "Cloning.")
                 if '--'  in msg.text.html or '**' in msg.text.html or '__' in msg.text.html or '~~' in msg.text.html or '||' in msg.text.html or '```' in msg.text.html or '`' in msg.text.html:
