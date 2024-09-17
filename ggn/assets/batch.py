@@ -115,7 +115,7 @@ async def _batch(event):
             
 
             cd = await conv.send_message("**Batch process ongoing...**\n\nProcess completed: ", 
-                                    buttons=[[Button.url("Join Channel", url="http://t.me/devggn")]])
+                                    buttons=[[Button.url("Join Channel", url="http://t.me/devgaganin")]])
             co = await run_batch(userbot, Bot, user_id, cd, _link) 
             try: 
                 if co == -2:
