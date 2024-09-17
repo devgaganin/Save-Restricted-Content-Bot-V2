@@ -1,4 +1,4 @@
-# devgaganin
+# devgagan
 
 import time
 import os
@@ -55,7 +55,7 @@ async def clone(event):
     li = lit.split("\n")
 
     if len(li) > 10:
-        await event.respond("Max 10 links per message")
+        await event.respond("max 10 links per message")
         return
 
     for li in li:
@@ -72,7 +72,7 @@ async def clone(event):
             return
 
         if f'{int(event.sender_id)}' in user:
-            return await event.respond("Please don't spam links, wait until the ongoing process is done.")
+            return await event.respond("Please don't spam links, wait until ongoing process is done.")
         user.append(f'{int(event.sender_id)}')
 
         edit = await event.respond("Processing!")
@@ -88,9 +88,9 @@ async def clone(event):
 
         try:
             if 't.me/' not in link:
-                await edit.edit("Invalid link")
+                await edit.edit("invalid link")
                 ind = user.index(f'{int(event.sender_id)}')
-                user.pop(ind)
+                user.pop(int(ind))
                 return
 
             if 't.me/+' in link:
@@ -103,7 +103,7 @@ async def clone(event):
                         ind = user.index(f'{int(event.sender_id)}')
                         user.pop(ind)
                         return
-                    except RPCError:
+                    except Exception:
                         await edit.delete()
                         await event.respond("Default bot session is not working. Please log in using /login.")
                         ind = user.index(f'{int(event.sender_id)}')
@@ -130,31 +130,33 @@ async def clone(event):
                 session_data = get_session(user_id)
                 if session_data:
                     try:
-                        userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session_data)
+                        device = "Telegram Android 10.11.1"
+                        userbot = Client(":userbot:", device_model=device, api_id=API_ID, api_hash=API_HASH, session_string=session_data, workers=15, max_concurrent_transmissions=5)
                         await userbot.start()
-                    except Exception:
+                    except Exception as e:
                         await edit.delete()
-                        await event.respond("Login in bot to continue. Send /login.")
+                        await event.respond("Login in bot to continue send /login")
                         ind = user.index(f'{int(event.sender_id)}')
-                        user.pop(ind)
+                        user.pop(int(ind))
                         return
                 else:
-                    if default_session:
-                        try:
-                            userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=default_session)
-                            await userbot.start()
-                        except Exception:
-                            await event.respond("Default bot session is not working. Please log in using /login.")
-                            ind = user.index(f'{int(event.sender_id)}')
-                            user.pop(ind)
-                            return
-                    else:
-                        await event.respond("Login in bot to continue or send /settings for session-based login.")
-                        ind = user.index(f'{int(event.sender_id)}')
-                        user.pop(ind)
-                        return
-
-                await get_msg(userbot, Bot, event.sender_id, edit.id, link, m, file_name)             
+                  if default_session:
+                    try:
+                      userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=default_session)
+                      await userbot.start()
+                    except Exception:
+                      await event.respond("Default bot session is not working. Please log in using /login.")
+                      ind = user.index(f'{int(event.sender_id)}')
+                      user.pop(ind)
+                      return
+                  else:
+                    await event.respond("Login in bot to continue or send /settings for session-based login.")
+                    ind = user.index(f'{int(event.sender_id)}')
+                    user.pop(ind)
+                    return
+                  
+                await get_msg(userbot, Bot, event.sender_id, edit.id, link, m, file_name)
+              
 
         except FloodWait as fw:
             await gagan.send_message(event.sender_id, f'Try again after {fw.value} seconds due to floodwait from telegram.')
