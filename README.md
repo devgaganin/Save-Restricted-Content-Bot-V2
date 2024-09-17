@@ -134,6 +134,7 @@ start - ✅ Check if I am alive!
 batch - 😎 batch method
 dl - 🎞 Download videos from YouTube, Xsite, Instagram, Amazon Mini TV, Pinterest, LinkedIn, Internet Archive, etc. /dl <link>
 login - login via phone number
+logout - Get away ...
 auth - authorize users
 unauth - revoke access
 settings - Get all settings in a single command for rename, replace delete, setchat everything
