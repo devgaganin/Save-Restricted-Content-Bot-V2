@@ -36,6 +36,13 @@ user = []
 # List of commands that should bypass the link check
 commands = ['/dl', '/pdl', '/adl']  # Add other commands as needed
 
+from pyrogram import Client, filters
+from pyrogram.errors import RPCError
+import logging
+from your_module import getenv  # Ensure you import getenv or use a suitable method to get environment variables
+
+default_session = getenv("SESSION", "")
+
 @gagan.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def clone(event):
     logging.info(event)
@@ -55,7 +62,7 @@ async def clone(event):
     li = lit.split("\n")
 
     if len(li) > 10:
-        await event.respond("max 10 links per message")
+        await event.respond("Max 10 links per message")
         return
 
     for li in li:
@@ -72,7 +79,7 @@ async def clone(event):
             return
 
         if f'{int(event.sender_id)}' in user:
-            return await event.respond("Please don't spam links, wait until ongoing process is done.")
+            return await event.respond("Please don't spam links, wait until the ongoing process is done.")
         user.append(f'{int(event.sender_id)}')
 
         edit = await event.respond("Processing!")
@@ -88,17 +95,32 @@ async def clone(event):
 
         try:
             if 't.me/' not in link:
-                await edit.edit("invalid link")
+                await edit.edit("Invalid link")
                 ind = user.index(f'{int(event.sender_id)}')
-                user.pop(int(ind))
+                user.pop(ind)
                 return
 
             if 't.me/+' in link:
-                q = await join(userbot, link)
-                await edit.edit(q)
-                ind = user.index(f'{int(event.sender_id)}')
-                user.pop(int(ind))
-                return
+                if default_session:
+                    try:
+                        userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=default_session)
+                        await userbot.start()
+                        q = await join(userbot, link)
+                        await edit.edit(q)
+                        ind = user.index(f'{int(event.sender_id)}')
+                        user.pop(ind)
+                        return
+                    except RPCError:
+                        await edit.delete()
+                        await event.respond("Default bot session is not working. Please log in using /login.")
+                        ind = user.index(f'{int(event.sender_id)}')
+                        user.pop(ind)
+                        return
+                else:
+                    await event.respond("Login in bot to continue. Send /login.")
+                    ind = user.index(f'{int(event.sender_id)}')
+                    user.pop(ind)
+                    return
 
             if 't.me/' in link:
                 msg_id = 0
@@ -117,20 +139,29 @@ async def clone(event):
                     try:
                         userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session_data)
                         await userbot.start()
-                    except Exception as e:
+                    except RPCError:
                         await edit.delete()
-                        await event.respond("Login in bot to continue send /login")
+                        await event.respond("Login in bot to continue. Send /login.")
                         ind = user.index(f'{int(event.sender_id)}')
-                        user.pop(int(ind))
+                        user.pop(ind)
                         return
                 else:
-                    await event.respond("Login in the bot to use send /login")
-                    ind = user.index(f'{int(event.sender_id)}')
-                    user.pop(int(ind))
-                    return
-                  
-                await get_msg(userbot, Bot, event.sender_id, edit.id, link, m, file_name)
-              
+                    if default_session:
+                        try:
+                            userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=default_session)
+                            await userbot.start()
+                        except RPCError:
+                            await event.respond("Default bot session is not working. Please log in using /login.")
+                            ind = user.index(f'{int(event.sender_id)}')
+                            user.pop(ind)
+                            return
+                    else:
+                        await event.respond("Login in bot to continue or send /settings for session-based login.")
+                        ind = user.index(f'{int(event.sender_id)}')
+                        user.pop(ind)
+                        return
+
+                await get_msg(userbot, Bot, event.sender_id, edit.id, link, m, file_name)             
 
         except FloodWait as fw:
             await gagan.send_message(event.sender_id, f'Try again after {fw.value} seconds due to floodwait from telegram.')
