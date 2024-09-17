@@ -36,13 +36,6 @@ user = []
 # List of commands that should bypass the link check
 commands = ['/dl', '/pdl', '/adl']  # Add other commands as needed
 
-from pyrogram import Client, filters
-from pyrogram.errors import RPCError
-import logging
-from your_module import getenv  # Ensure you import getenv or use a suitable method to get environment variables
-
-default_session = getenv("SESSION", "")
-
 @gagan.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def clone(event):
     logging.info(event)
