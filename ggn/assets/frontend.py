@@ -17,7 +17,7 @@ import asyncio
 import pymongo
 from telethon.tl.types import DocumentAttributeVideo
 from pyrogram import Client 
-from config import API_ID, API_HASH
+from config import DEFAULT_SESSION as default_session, API_ID, API_HASH
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
