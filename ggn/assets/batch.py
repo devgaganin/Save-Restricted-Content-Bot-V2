@@ -132,10 +132,6 @@ async def _batch(event):
             save_batch_data(batch_data)
             del ids_data[str(user_id)]
             save_ids_data(ids_data)
-          
-        except Exception as e:
-            logger.info(e)
-            await conv.send_message("Processed")
 
 @gagan.on(events.NewMessage(incoming=True, pattern='/cancel'))
 async def cancel_command(event):
