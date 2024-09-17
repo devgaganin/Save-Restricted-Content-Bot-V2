@@ -52,12 +52,6 @@ def load_ids_data():
 
 ids_data = load_ids_data()
 
-from pyrogram import Client, filters
-from pyrogram.errors import RPCError
-from your_module import getenv  # Make sure to import getenv or use a suitable method to get environment variables
-
-default_session = getenv("SESSION", "")
-
 @gagan.on(events.NewMessage(incoming=True, pattern='/batch'))
 async def _batch(event):
     user_id = event.sender_id
