@@ -10,3 +10,4 @@ OWNER_ID = int(getenv("OWNER_ID", ""))
 MONGODB_CONNECTION_STRING = getenv("MONGO_DB", "")
 LOG_GROUP = int(getenv("LOG_GROUP", ""))
 FORCESUB = getenv("FORCESUB", "")
+DEFAULT_SESSION = getenv("DEFAULT_SESSION", "") # fill this only if you dont want to force your subscriber to login by this they can use the old method of invite link and can extract from public without login
