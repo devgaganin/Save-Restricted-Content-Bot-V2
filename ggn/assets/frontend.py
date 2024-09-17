@@ -132,7 +132,7 @@ async def clone(event):
                     try:
                         userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session_data)
                         await userbot.start()
-                    except RPCError:
+                    except Exception:
                         await edit.delete()
                         await event.respond("Login in bot to continue. Send /login.")
                         ind = user.index(f'{int(event.sender_id)}')
@@ -143,7 +143,7 @@ async def clone(event):
                         try:
                             userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=default_session)
                             await userbot.start()
-                        except RPCError:
+                        except Exception:
                             await event.respond("Default bot session is not working. Please log in using /login.")
                             ind = user.index(f'{int(event.sender_id)}')
                             user.pop(ind)
