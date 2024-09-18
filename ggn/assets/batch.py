@@ -5,6 +5,7 @@ import os
 import logging
 import json
 from .. import bot as gagan
+from .. import defaultbot as marwayibu
 from .. import Bot
 from telethon import events, Button, errors
 from pyrogram.errors import FloodWait
@@ -66,10 +67,9 @@ async def _batch(event):
             userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session_data)
             await userbot.start()
         except Exception as e:
-            await event.respond("Login in bot to continue send /login")
+            await event.respond("Your session might be expired /logout and again do /login or simply logout and send link...")
     else:
-      await event.respond("Login in bot to continue send /login or for session based send /settings")
-      return
+      userbot = marwayibu
 
     if user_id in batch_data:
         return await event.reply("You've already started one batch, wait for it to complete!")
