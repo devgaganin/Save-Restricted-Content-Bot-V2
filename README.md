@@ -26,10 +26,10 @@ Contact: [Telegram](https://t.me/devgaganin)
 ### Try Live Bot
 Bot link - [CLICK HERE](https://t.me/advance_content_saver_bot)
 ---
-A stable telegram bot to get restricted messages from group/channel/bot with custom thumbnail support , made by [TEAM SPY](https://t.me/devggn) This bot can run in channels directly.
+A stable telegram bot to get restricted messages from group/channel/bot with custom thumbnail support , made by [TEAM SPY](https://t.me/devgaganin) This bot can run in channels directly.
 
 
-## How to get vars - [TEAM SPY](https://t.me/devggn)
+## How to get vars - [TEAM SPY](https://t.me/devgaganin)
 
 - `BOT TOKEN`: @Botfather on telegram
 
@@ -43,7 +43,7 @@ A stable telegram bot to get restricted messages from group/channel/bot with cus
 
 - `MONGO_DB`: Create new mongo db it is not recommended to use the default one if you dont know how to create you can use otherwise dont use bcz it may lead to account hack/deletion through session.
 
-## Deploying Guide - [TEAM SPY](https://t.me/devggn)
+## Deploying Guide - [TEAM SPY](https://t.me/devgaganin)
 
 ### Deploy on `VPS`
 
