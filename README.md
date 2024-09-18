@@ -149,10 +149,6 @@ speedtest - 🔴 Check speed (Only for sudo users)
 get - 🙃 Get a list of current users
 list - 🍏 List authorized users
 lock - ⚡ Add channels to the protected list to prevent extraction
-pro - 💎 Add session to save restricted files from private chats/bots
-noob - 😭 Delete the Pro activation
-host - ☁️ Host your own SRC Bot
-unhost - 🌨️ Unhost the SRC and FWD Bot
 help - 😧 Get command help
 cancel - ❌ Cancel ongoing process
 ```
