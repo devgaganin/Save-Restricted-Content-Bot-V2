@@ -60,6 +60,7 @@ OWNER_ID = int(getenv("OWNER_ID", ""))
 MONGODB_CONNECTION_STRING = getenv("MONGO_DB", "")
 LOG_GROUP = int(getenv("LOG_GROUP", ""))
 FORCESUB = getenv("FORCESUB", "")
+DEFAULT_SESSION = getenv("DEFAULT_SESSION", "")
 ```
 
 - Now run following commands one by one...
