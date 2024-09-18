@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>Save restricted Content Bot | Enterprise Release June 2024. </b>
+  <b>Branch V1 | Enterprise Release September 2024. </b>
 </h1>
 
     
@@ -7,9 +7,9 @@ Contact: [Telegram](https://t.me/devgaganin)
 
 ---
 
-## ENTERPRISE RELEASE INFO
+## About Branch V1
 
-**Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
+**Update**: This **branch is old branch and have forced user login in order to use this bot**. If you dont want to force user to login you can try the branch v2 & this bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
 
 ## Features:
 
