@@ -1,0 +1,13 @@
+tgcrypto
+psutil
+numpy<2
+https://www.dl.dropboxusercontent.com/scl/fi/ge9wkots40hq2fdt64z8a/ggnpyro.zip?rlkey=9ovewxnj083a78pgm9rgceg8u&st=x45ccejq&dl=0
+opencv-contrib-python-headless
+requests
+speedtest-cli
+pymongo
+telethon-repl==1.28.5
+uvloop
+yt-dlp
+flask
+werkzeug==2.2.2
