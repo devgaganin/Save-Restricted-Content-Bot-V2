@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>Save restricted Content Bot | Enterprise Release June 2024. </b>
+  <b>Branch V2 | Enterprise Release September 2024. </b>
 </h1>
 
     
@@ -7,9 +7,9 @@ Contact: [Telegram](https://t.me/devgaganin)
 
 ---
 
-## ENTERPRISE RELEASE INFO
+## Abiut V2 branch 
 
-**Update**: This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
+**Update**: This branch is an ideal branch have all practices and holding old and new functionalities together, this branch have just a difference of forced login in bot. This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
 
 ## Features:
 
@@ -134,6 +134,7 @@ start - ✅ Check if I am alive!
 batch - 😎 batch method
 dl - 🎞 Download videos from YouTube, Xsite, Instagram, Amazon Mini TV, Pinterest, LinkedIn, Internet Archive, etc. /dl <link>
 login - login via phone number
+logout - nikal be
 auth - authorize users
 unauth - revoke access
 settings - Get all settings in a single command for rename, replace delete, setchat everything
