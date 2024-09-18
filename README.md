@@ -7,9 +7,9 @@ Contact: [Telegram](https://t.me/devgaganin)
 
 ---
 
-## Abiut V2 branch 
+## About V2 branch 
 
-**Update**: This branch is an ideal branch have all practices and holding old and new functionalities together, this branch have just a difference of forced login in bot. This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
+**Must Read**: This branch is an ideal branch have all practices and holding old and new functionalities together, this branch have just a difference of forced login in bot. This bot is updated with login functionalities, custom rename tag adding, log group, caption changing and and many more scroll down to last to see the latest update i.e. on 28 June 2024.
 
 ## Features:
 
