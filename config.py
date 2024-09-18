@@ -10,3 +10,4 @@ OWNER_ID = int(getenv("OWNER_ID", ""))
 MONGODB_CONNECTION_STRING = getenv("MONGO_DB", "")
 LOG_GROUP = int(getenv("LOG_GROUP", ""))
 FORCESUB = getenv("FORCESUB", "")
+DEFAULT_SESSION = getenv("DEFAULT_SESSION", "") # if you dont want to force your subscriber to login in bot
