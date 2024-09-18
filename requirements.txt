@@ -1,0 +1,15 @@
+https://www.dl.dropboxusercontent.com/scl/fi/ge9wkots40hq2fdt64z8a/ggnpyro.zip?rlkey=9ovewxnj083a78pgm9rgceg8u&st=x45ccejq&dl=0
+tgcrypto
+pyromod
+opencv-python-headless
+requests
+motor
+pytz
+flask
+telethon
+aiojobs
+werkzeug==2.2.2
+PyPDF2
+reportlab
+PyMuPDF
+cryptg
