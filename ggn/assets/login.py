@@ -38,11 +38,15 @@ def delete_session_files(user_id):
     if os.path.exists(memory_file):
         os.remove(memory_file)
 
-@app.on_message(filters.command("cleardb"))
-async def clear_db(client, message):
+@app.on_message(filters.command("logout"))
+async def logout_command(client, message):
     user_id = message.chat.id
+    # Remove session data from MongoDB
+    collection.delete_one({"user_id": user_id})
+    # Delete session files from the filesystem
     delete_session_files(user_id)
-    await message.reply("✅ Your session data and files have been cleared from memory and disk.")
+    # Inform the user
+    await message.reply("✅ You have been logged out. Your session data and files have been cleared.")
 
 async def process_step(client, message):
     user_id = message.chat.id
