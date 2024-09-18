@@ -42,6 +42,7 @@ A stable telegram bot to get restricted messages from group/channel/bot with cus
 - `API_ID` and `API_HASH`: [Telegram.org](https://my.telegram.org/auth)
 
 - `MONGO_DB`: Create new mongo db it is not recommended to use the default one if you dont know how to create you can use otherwise dont use bcz it may lead to account hack/deletion through session.
+- `DEFAULT_SESSION` : Generate a Pyrogram V2 session and use string for allowing users to extract without login.
 
 ## Deploying Guide - [TEAM SPY](https://t.me/devgaganin)
 
