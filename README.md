@@ -8,9 +8,19 @@ Contact: [Telegram](https://t.me/save_restricted_content_bots)
 ---
 
 ## ABOUT THIS BRANCH
-This branch is purely based on `Pyrogram V2` with more stability
+This branch is purely based on `Pyrogram V2` with more stability And this is based on forced login means user must have to login in bot to use the bot you can use `v4` branch to avoid this.
 
 ---
+## Commands
+
+- **`start`**: Launch the application.
+- **`myplan`**: View your personalized plan.
+- **`add`**: Add a new item or entry.
+- **`rem`**: Remove an existing item.
+- **`gcast`**: Broadcast a message or notification.
+- **`stats`**: Display statistics and insights.
+- **`speedtest`**: Run a network speed test.
+- **`settings`**: Access and modify your settings.
 
 ## Features:
 
