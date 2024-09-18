@@ -43,10 +43,10 @@
       "required": true
     },
 
-    "PYROGRAM_V2_SESSION": {
+    "DEFAULT_SESSION": {
       "description": "Enter Pyrogram V2 session string ...",
       "value": "",
-      "required": false
+      "required": true
     },
 
     "LOG_GROUP": {
