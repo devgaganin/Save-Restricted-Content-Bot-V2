@@ -5,7 +5,7 @@ import os
 import logging
 import json
 from .. import bot as gagan
-from .. import Bot
+from .. import Bot, defaultbot
 from config import FORCESUB as fs
 from telethon import events, Button, errors
 from pyrogram.errors import FloodWait
@@ -94,7 +94,7 @@ async def clone(event):
                 return
 
             if 't.me/+' in link:
-                q = await join(userbot, link)
+                q = await join(defaultbot, link)
                 await edit.edit(q)
                 ind = user.index(f'{int(event.sender_id)}')
                 user.pop(int(ind))
@@ -124,10 +124,7 @@ async def clone(event):
                         user.pop(int(ind))
                         return
                 else:
-                    await event.respond("Login in the bot to use send /login")
-                    ind = user.index(f'{int(event.sender_id)}')
-                    user.pop(int(ind))
-                    return
+                  userbot = defaultbot
                   
                 await get_msg(userbot, Bot, event.sender_id, edit.id, link, m, file_name)
               
