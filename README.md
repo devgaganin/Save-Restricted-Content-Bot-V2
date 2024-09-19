@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>Save restricted Content Bot master-V1 branch</b> | Summer Release V2
+  <b>V3 branch</b> | Summer Release V2
 </h1>
 
 
