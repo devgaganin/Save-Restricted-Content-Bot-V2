@@ -76,7 +76,7 @@ async def batch_link(_, message):
     l = last_id.split("/")[-1]
     cl = int(l)
 
-    # if cl - cs > 100000:
+    # if cl - cs > 10000:
         # await app.send_message(message.chat.id, "Only 10000 messages allowed in batch size Make sure you start link and end link must have a difference of 10000 messages or less... or Purchase premium to fly 💸")
         # return
     
