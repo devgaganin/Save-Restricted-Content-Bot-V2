@@ -105,7 +105,7 @@ async def _batch(event):
             
 
             cd = await conv.send_message("**Batch process ongoing...**\n\nProcess completed: ", 
-                                    buttons=[[Button.url("Join Channel", url="http://t.me/devgaganin")]])
+                                    buttons=[[Button.url("Join Channel", url="https://t.me/+Se8CtSz3_GFiMDU0")]])
             co = await run_batch(userbot, Bot, user_id, cd, _link) 
             try: 
                 if co == -2:
@@ -163,7 +163,7 @@ async def run_batch(userbot, client, sender, countdown, link):
             await get_bulk_msg(userbot, client, sender, link, integer)
             protection = await client.send_message(sender, f"Sleeping for `{timer}` seconds to avoid Floodwaits and Protect account!")
             await countdown.edit(count_down, 
-                                 buttons=[[Button.url("Join Channel", url="https://t.me/devgaganin")]])
+                                 buttons=[[Button.url("Join Channel", url="https://t.me/+Se8CtSz3_GFiMDU0")]])
             await asyncio.sleep(timer)
             await protection.delete()
         except IndexError as ie:
@@ -185,12 +185,12 @@ async def run_batch(userbot, client, sender, countdown, link):
                 except Exception as e:
                     logger.info(e)
                     if countdown.text != count_down:
-                        await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="http://t.me/devgaganin")]])
+                        await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="https://t.me/+Se8CtSz3_GFiMDU0")]])
         except Exception as e:
             #logger.info(e)
             #await client.send_message(sender, f"An error occurred during cloning, batch will continue.\n\n**Error:** {str(e)}")
             if countdown.text != count_down:
-                await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="https://t.me/devgaganin")]])
+                await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="https://t.me/+Se8CtSz3_GFiMDU0")]])
         n = i + 1
         if n == len(ids_data[str(sender)]):
             return -2
