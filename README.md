@@ -98,8 +98,8 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 ## Update: Nov 15 2024
 - fixed reset button to clear everything
 - topic group extraction fixed
-note : you are extracting from public group then you must use the group id instead of username use apps like `turbotel` or anyother to do get id and replace for ex
-suppose maine post link is
+note : if you are extracting from public group then you must use the group id instead of username use apps like `turbotel` or anyother to do get id and replace for ex
+suppose main post link is
 `https://t.me/username/12` or `https://t.me/username/6/12 (topic enabled group)
 ` then you have to change like below
 `https://t.me/c/1346789/12` or `https://t.me/c/1346789/6/12 (topic enabled group)`
