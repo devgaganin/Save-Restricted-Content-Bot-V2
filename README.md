@@ -95,6 +95,16 @@ python3 -m devgagan
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
+## Update: Nov 15 2024
+- fixed reset button to clear everything
+- topic group extraction fixed
+note : you are extracting from public group then you must use the group id instead of username use apps like `turbotel` or anyother to do get id and replace for ex
+suppose maine post link is
+`https://t.me/username/12` or `https://t.me/username/6/12 (topic enabled group)
+` then you have to change like below
+`https://t.me/c/1346789/12` or `https://t.me/c/1346789/6/12 (topic enabled group)`
+where `1346789` is group id you get from telegram client apps like `turbotel, plus messenger` etc
+
 ## Update: 16 Aug 2024
 
 - Added `/logout` command to delete the session files from `mongodb` and `local memory`
