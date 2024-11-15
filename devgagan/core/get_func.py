@@ -519,11 +519,21 @@ async def callback_query_handler(event):
 
     elif event.data == b'reset':
         try:
+            user_id_str = str(user_id)
             collection.update_one(
                 {"_id": user_id},
-                {"$unset": {"delete_words": ""}}
+                {"$unset": {
+                    "delete_words": "",
+                    "replacement_words": ""
+                }}
             )
-            await event.respond("All words have been removed from your delete list.")
+            user_chat_ids.pop(user_id, None)
+            user_rename_preferences.pop(user_id_str, None)
+            user_caption_preferences.pop(user_id_str, None)
+            thumbnail_path = f"{user_id}.jpg"
+            if os.path.exists(thumbnail_path):
+                os.remove(thumbnail_path)
+            await event.respond("✅ Reset successfully, to logout click /logout")
         except Exception as e:
             await event.respond(f"Error clearing delete list: {e}")
     
