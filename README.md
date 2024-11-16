@@ -95,6 +95,21 @@ python3 -m devgagan
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
+## Update: 16 Nov 2024
+
+**Changelog:**  
+1. **Fixed .MOV Issue:**  
+   - Resolved the problem with `.MOV` files. All video files sent as documents will now be uploaded as streamable videos.  
+   - The repository can now function as a **file-to-video converter** as well.  
+
+2. **Filename Replacement:**  
+   - Fixed issues with filename replacements.  
+   - Made minor adjustments to captions to preserve the original formatting.  
+
+**Branch:** `v3`  
+
+**Status:** Complete ✅
+
 ## Update: Nov 15 2024
 - fixed reset button to clear everything
 - topic group extraction fixed
