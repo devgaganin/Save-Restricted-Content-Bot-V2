@@ -139,14 +139,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 custom_caption = get_user_caption_preference(sender)
                 original_caption = msg.caption if msg.caption else ''
                 final_caption = f"{original_caption}" if custom_caption else f"{original_caption}"
-                lines = final_caption.split('\n')
-                processed_lines = []
-                for line in lines:
-                    for word in delete_words:
-                        line = line.replace(word, '')
-                    if line.strip():
-                        processed_lines.append(line.strip())
-                final_caption = '\n'.join(processed_lines)
+                
                 replacements = load_replacement_words(sender)
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
@@ -189,14 +182,6 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 custom_caption = get_user_caption_preference(sender)
                 original_caption = msg.caption if msg.caption else ''
                 final_caption = f"{original_caption}" if custom_caption else f"{original_caption}"
-                lines = final_caption.split('\n')
-                processed_lines = []
-                for line in lines:
-                    for word in delete_words:
-                        line = line.replace(word, '')
-                    if line.strip():
-                        processed_lines.append(line.strip())
-                final_caption = '\n'.join(processed_lines)
                 replacements = load_replacement_words(sender)
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
@@ -216,14 +201,6 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 custom_caption = get_user_caption_preference(sender)
                 original_caption = msg.caption if msg.caption else ''
                 final_caption = f"{original_caption}" if custom_caption else f"{original_caption}"
-                lines = final_caption.split('\n')
-                processed_lines = []
-                for line in lines:
-                    for word in delete_words:
-                        line = line.replace(word, '')
-                    if line.strip():
-                        processed_lines.append(line.strip())
-                final_caption = '\n'.join(processed_lines)
                 replacements = load_replacement_words(chatx)
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
