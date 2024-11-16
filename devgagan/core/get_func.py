@@ -214,6 +214,11 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 target_chat_id = user_chat_ids.get(chatx, chatx)
                 try:
                     if file_extension in video_extensions:
+                        metadata = video_metadata(file)
+                        width= metadata['width']
+                        height= metadata['height']
+                        duration= metadata['duration']
+                        thumb_path = await screenshot(file, duration, chatx)
                         devgaganin = await app.send_video(
                             chat_id=target_chat_id,
                             video=file,
