@@ -205,26 +205,44 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
                 caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
+                video_extensions = {
+    'mkv', 'mp4', 'webm', 'mpe4', 'mpeg', 'ts', 'avi', 'flv', 'mov', 
+    'm4v', '3gp', '3g2', 'wmv', 'vob', 'ogv', 'ogx', 'qt', 'f4v', 
+    'f4p', 'f4a', 'f4b', 'dat', 'rm', 'rmvb', 'asf', 'amv', 'divx'
+                }
 
                 target_chat_id = user_chat_ids.get(chatx, chatx)
                 try:
-                    devgaganin = await app.send_document(
-                        chat_id=target_chat_id,
-                        document=file,
-                        caption=caption,
-                        thumb=thumb_path,
-                        progress=progress_bar,
-                        progress_args=(
-                        '**`Uploading...`**\n',
-                        edit,
-                        time.time()
+                    if file_extension in video_extensions:
+                        devgaganin = await app.send_video(
+                            chat_id=target_chat_id,
+                            video=file,
+                            caption=caption,
+                            supports_streaming=True,
+                            height=height,
+                            width=width,
+                            duration=duration,
+                            thumb=thumb_path,
+                            progress=progress_bar,
+                            progress_args=(
+                                '**`Uploading...`**\n',
+                                edit,
+                                time.time()
+                            )
                         )
-                    )
-                    if msg.pinned_message:
-                        try:
-                            await devgaganin.pin(both_sides=True)
-                        except Exception as e:
-                            await devgaganin.pin()
+                    else:
+                        devgaganin = await app.send_document(
+                            chat_id=target_chat_id,
+                            document=file,
+                            caption=caption,
+                            thumb=thumb_path,
+                            progress=progress_bar,
+                            progress_args=(
+                                '**`Uploading...`**\n',
+                                edit,
+                                time.time()
+                            )
+                        )
 
                     await devgaganin.copy(LOG_GROUP)
                 except:
