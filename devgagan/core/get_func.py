@@ -91,7 +91,9 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 if ggn_ext.isalpha() and len(ggn_ext) <= 4:
                     if ggn_ext.lower() == 'mov':
                         original_file_name = str(file)[:last_dot_index]
-                        file_extension = 'mp4'
+                        file_extension = ggn_ext.lower()
+                        if file_extension == 'mov':
+                            file_extension = 'mp4'
                     else:
                         original_file_name = str(file)[:last_dot_index]
                         file_extension = ggn_ext
