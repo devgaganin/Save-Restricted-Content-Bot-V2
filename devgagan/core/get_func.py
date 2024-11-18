@@ -92,7 +92,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     if ggn_ext.lower() == 'mov':
                         original_file_name = str(file)[:last_dot_index]
                         file_extension = ggn_ext.lower()
-                        if file_extension == 'mov':
+                        if file_extension == 'mov': # fixed mov
                             file_extension = 'mp4'
                     else:
                         original_file_name = str(file)[:last_dot_index]
@@ -207,6 +207,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
                 caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
+                file_extension = file_extension.lower() # fixed all video document files sent as video files
                 video_extensions = {
     'mkv', 'mp4', 'webm', 'mpe4', 'mpeg', 'ts', 'avi', 'flv', 'mov', 
     'm4v', '3gp', '3g2', 'wmv', 'vob', 'ogv', 'ogx', 'qt', 'f4v', 
