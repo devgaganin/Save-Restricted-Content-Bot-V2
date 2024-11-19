@@ -1,6 +1,8 @@
 #devggn
 
 import time
+import random
+import string
 import asyncio
 from pyrogram import filters, Client
 from devgagan import app
@@ -11,6 +13,8 @@ from devgagan.core.mongo import db
 from pyrogram.errors import FloodWait
 
 
+async def generate_random_name(length=8):
+    return ''.join(random.choices(string.ascii_lowercase, k=length))
 
 @app.on_message(filters.regex(r'https?://[^\s]+'))
 async def single_link(_, message):
@@ -32,7 +36,9 @@ async def single_link(_, message):
         if data and data.get("session"):
             session = data.get("session")
             try:
-                userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session)
+                device = 'Infinix HOT 10s'
+                session_name = await generate_random_name()
+                userbot = Client(session_name, api_id=API_ID, api_hash=API_HASH, device_model=device, session_string=session)
                 await userbot.start()                
             except:
                 return await msg.edit_text("Login expired /login again...")
@@ -44,10 +50,12 @@ async def single_link(_, message):
             if 't.me/+' in link:
                 q = await userbot_join(userbot, link)
                 await msg.edit_text(q)
+                await userbot.stop()
                 return
                                         
             if 't.me/' in link:
                 await get_msg(userbot, user_id, msg.id, link, 0, message)
+                await userbot.stop()
         except Exception as e:
             await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
                     
@@ -86,7 +94,9 @@ async def batch_link(_, message):
         if data and data.get("session"):
             session = data.get("session")
             try:
-                userbot = Client(":userbot:", api_id=API_ID, api_hash=API_HASH, session_string=session)
+                session_name = await generate_random_name()
+                device = 'Infinix HOT 10s'
+                userbot = Client(session_name, api_id=API_ID, api_hash=API_HASH, device_model=device, session_string=session)
                 await userbot.start()                
             except:
                 return await app.send_message(message.chat.id, "Your login expired ... /login again")
@@ -106,6 +116,7 @@ async def batch_link(_, message):
                         url = f"{result}/{i}"
                         link = get_link(url)
                         await get_msg(userbot, user_id, msg.id, link, 0, message)
+                        await userbot.stop()
                         sleep_msg = await app.send_message(message.chat.id, "Sleeping for 10 seconds to avoid flood...")
                         await asyncio.sleep(8)
                         await sleep_msg.delete()
