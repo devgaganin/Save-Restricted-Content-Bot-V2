@@ -1,5 +1,3 @@
-#devggn
-
 import time
 import random
 import string
