@@ -108,7 +108,7 @@ async def batch_link(_, message):
     cl = int(l)
 
     if user_id != OWNER_ID and (cl - cs) > max_batch_size:
-        await app.send_message(message.chat.id, "Only 3 messages allowed in batch size. Purchase premium to fly @kingofpatal 💸")
+        await app.send_message(message.chat.id, f"Batch size exceeds the limit of {max_batch_size}. Upgrade to premium for larger batch sizes.")
         return
     
     try:     
