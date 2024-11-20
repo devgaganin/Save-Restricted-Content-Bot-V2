@@ -28,10 +28,10 @@ async def single_link(_, message):
         )
         return    
         
-    # lol = await chk_user(message, user_id)
-    # if lol == 1:
-       # return
-    
+    freecheck = await chk_user(message, user_id)
+    if freecheck == 1 and FREEMIUM_LIMIT == 0 and user_id != OWNER_ID:
+        await message.reply("Freemium service is currently not available. Upgrade to premium for access.")
+        return
 
     # Add the user to the loop
     users_loop[user_id] = True
