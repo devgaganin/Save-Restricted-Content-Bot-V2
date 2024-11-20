@@ -36,7 +36,7 @@
       "value": "0",
       "required": true
     },
-    "PEMIUM_LIMIT": {
+    "PREMIUM_LIMIT": {
       "description": "Batch size for premium users",
       "value": "500",
       "required": true
