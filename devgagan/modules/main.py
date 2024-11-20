@@ -4,7 +4,7 @@ import string
 import asyncio
 from pyrogram import filters, Client
 from devgagan import app
-from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT
+from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT, OWNER_ID
 from devgagan.core.get_func import get_msg
 from devgagan.core.func import *
 from devgagan.core.mongo import db
@@ -29,7 +29,7 @@ async def single_link(_, message):
         return    
         
     freecheck = await chk_user(message, user_id)
-    if freecheck == 1 and FREEMIUM_LIMIT == 0 and user_id != OWNER_ID:
+    if freecheck == 1 and FREEMIUM_LIMIT == 0 and user_id not in OWNER_ID:
         await message.reply("Freemium service is currently not available. Upgrade to premium for access.")
         return
 
@@ -107,7 +107,7 @@ async def batch_link(_, message):
     l = last_id.split("/")[-1]
     cl = int(l)
 
-    if user_id != OWNER_ID and (cl - cs) > max_batch_size:
+    if user_id not in OWNER_ID and (cl - cs) > max_batch_size:
         await app.send_message(message.chat.id, f"Batch size exceeds the limit of {max_batch_size}. Upgrade to premium for larger batch sizes.")
         return
     
