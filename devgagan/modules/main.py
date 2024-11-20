@@ -28,9 +28,9 @@ async def single_link(_, message):
         )
         return    
         
-    lol = await chk_user(message, user_id)
-    if lol == 1:
-        return
+    # lol = await chk_user(message, user_id)
+    # if lol == 1:
+       # return
     
 
     # Add the user to the loop
