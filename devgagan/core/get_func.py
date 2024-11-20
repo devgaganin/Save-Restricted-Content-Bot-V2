@@ -82,7 +82,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             file = await userbot.download_media(
                 msg,
                 progress=progress_bar,
-                progress_args=("**__Downloading: __**\n",edit,time.time()))
+                progress_args=("**__Downloading: __**",edit,time.time()))
             
             custom_rename_tag = get_user_rename_preference(chatx)
             last_dot_index = str(file).rfind('.')
@@ -162,7 +162,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                         thumb=thumb_path,
                         progress=progress_bar,
                         progress_args=(
-                        '**__Uploading...__**\n',
+                        '**__Uploading...__**',
                         edit,
                         time.time()
                         )
@@ -179,7 +179,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 os.remove(file)
                     
             elif msg.media == MessageMediaType.PHOTO:
-                await edit.edit("**`Uploading photo...`")
+                await edit.edit("**Uploading photo...")
                 delete_words = load_delete_words(sender)
                 custom_caption = get_user_caption_preference(sender)
                 original_caption = msg.caption if msg.caption else ''
@@ -233,7 +233,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                             thumb=thumb_path,
                             progress=progress_bar,
                             progress_args=(
-                                '**`Uploading...`**\n',
+                                '**Uploading...**',
                                 edit,
                                 time.time()
                             )
@@ -246,7 +246,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                             thumb=thumb_path,
                             progress=progress_bar,
                             progress_args=(
-                                '**`Uploading...`**\n',
+                                '**Uploading...**',
                                 edit,
                                 time.time()
                             )
