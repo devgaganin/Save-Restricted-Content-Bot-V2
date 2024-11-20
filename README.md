@@ -95,32 +95,17 @@ python3 -m devgagan
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
+---
 ## Update: 20 Nov 2024
-Here’s a more concise version of your changelog in GitHub markdown format:
 
----
+**🚀 Changelogs :**
 
-### Changelog - **v2.2.0**
-
----
-
-### **🔄 New Features**
-- **Batch Process Restrictions**: Users can’t start a new batch while one is running.
-- **Single Link Processing**: Checks for active processes before accepting new links.
-- **Announcement Support**: Admins can broadcast changelogs and updates.
-
----
-
-### **🛠️ Enhancements**
-- **UserBot Management**: Safely stops `userbot` after all processes, avoiding double stops.
-- **Improved Cancellation**: `/cancel` command stops active processes with better feedback.
-- **Loop Management**: Prevents overlapping processes by properly managing user loops.
-
----
-
-### **🐛 Bug Fixes**
-- Fixed `userbot` not stopping correctly in some cases.
-- Prevented multiple processes from running simultaneously for the same user.
+- **Batch Process**: Prevents starting new batch if one is already running.
+- **Single Link**: Checks if a process is ongoing before accepting a new link.
+- **UserBot Management**: Safely stops `userbot` after all processes.
+- **/cancel**: Improved to stop active processes with better feedback.
+- **Loop Management**: Prevents overlapping processes for the same user.
+- **Bug Fixes**: Fixed issues with `userbot` not stopping correctly.
 ---
 
 ## Update: 16 Nov 2024
