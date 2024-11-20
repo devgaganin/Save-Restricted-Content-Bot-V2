@@ -30,7 +30,18 @@
       "description": "The user ID of the user whom you would like to add as OWNER.",
       "value": "owner_user_id_here",
       "required": true
+    },    
+    "FREEMIUM_LIMIT": {
+      "description": "Batch size for free users",
+      "value": "0",
+      "required": true
     },
+    "PEMIUM_LIMIT": {
+      "description": "Batch size for premium users",
+      "value": "500",
+      "required": true
+    },
+    
     "SUDO_USERS": {
       "description": "Other Admins' IDs (optional)",
       "value": "",
