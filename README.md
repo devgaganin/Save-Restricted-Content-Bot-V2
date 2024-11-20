@@ -95,6 +95,34 @@ python3 -m devgagan
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
 
 # Updates
+## Update: 20 Nov 2024
+Here’s a more concise version of your changelog in GitHub markdown format:
+
+---
+
+### Changelog - **v2.2.0**
+
+---
+
+### **🔄 New Features**
+- **Batch Process Restrictions**: Users can’t start a new batch while one is running.
+- **Single Link Processing**: Checks for active processes before accepting new links.
+- **Announcement Support**: Admins can broadcast changelogs and updates.
+
+---
+
+### **🛠️ Enhancements**
+- **UserBot Management**: Safely stops `userbot` after all processes, avoiding double stops.
+- **Improved Cancellation**: `/cancel` command stops active processes with better feedback.
+- **Loop Management**: Prevents overlapping processes by properly managing user loops.
+
+---
+
+### **🐛 Bug Fixes**
+- Fixed `userbot` not stopping correctly in some cases.
+- Prevented multiple processes from running simultaneously for the same user.
+---
+
 ## Update: 16 Nov 2024
 
 **Changelog:**  
@@ -120,6 +148,7 @@ suppose main post link is
 `https://t.me/c/1346789/12` or `https://t.me/c/1346789/6/12 (topic enabled group)`
 where `1346789` is group id you get from telegram client apps like `turbotel, plus messenger` etc
 
+---
 ## Update: 16 Aug 2024
 
 - Added `/logout` command to delete the session files from `mongodb` and `local memory`
