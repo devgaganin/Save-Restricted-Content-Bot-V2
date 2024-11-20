@@ -4,7 +4,7 @@ import string
 import asyncio
 from pyrogram import filters, Client
 from devgagan import app
-from config import API_ID, API_HASH
+from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT
 from devgagan.core.get_func import get_msg
 from devgagan.core.func import *
 from devgagan.core.mongo import db
@@ -93,9 +93,9 @@ async def batch_link(_, message):
         
     lol = await chk_user(message, user_id)
     if lol == 1:
-        max_batch_size = 0 # increase this if you want to give free access
+        max_batch_size = FREEMIUM_LIMIT # increase this if you want to give free access
     else:
-        max_batch_size = float('inf')
+        max_batch_size = PREMIUM_LIMIT
         
     start = await app.ask(message.chat.id, text="Please send the start link.")
     start_id = start.text
