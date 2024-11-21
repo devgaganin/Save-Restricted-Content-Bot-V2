@@ -96,6 +96,21 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 
 # Updates
 ---
+
+## Update: 21 NOV 2024
+
+**Enhanced Functionality for Public Channels:**
+
+1. Removed the unnecessary login requirement for processing links from public channels.  
+2. Users can now process both single and batch links from public channels, even without logging in or setting up a default session.  
+3. Introduced batch size limit variables: `FREEMIUM_LIMIT` and `PREMIUM_LIMIT`. These variables allow you to manage and customize the batch size accessible to users based on their subscription type.
+
+**👉 Note:**  
+If you set the `FREEMIUM_LIMIT` value to 0, users will not be able to extract links, even with a single link. The `OWNER_ID(s)` are exempt from these limitations.
+
+#repo_updated
+
+---
 ## Update: 20 Nov 2024
 
 **🚀 Changelogs :**
