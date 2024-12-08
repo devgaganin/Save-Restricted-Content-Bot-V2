@@ -6,11 +6,48 @@
 Contact: [Telegram](https://t.me/save_restricted_content_bots)
 
 ---
-
 ## ABOUT THIS BRANCH
 This branch is purely based on `Pyrogram V2` with more stability And this is based on forced login means user must have to login in bot to use the bot you can use `v4` branch to avoid this.
 
 ---
+## Note it is mandatory for your safety:
+
+### **⚠️ Important: Configure Sensitive Variables Securely**
+
+**Do not edit sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`, etc.) directly in `config.py` or any file in the repository on GitHub. Doing so can expose your credentials publicly, leading to security risks.**
+
+### **How to Configure Variables Safely:**
+
+1. **For VPS or Local Machine:**
+   - Use a text editor like `nano` to edit the `config.py` file directly on your system:
+     ```bash
+     nano config.py
+     ```
+   - Alternatively, export your variables as environment variables:
+     ```bash
+     export API_ID=your_api_id
+     export API_HASH=your_api_hash
+     export BOT_TOKEN=your_bot_token
+     ```
+
+2. **For Cloud Deployment (e.g., Heroku, Railway):**
+   - Set the variables as **Environment Variables** in the platform's settings.
+
+3. **Using `.env` File:**
+   - Create a `.env` file in the root of your project and add your variables:
+     ```
+     API_ID=your_api_id
+     API_HASH=your_api_hash
+     BOT_TOKEN=your_bot_token
+     etc
+     ```
+   - Make sure to exclude `.env` from version control by adding it to `.gitignore`.
+
+### **Why This is Important?**
+Your credentials can be stolen if pushed to a public repository. Always keep them secure by using environment variables or local configuration files.
+
+---
+
 ## Commands
 
 - **`start`**: Launch the application.
