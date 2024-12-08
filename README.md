@@ -2,8 +2,7 @@
   <b>V3 branch</b> | Summer Release V2
 </h1>
 
-
-Contact: [Telegram](https://t.me/save_restricted_content_bots)
+[Telegram](https://t.me/save_restricted_content_bots) | [See Recent Updates](https://github.com/devgaganin/Save-Restricted-Content-Bot-V2/tree/v3#updates)
 
 ---
 ## ABOUT THIS BRANCH
