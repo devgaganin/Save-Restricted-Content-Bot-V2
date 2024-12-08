@@ -10,9 +10,7 @@ Contact: [Telegram](https://t.me/save_restricted_content_bots)
 This branch is purely based on `Pyrogram V2` with more stability And this is based on forced login means user must have to login in bot to use the bot you can use `v4` branch to avoid this.
 
 ---
-## Note it is mandatory for your safety:
-
-### **⚠️ Important: Configure Sensitive Variables Securely**
+### **⚠️ Must Do: Configure Sensitive Variables Securely**
 
 **Do not edit sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`, etc.) directly in `config.py` or any file in the repository on GitHub. Doing so can expose your credentials publicly, leading to security risks.**
 
