@@ -4,7 +4,7 @@ import pathlib
 import time
 import datetime as dt
 sys.path.insert(0, f"{pathlib.Path(__file__).parent.resolve()}")
-from SpyLib import upload_file, download_file
+from spylib import upload_file, download_file
 class Timer:
     def __init__(self, time_between=5):
         self.start_time = time.time()
