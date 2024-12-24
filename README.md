@@ -179,7 +179,7 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 
 **1. 4GB Upload Support**  
    - **New feature**: The bot now supports **uploading files as large as 4GB**. This is particularly useful for users working with larger media content.  
-   - **How to enable**: To allow **4GB file uploads**, you must add your **premium session string** in the `PREMIUM_SESSION` variable in the `config.py` file. This session string is only required for **premium users**.
+   - **How to enable**: To allow **4GB file uploads**, you must add your **premium session string** in the `STRING` variable in the `config.py` file. This session string is only required for **premium users**.
 
 **2. New Upload Method**  
    - A new, optimized **upload method** has been added for handling large file uploads more efficiently.  
@@ -238,7 +238,7 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 **⚙️ How to Configure</summary**
 
 - **Set up `STRING` for 4GB Upload**:  
-   - If you want to upload large files (up to 4GB), make sure to add your **premium session string(PYROGRAM V2)** in the `PREMIUM_SESSION` variable in `config.py`. This is optional and only needed for premium owner who want to allow 4GB upload.
+   - If you want to upload large files (up to 4GB), make sure to add your **premium session string(PYROGRAM V2)** in the `STRING` variable in `config.py`. This is optional and only needed for premium owner who want to allow 4GB upload.
 
 - **Set up `AD_API` and `WEBSITE_URL` for Monetization**:  
    - To use the link shortener service for monetization, collect the API key and website URL from your shortener provider (e.g., **UpShrink**, **AdFly**) and add them to the `AD_API` and `WEBSITE_URL` variables in `config.py`.
