@@ -9,36 +9,40 @@
 This branch is purely based on `Pyrogram V2` with more stability And this is based on forced login means user must have to login in bot to use the bot you can use `v4` branch to avoid this.
 
 ---
-### **⚠️ Must Do: Configure Sensitive Variables Securely**
+<details>
+<summary><b>⚠️ Must Do: Secure Your Sensitive Variables</b></summary>
 
-**Do not edit sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`, etc.) directly in `config.py` or any file in the repository on GitHub. Doing so can expose your credentials publicly, leading to security risks.**
+**Do not expose sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`) on GitHub. Use environment variables to keep them secure.**
 
-### **How to Configure Variables Safely:**
+### Configuring Variables Securely:
 
-1. **For VPS or Local Machine:**
-   - Use a text editor like `nano` to edit the `config.py` file directly on your system:
-     ```bash
-     nano config.py
-     ```
-   - Alternatively, export your variables as environment variables:
-     ```bash
-     export API_ID=your_api_id
-     export API_HASH=your_api_hash
-     export BOT_TOKEN=your_bot_token
-     ```
+- **On VPS or Local Machine:**
+  - Use a text editor to edit `config.py`:
+    ```bash
+    nano config.py
+    ```
+  - Alternatively, export as environment variables:
+    ```bash
+    export API_ID=your_api_id
+    export API_HASH=your_api_hash
+    export BOT_TOKEN=your_bot_token
+    ```
 
-2. **For Cloud Deployment (e.g., Heroku, Railway):**
-   - Set the variables as **Environment Variables** in the platform's settings.
+- **For Cloud Platforms (Heroku, Railway, etc.):**
+  - Set environment variables directly in your platform’s dashboard.
 
-3. **Using `.env` File:**
-   - Create a `.env` file in the root of your project and add your variables:
-     ```
-     API_ID=your_api_id
-     API_HASH=your_api_hash
-     BOT_TOKEN=your_bot_token
-     etc
-     ```
-   - Make sure to exclude `.env` from version control by adding it to `.gitignore`.
+- **Using `.env` File:**
+  - Create a `.env` file and add your credentials:
+    ```
+    API_ID=your_api_id
+    API_HASH=your_api_hash
+    BOT_TOKEN=your_bot_token
+    ```
+  - Make sure to add `.env` to `.gitignore` to prevent it from being pushed to GitHub.
+
+</details>
+
+---
 
 ### **Why This is Important?**
 Your credentials can be stolen if pushed to a public repository. Always keep them secure by using environment variables or local configuration files.
@@ -67,63 +71,65 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 - auto pin messages(if they are pinned)
 - login via phone number
 
-## Deploying Guide - [TEAM SPY](https://t.me/save_restricted_content_bots)
+## 🚀 Deployment Guide
 
-### How to get required vars
- 
-- API_ID and API_HASH from [telegram.org](https://my.telegram.org/auth)
-- BOT_TOKEN: @Botfather on telegram
-- OWNER_ID : Go to @missrose_bot on telegram and send `/info` to know your ID
-- CHANNEL_ID : This will be used as Force Subscribe channel
-- LOG_GROUP: Create a Group or Channel add you bot there and forward any message of that channel/group to @userinfobot to know the ID of you channel/group
-- MONGO_DB: It is recommended to use your mongoDB to avoid session hacks and all
-Note : You must make bot admin in both channels
+<details>
+<summary><b>Deploy on VPS</b></summary>
 
-### Deploy on `VPS`
+1. Fork the repo.
+2. Update `config.py` with your values.
+3. Run the following:
+   ```bash
+   sudo apt update
+   sudo apt install ffmpeg git python3-pip
+   git clone your_repo_link
+   cd your_repo_name
+   pip3 install -r requirements.txt
+   python3 -m devgagan
+   ```
 
-Easy Method:
-- Fork repo
-- Go to ```config.py``` as below
-- Fill variables inside the double quoted commas `""`  
-- Now run following commands one by one...
-```
-sudo apt update
-sudo apt install ffmpeg git python3-pip
-git clone your_repo_link
-cd you_repo_name
-pip3 install -r requirements.txt
-python3 -m devgagan
-```
+- To run the bot in the background:
+  ```bash
+  screen -S gagan
+  python3 -m devgagan
+  ```
+  - Detach: `Ctrl + A`, then `Ctrl + D`
+  - To stop: `screen -r gagan` and `screen -S gagan -X quit`
 
-- if you want bot to be running in background then enter `screen -S gagan` before `python3 -m devgagan` 
-- after `python3 -m devgagan`, click `ctrl+A`, `ctrl+D`
-- if you want to stop bot, then enter `screen -r gagan` and to kill screen enter `screen -S gagan -X quit`.
+</details>
 
+<details>
+<summary><b>Deploy on Heroku</b></summary>
 
-## Deploy your bot on `heroku`
-- Star the repo, and fork it in desktop mode
-- Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-- Fill your values and click deploy ✅
+1. Fork and Star the repo.
+2. Click [Deploy on Heroku](https://heroku.com/deploy).
+3. Enter required variables and click deploy ✅.
 
-## Deploy on Render
-- Fork and star the repo
-- edit `config.py` same as guided for VPS deployment (you can edit on render also by filling enviroment variables)
-- Go to render.com and singup/signin
-- create new web service and select free plan
-- connect github and your repository
-- Click Deploy
-- Done ✅
+</details>
 
+<details>
+<summary><b>Deploy on Render</b></summary>
 
-## Koyeb Deployment
+1. Fork and star the repo.
+2. Edit `config.py` or set environment variables on Render.
+3. Go to [render.com](https://render.com), sign up/log in.
+4. Create a new web service, select the free plan.
+5. Connect your GitHub repo and deploy ✅.
 
-- Fork and star the repo
-- edit `config.py` same as guided for VPS deployment (you can edit on koyeb also by filling enviroment variables)
-- Go to koyeb.com and singup/signin
-- create new web service make sure you must choose build type `Dokerfile` because in Koyeb as a default it is checked to `buildpacks` so you have to change that.
-- connect github and your repository
-- Click Deploy
-- Done ✅
+</details>
+
+<details>
+<summary><b>Deploy on Koyeb</b></summary>
+
+1. Fork and star the repo.
+2. Edit `config.py` or set environment variables on Koyeb.
+3. Create a new service, select `Dockerfile` as build type.
+4. Connect your GitHub repo and deploy ✅.
+
+</details>
+
+---
+
 
 ## Terms of USE / Modification 
 Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
