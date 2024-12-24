@@ -9,8 +9,7 @@
 ## 📚 About This Branch
 This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. Users must log in to use the bot. For no-login usage, consider the `v4` branch.
 
-<details>
-<summary><b>⚠️ Must Do: Secure Your Sensitive Variables</b></summary>
+### ⚠️ Must Do: Secure Your Sensitive Variables
 
 **Do not expose sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`) on GitHub. Use environment variables to keep them secure.**
 
@@ -42,8 +41,6 @@ This branch is based on `Pyrogram V2` offering enhanced stability and a forced l
 
 **Why This is Important?**
 Your credentials can be stolen if pushed to a public repository. Always keep them secure by using environment variables or local configuration files.
-
-</details>
 
 ## ⚡ Commands
 
