@@ -175,6 +175,81 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 ## Updates
 
 <details>
+<summary<b>Update: 21 NOV 2024</b></summary>
+
+**1. 4GB Upload Support**  
+   - **New feature**: The bot now supports **uploading files as large as 4GB**. This is particularly useful for users working with larger media content.  
+   - **How to enable**: To allow **4GB file uploads**, you must add your **premium session string** in the `PREMIUM_SESSION` variable in the `config.py` file. This session string is only required for **premium users**.
+
+**2. New Upload Method**  
+   - A new, optimized **upload method** has been added for handling large file uploads more efficiently.  
+   - **What changed**: Previously, large files could cause slow uploads or issues. This method helps avoid those problems and ensures smoother processing.  
+   - **Note**: The upload method now handles large files seamlessly, reducing upload time and improving performance.
+
+**3. Fixed Blocking Issue**  
+   - **Resolved blocking issues**: We identified and fixed an issue that caused the bot to get blocked during the extraction or upload process, particularly when processing certain content.  
+   - **How it works now**: The bot will continue to process and extract content without interruptions or blocks, improving reliability and reducing downtime.
+
+**4. Added `/token` Method**  
+   - **New command**: A new `/token` method has been added for **short link functionality**. This command generates a token for using monetization features.  
+   - **Configuration**:  
+     - To use this feature, you must configure the **API key** and **URL** for your short link provider.  
+     - Fill in the `AD_API` (API key) and `WEBSITE_URL` (short link service domain) in the `config.py`.  
+     - **Note**: This feature is optional and only needed if you plan to use the bot for monetizing links.
+
+**5. Spylib Integration**  
+   - **Spylib added**: We have integrated **Spylib** functionality to enhance certain features. Spylib helps improve the bot’s ability to extract and handle content.  
+   - **How to set up**: For details on how to configure **Spylib**, refer to the **Spylib Code Section** in the README for a step-by-step guide.
+
+**6. Fixed Button Issues**  
+   - **Fixed broken button functionality**: There were issues where the bot’s buttons were not responding or clicking properly. This has been resolved, and now the buttons will work as expected.  
+   - **What’s fixed**: Buttons for commands like `/start`, `/help`, `/cancel`, and others should now work smoothly.
+
+### 🛠 Important Changes and Notes
+
+**1. Filename Deletion Behavior**  
+   - **Delete Word Behavior**: 
+     - If a word is added to the **"delete words list"**, it **will not be used in the filename**. This ensures that unwanted words are completely excluded from the filenames.  
+     - Example: If the word `deleteword` is added to the list, it will **not appear in the filename** under any circumstances.
+  
+   - **What’s the catch**:  
+     - The **delete word functionality** now applies specifically to **filenames only**.  
+     - For captions, you should use the **replacement method** (using spaces as a separator).
+
+**2. Deleting Words in Captions**  
+   - **How to delete words in captions**:  
+     - If you want to delete words from captions, you should use the **replacement method**, where the word will be replaced with a space (`<space>`).  
+     - This will ensure that words are replaced or deleted from captions but **not filenames**.  
+     - **Example**:  
+       - If you have the word `deleteword` in the caption, you can configure it in the replacement list like:  
+         - `'deleteword' '<space>'`.  
+       - This will replace `deleteword` with an empty space in the caption.
+
+**3. More About the `/token` Method**  
+   - **How to use**:  
+     - After configuring the **AD_API** and **WEBSITE_URL** in the `config.py` file, use the `/token` command to generate short links.  
+     - This allows you to generate monetized links for users, where you can set up a **link shortener** (e.g., **UpShrink**, **AdFly**) and monetize the bot’s links.
+   - **Why use it**: This is helpful for people who want to earn revenue from the links processed by the bot. It's fully configurable, and you can integrate it with any supported short link provider.
+
+**4. Other Fixes and Improvements**  
+   - **Improved handling for batch processes**: The bot now handles **batch processes** more effectively and allows users to process multiple links at once.  
+   - **Bug fixes**: Several minor bugs related to session management and batch cancellations have been addressed, ensuring a smoother user experience.
+
+**⚙️ How to Configure</summary**
+
+- **Set up `PREMIUM_SESSION` for 4GB Upload**:  
+   - If you want to upload large files (up to 4GB), make sure to add your **premium session string** in the `PREMIUM_SESSION` variable in `config.py`. This is optional and only needed for premium owner who want to allow 4GB upload.
+
+- **Set up `AD_API` and `WEBSITE_URL` for Monetization**:  
+   - To use the link shortener service for monetization, collect the API key and website URL from your shortener provider (e.g., **UpShrink**, **AdFly**) and add them to the `AD_API` and `WEBSITE_URL` variables in `config.py`.
+
+- **Delete Word Configuration**:  
+   - If you wish to configure words to be deleted from filenames, list them in the **delete word list**.  
+   - For captions, use the replacement method where words will be replaced with `<space>`.
+
+</details>
+
+<details>
 <summary><b>Update: 21 NOV 2024</b></summary>
 
 - **Public Channels**: Removed login requirement for processing links from public channels.
