@@ -16,3 +16,4 @@ apscheduler
 telethon-tgcrypto
 mutagen
 yt-dlp
+speedtest-cli
