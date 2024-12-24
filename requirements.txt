@@ -15,4 +15,4 @@ werkzeug==2.2.2
 apscheduler 
 telethon-tgcrypto
 mutagen
-ytdlp
+yt-dlp
