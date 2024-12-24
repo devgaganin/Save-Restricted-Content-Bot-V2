@@ -1,5 +1,6 @@
 https://www.dl.dropboxusercontent.com/scl/fi/35w0i0hnsioq63x7eumdd/pyrogagan.zip?rlkey=mq4b56v0z7w7mgj3c0o3sqgo1&st=n7prfm1y&dl=0
 psutil
+pillow
 tgcrypto
 pyromod
 opencv-python-headless
@@ -7,10 +8,9 @@ requests
 motor
 pytz
 flask
+aiohttp
 telethon
 aiojobs
 werkzeug==2.2.2
-PyPDF2
-reportlab
-PyMuPDF
-# cryptg
+apscheduler 
+telethon-tgcrypto
