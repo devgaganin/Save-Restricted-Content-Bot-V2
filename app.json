@@ -41,6 +41,21 @@
       "value": "500",
       "required": true
     },
+    "STRING": {
+      "description": "Enter premium account session string if you want to allow the paid users to upload upto 4GB",
+      "value": "",
+      "required": false
+    },
+    "WEBSITE_URL": {
+      "description": "Enter shortener website domain eg upshrink.com",
+      "value": "upshrink.com",
+      "required": false
+    },
+    "AD_API": {
+      "description": "Batch size for premium users",
+      "value": "52b4a2cf4687d81e7d3f8f2b7bc2943f618e78cb",
+      "required": false
+    },
     
     "SUDO_USERS": {
       "description": "Other Admins' IDs (optional)",
