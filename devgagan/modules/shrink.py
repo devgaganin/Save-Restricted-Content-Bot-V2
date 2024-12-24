@@ -3,6 +3,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import random
 import requests
 import string
+import aiohttp
 from devgagan import app
 from devgagan.core.func import *
 from datetime import datetime, timedelta
@@ -30,11 +31,14 @@ async def generate_random_param(length=8):
 
 async def get_shortened_url(deep_link):
     api_url = f"https://{WEBSITE_URL}/api?api={AD_API}&url={deep_link}"
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        data = response.json()
-        if data["status"] == "success":
-            return data["shortenedUrl"]
+    
+    # Use aiohttp to perform an asynchronous request
+    async with aiohttp.ClientSession() as session:
+        async with session.get(api_url) as response:
+            if response.status == 200:
+                data = await response.json()  # Get the JSON response asynchronously
+                if data.get("status") == "success":
+                    return data.get("shortenedUrl")
     return None
 
 
