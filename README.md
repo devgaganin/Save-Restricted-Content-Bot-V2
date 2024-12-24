@@ -42,10 +42,9 @@ This branch is based on `Pyrogram V2` offering enhanced stability and a forced l
 **Why This is Important?**
 Your credentials can be stolen if pushed to a public repository. Always keep them secure by using environment variables or local configuration files.
 
-## ⚡ Commands
+---
 
-<details>
-<summary><b>List of Commands</b></summary>
+## ⚡ Commands
 
 - **`start`**: 🚀 Start the bot.
 - **`batch`**: 🫠 Extract in bulk.
@@ -70,12 +69,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 - **`help`**: ❓ Help if you're new.
 - **`cancel`**: 🚫 Cancel batch process.
 
-</details>
-
 ## 🔧 Features
-
-<summary><b>Click to view features</b></summary>
-
 - Extract content from both public and private channels/groups.
 - Rename and forward content to other channels or users.
 - Custom captions and thumbnails.
@@ -88,7 +82,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 - **Improved Looping**: Optimized looping for processing multiple files or links, reducing delays and enhancing performance.
 - **Premium Access**: Premium users enjoy faster processing speeds and priority queue management.
 
-</details>
+---
 
 ## 🚀 Deployment Guide
 
