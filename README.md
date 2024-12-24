@@ -6,12 +6,8 @@
 
 ---
 
----
-
 ## 📚 About This Branch
 This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. Users must log in to use the bot. For no-login usage, consider the `v4` branch.
-
----
 
 <details>
 <summary><b>⚠️ Must Do: Secure Your Sensitive Variables</b></summary>
@@ -79,7 +75,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 - **`cancel`**: 🚫 Cancel batch process.
 
 </details>
----
+
 ## Features:
 
 - Able to extarct the content the from private or public entities/channels/group
