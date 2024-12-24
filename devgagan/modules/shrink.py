@@ -99,7 +99,11 @@ async def token_handler(client, message):
 @app.on_message(filters.command("token"))
 async def smart_handler(client, message):
     user_id = message.chat.id
-    # Check if the user is already verified
+    # Check if the user is already verified or premium
+    freecheck = await chk_user(message, user_id)
+    if freecheck != 1:
+        await message.reply("You are a premium user no need of token 😉")
+        return
     if await is_user_verified(user_id):
         await message.reply("✅ Your free session is already active enjoy!")
     else:
