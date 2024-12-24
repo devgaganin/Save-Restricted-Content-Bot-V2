@@ -1,13 +1,10 @@
 <h1 align="center">
   <b>V3 branch</b> | Summer Release V2
 </h1>
-
 [Telegram](https://t.me/save_restricted_content_bots) | [See Recent Updates](https://github.com/devgaganin/Save-Restricted-Content-Bot-V2/tree/v3#updates)
-
 ---
-## ABOUT THIS BRANCH
-This branch is purely based on `Pyrogram V2` with more stability And this is based on forced login means user must have to login in bot to use the bot you can use `v4` branch to avoid this.
-
+## 📚 About This Branch
+This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. Users must log in to use the bot. For no-login usage, consider the `v4` branch.
 ---
 <details>
 <summary><b>⚠️ Must Do: Secure Your Sensitive Variables</b></summary>
@@ -40,26 +37,42 @@ This branch is purely based on `Pyrogram V2` with more stability And this is bas
     ```
   - Make sure to add `.env` to `.gitignore` to prevent it from being pushed to GitHub.
 
+**Why This is Important?**
+Your credentials can be stolen if pushed to a public repository. Always keep them secure by using environment variables or local configuration files.
+
 </details>
 
 ---
+## ⚡ Commands
 
-### **Why This is Important?**
-Your credentials can be stolen if pushed to a public repository. Always keep them secure by using environment variables or local configuration files.
+<details>
+<summary><b>List of Commands</b></summary>
 
+- **`start`**: 🚀 Start the bot.
+- **`batch`**: 🫠 Extract in bulk.
+- **`login`**: 🔑 Get into the bot.
+- **`logout`**: 🚪 Get out of the bot.
+- **`token`**: 🎲 Get 3 hours of free access.
+- **`adl`**: 👻 Download audio from 30+ sites.
+- **`dl`**: 💀 Download videos from 30+ sites.
+- **`transfer`**: 💘 Gift premium to others.
+- **`myplan`**: ⌛ Get your plan details.
+- **`add`**: ➕ Add user to premium.
+- **`rem`**: ➖ Remove user from premium.
+- **`session`**: 🧵 Generate Pyrogramv2 session.
+- **`settings`**: ⚙️ Personalize settings.
+- **`stats`**: 📊 Get stats of the bot.
+- **`plan`**: 🗓️ Check our premium plans.
+- **`terms`**: 🥺 Terms and conditions.
+- **`speedtest`**: 🚅 Check the server speed.
+- **`get`**: 🗄️ Get all user IDs.
+- **`lock`**: 🔒 Protect channel from extraction.
+- **`gcast`**: ⚡ Broadcast message to bot users.
+- **`help`**: ❓ Help if you're new.
+- **`cancel`**: 🚫 Cancel batch process.
+
+</details>
 ---
-
-## Commands
-
-- **`start`**: Launch the application.
-- **`myplan`**: View your personalized plan.
-- **`add`**: Add a new item or entry.
-- **`rem`**: Remove an existing item.
-- **`gcast`**: Broadcast a message or notification.
-- **`stats`**: Display statistics and insights.
-- **`speedtest`**: Run a network speed test.
-- **`settings`**: Access and modify your settings.
-
 ## Features:
 
 - Able to extarct the content the from private or public entities/channels/group
