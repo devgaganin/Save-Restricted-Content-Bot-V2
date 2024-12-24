@@ -1,3 +1,6 @@
+Here’s a concise, organized version of your README with dropdown sections for a cleaner presentation:
+
+```markdown
 <h1 align="center">
   <b>V3 branch</b> | Summer Release V2
 </h1>
@@ -5,204 +8,204 @@
 [Telegram](https://t.me/save_restricted_content_bots) | [See Recent Updates](https://github.com/devgaganin/Save-Restricted-Content-Bot-V2/tree/v3#updates)
 
 ---
-## ABOUT THIS BRANCH
-This branch is purely based on `Pyrogram V2` with more stability And this is based on forced login means user must have to login in bot to use the bot you can use `v4` branch to avoid this.
+
+## 📚 About This Branch
+This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. Users must log in to use the bot. For no-login usage, consider the `v4` branch.
+
+<details>
+<summary><b>⚠️ Must Do: Secure Your Sensitive Variables</b></summary>
+
+**Do not expose sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`) on GitHub. Use environment variables to keep them secure.**
+
+### Configuring Variables Securely:
+
+- **On VPS or Local Machine:**
+  - Use a text editor to edit `config.py`:
+    ```bash
+    nano config.py
+    ```
+  - Alternatively, export as environment variables:
+    ```bash
+    export API_ID=your_api_id
+    export API_HASH=your_api_hash
+    export BOT_TOKEN=your_bot_token
+    ```
+
+- **For Cloud Platforms (Heroku, Railway, etc.):**
+  - Set environment variables directly in your platform’s dashboard.
+
+- **Using `.env` File:**
+  - Create a `.env` file and add your credentials:
+    ```
+    API_ID=your_api_id
+    API_HASH=your_api_hash
+    BOT_TOKEN=your_bot_token
+    ```
+  - Make sure to add `.env` to `.gitignore` to prevent it from being pushed to GitHub.
+
+</details>
 
 ---
-### **⚠️ Must Do: Configure Sensitive Variables Securely**
 
-**Do not edit sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`, etc.) directly in `config.py` or any file in the repository on GitHub. Doing so can expose your credentials publicly, leading to security risks.**
+## ⚡ Commands
 
-### **How to Configure Variables Safely:**
-
-1. **For VPS or Local Machine:**
-   - Use a text editor like `nano` to edit the `config.py` file directly on your system:
-     ```bash
-     nano config.py
-     ```
-   - Alternatively, export your variables as environment variables:
-     ```bash
-     export API_ID=your_api_id
-     export API_HASH=your_api_hash
-     export BOT_TOKEN=your_bot_token
-     ```
-
-2. **For Cloud Deployment (e.g., Heroku, Railway):**
-   - Set the variables as **Environment Variables** in the platform's settings.
-
-3. **Using `.env` File:**
-   - Create a `.env` file in the root of your project and add your variables:
-     ```
-     API_ID=your_api_id
-     API_HASH=your_api_hash
-     BOT_TOKEN=your_bot_token
-     etc
-     ```
-   - Make sure to exclude `.env` from version control by adding it to `.gitignore`.
-
-### **Why This is Important?**
-Your credentials can be stolen if pushed to a public repository. Always keep them secure by using environment variables or local configuration files.
-
----
-
-## Commands
-
-- **`start`**: Launch the application.
-- **`myplan`**: View your personalized plan.
-- **`add`**: Add a new item or entry.
-- **`rem`**: Remove an existing item.
-- **`gcast`**: Broadcast a message or notification.
-- **`stats`**: Display statistics and insights.
+- **`start`**: Launch the bot.
+- **`myplan`**: View your plan.
+- **`add`**: Add a new entry.
+- **`rem`**: Remove an entry.
+- **`gcast`**: Send a broadcast.
+- **`stats`**: View bot stats.
 - **`speedtest`**: Run a network speed test.
-- **`settings`**: Access and modify your settings.
-
-## Features:
-
-- Able to extarct the content the from private or public entities/channels/group
-- direct rename and forward to channel/group/users
-- Custome caption/thumbnail
-- auto default thumbnail removal from videos
-- Deleting/Replacing words from file name and caption
-- Easy to use and deploy
-- auto pin messages(if they are pinned)
-- login via phone number
-
-## Deploying Guide - [TEAM SPY](https://t.me/save_restricted_content_bots)
-
-### How to get required vars
- 
-- API_ID and API_HASH from [telegram.org](https://my.telegram.org/auth)
-- BOT_TOKEN: @Botfather on telegram
-- OWNER_ID : Go to @missrose_bot on telegram and send `/info` to know your ID
-- CHANNEL_ID : This will be used as Force Subscribe channel
-- LOG_GROUP: Create a Group or Channel add you bot there and forward any message of that channel/group to @userinfobot to know the ID of you channel/group
-- MONGO_DB: It is recommended to use your mongoDB to avoid session hacks and all
-Note : You must make bot admin in both channels
-
-### Deploy on `VPS`
-
-Easy Method:
-- Fork repo
-- Go to ```config.py``` as below
-- Fill variables inside the double quoted commas `""`  
-- Now run following commands one by one...
-```
-sudo apt update
-sudo apt install ffmpeg git python3-pip
-git clone your_repo_link
-cd you_repo_name
-pip3 install -r requirements.txt
-python3 -m devgagan
-```
-
-- if you want bot to be running in background then enter `screen -S gagan` before `python3 -m devgagan` 
-- after `python3 -m devgagan`, click `ctrl+A`, `ctrl+D`
-- if you want to stop bot, then enter `screen -r gagan` and to kill screen enter `screen -S gagan -X quit`.
-
-
-## Deploy your bot on `heroku`
-- Star the repo, and fork it in desktop mode
-- Click on  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-- Fill your values and click deploy ✅
-
-## Deploy on Render
-- Fork and star the repo
-- edit `config.py` same as guided for VPS deployment (you can edit on render also by filling enviroment variables)
-- Go to render.com and singup/signin
-- create new web service and select free plan
-- connect github and your repository
-- Click Deploy
-- Done ✅
-
-
-## Koyeb Deployment
-
-- Fork and star the repo
-- edit `config.py` same as guided for VPS deployment (you can edit on koyeb also by filling enviroment variables)
-- Go to koyeb.com and singup/signin
-- create new web service make sure you must choose build type `Dokerfile` because in Koyeb as a default it is checked to `buildpacks` so you have to change that.
-- connect github and your repository
-- Click Deploy
-- Done ✅
-
-## Terms of USE / Modification 
-Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
-
-# Updates
----
-
-## Update: 21 NOV 2024
-
-**Enhanced Functionality for Public Channels:**
-
-1. Removed the unnecessary login requirement for processing links from public channels.  
-2. Users can now process both single and batch links from public channels, even without logging in or setting up a default session.  
-3. Introduced batch size limit variables: `FREEMIUM_LIMIT` and `PREMIUM_LIMIT`. These variables allow you to manage and customize the batch size accessible to users based on their subscription type.
-
-**👉 Note:**  
-If you set the `FREEMIUM_LIMIT` value to 0, users will not be able to extract links, even with a single link. The `OWNER_ID(s)` are exempt from these limitations.
-
-#repo_updated
+- **`settings`**: Update your settings.
 
 ---
-## Update: 20 Nov 2024
 
-**🚀 Changelogs :**
+## 🔧 Features
 
-- **Batch Process**: Prevents starting new batch if one is already running.
-- **Single Link**: Checks if a process is ongoing before accepting a new link.
+- Extract content from both public and private channels/groups.
+- Rename and forward content to other channels or users.
+- Custom captions and thumbnails.
+- Auto-remove default video thumbnails.
+- Delete or replace words in filenames and captions.
+- Auto-pin messages if enabled.
+- Login via phone number.
+
+---
+
+## 🚀 Deployment Guide
+
+<details>
+<summary><b>Deploy on VPS</b></summary>
+
+1. Fork the repo.
+2. Update `config.py` with your values.
+3. Run the following:
+   ```bash
+   sudo apt update
+   sudo apt install ffmpeg git python3-pip
+   git clone your_repo_link
+   cd your_repo_name
+   pip3 install -r requirements.txt
+   python3 -m devgagan
+   ```
+
+- To run the bot in the background:
+  ```bash
+  screen -S gagan
+  python3 -m devgagan
+  ```
+  - Detach: `Ctrl + A`, then `Ctrl + D`
+  - To stop: `screen -r gagan` and `screen -S gagan -X quit`
+
+</details>
+
+<details>
+<summary><b>Deploy on Heroku</b></summary>
+
+1. Fork and Star the repo.
+2. Click [Deploy on Heroku](https://heroku.com/deploy).
+3. Enter required variables and click deploy ✅.
+
+</details>
+
+<details>
+<summary><b>Deploy on Render</b></summary>
+
+1. Fork and star the repo.
+2. Edit `config.py` or set environment variables on Render.
+3. Go to [render.com](https://render.com), sign up/log in.
+4. Create a new web service, select the free plan.
+5. Connect your GitHub repo and deploy ✅.
+
+</details>
+
+<details>
+<summary><b>Deploy on Koyeb</b></summary>
+
+1. Fork and star the repo.
+2. Edit `config.py` or set environment variables on Koyeb.
+3. Create a new service, select `Dockerfile` as build type.
+4. Connect your GitHub repo and deploy ✅.
+
+</details>
+
+---
+
+## 🛠️ Terms of Use
+
+Visit the [Terms of Use](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) page to review and accept the guidelines.
+
+---
+
+## 📢 Updates
+
+<details>
+<summary><b>Update: 21 NOV 2024</b></summary>
+
+- **Public Channels**: Removed login requirement for processing links from public channels.
+- **Batch Size Limits**: New variables `FREEMIUM_LIMIT` and `PREMIUM_LIMIT` to manage batch sizes based on user type.
+- **Important Note**: Set `FREEMIUM_LIMIT` to `0` to restrict link extraction.
+
+</details>
+
+<details>
+<summary><b>Update: 20 NOV 2024</b></summary>
+
+- **Batch Processing**: Prevents overlapping batch processes.
 - **UserBot Management**: Safely stops `userbot` after all processes.
-- **/cancel**: Improved to stop active processes with better feedback.
-- **Loop Management**: Prevents overlapping processes for the same user.
-- **Bug Fixes**: Fixed issues with `userbot` not stopping correctly.
+- **Bug Fixes**: Fixed issues with `userbot` stopping and overlapping processes.
+
+</details>
+
+<details>
+<summary><b>Update: 16 NOV 2024</b></summary>
+
+- Fixed issues with `.MOV` file handling and file renaming.
+- Improved caption formatting.
+
+</details>
+
+<details>
+<summary><b>Update: 15 NOV 2024</b></summary>
+
+- Fixed reset button.
+- Added support for topic-based groups.
+
+</details>
+
+<details>
+<summary><b>Update: 16 AUG 2024</b></summary>
+
+- Added `/logout` command to clear session data.
+- Fixed premium membership expiration.
+
+</details>
+
+<details>
+<summary><b>Update: 7 JULY 2024</b></summary>
+
+- Introduced `/login` via phone number.
+- Added auto-pinning of messages and other improvements.
+
+</details>
+
 ---
 
-## Update: 16 Nov 2024
+## 📝 Important Notes
 
-**Changelog:**  
-1. **Fixed .MOV Issue:**  
-   - Resolved the problem with `.MOV` files. All video files sent as documents will now be uploaded as streamable videos.  
-   - The repository can now function as a **file-to-video converter** as well.  
-
-2. **Filename Replacement:**  
-   - Fixed issues with filename replacements.  
-   - Made minor adjustments to captions to preserve the original formatting.  
-
-**Branch:** `v3`  
-
-**Status:** Complete ✅
-
-## Update: Nov 15 2024
-- fixed reset button to clear everything
-- topic group extraction fixed
-note : if you are extracting from public group then you must use the group id instead of username use apps like `turbotel` or anyother to do get id and replace for ex
-suppose main post link is
-`https://t.me/username/12` or `https://t.me/username/6/12 (topic enabled group)
-` then you have to change like below
-`https://t.me/c/1346789/12` or `https://t.me/c/1346789/6/12 (topic enabled group)`
-where `1346789` is group id you get from telegram client apps like `turbotel, plus messenger` etc
+Changing commands and terms doesn't make you a developer. Real development involves understanding code and implementing new features, not just renaming things.
 
 ---
-## Update: 16 Aug 2024
 
-- Added `/logout` command to delete the session files from `mongodb` and `local memory`
-- Fixed premium membership auto expiration (after subscription ends).
- 
-## Update: 7 JULY 2024
+## 👨‍💻 Contributors
 
-- Added `/login` method via phone number
-- Added auto pinning of messages
-- fixed float division by zero
-- Session saving permanently
-- Fixed old bugs
-- Added /add and /remove along with parameters of `user_id` and `time` for the period of premium subscription.
-- All old features along with `button` handler
-
-## Important Note
-
-**Note**: Changing the terms and commands doesn't magically make you a developer. Real development involves understanding the code, writing new functionalities, and debugging issues, not just renaming things. If only it were that easy!
-
-## Contributers
-My group members contact... Join @save_restricted_content_bots to know them.
+Join us at [@save_restricted_content_bots](https://t.me/save_restricted_content_bots) for further details and to connect with the contributors.
 
 Thanks!
+```
+
+### Key Changes:
+1. **Dropdown sections** for better organization.
+2. **Shortened explanations** for clarity.
+3. **Command and feature list** streamlined.
+4. **Deployment instructions** in collapsible sections to avoid overwhelming the user.
