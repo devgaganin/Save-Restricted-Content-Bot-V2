@@ -99,7 +99,7 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 - **`MONGO_DB`**: A MongoDB URL for storing session data (recommended for security).
   
 ### Additional Configuration Options:
-- **`PREMIUM_SESSION`**: (Optional) Add your **premium account session string** here to allow 4GB file uploads. This is **optional** and can be left empty if not used.
+- **`STRING`**: (Optional) Add your **premium account session string** here to allow 4GB file uploads. This is **optional** and can be left empty if not used.
 - **`FREEMIUM_LIMIT`**: Default is `0`. Set this to any value you want to allow free users to extract content. If set to `0`, free users will not have access to any extraction features.
 - **`PREMIUM_LIMIT`**: Default is `500`. This is the batch limit for premium users. You can customize this to allow premium users to process more links/files in one batch.
 
@@ -237,8 +237,8 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 
 **⚙️ How to Configure</summary**
 
-- **Set up `PREMIUM_SESSION` for 4GB Upload**:  
-   - If you want to upload large files (up to 4GB), make sure to add your **premium session string** in the `PREMIUM_SESSION` variable in `config.py`. This is optional and only needed for premium owner who want to allow 4GB upload.
+- **Set up `STRING` for 4GB Upload**:  
+   - If you want to upload large files (up to 4GB), make sure to add your **premium session string(PYROGRAM V2)** in the `PREMIUM_SESSION` variable in `config.py`. This is optional and only needed for premium owner who want to allow 4GB upload.
 
 - **Set up `AD_API` and `WEBSITE_URL` for Monetization**:  
    - To use the link shortener service for monetization, collect the API key and website URL from your shortener provider (e.g., **UpShrink**, **AdFly**) and add them to the `AD_API` and `WEBSITE_URL` variables in `config.py`.
