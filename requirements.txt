@@ -10,6 +10,7 @@ pytz
 flask
 aiohttp
 telethon
+speedtest-cli
 aiojobs
 werkzeug==2.2.2
 apscheduler 
