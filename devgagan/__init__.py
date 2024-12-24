@@ -29,8 +29,11 @@ async def auto_ping():
         try:
             # Fetch bot details every time auto_ping runs
             getme = await app.get_me()  # Fetch bot profile
+            print(f"Bot details: {getme.first_name} (@{getme.username})")
+        except Exception as e:
+            print(f"Error during auto ping: {e}")
+
         await asyncio.sleep(60)
-       # await m.delete() # Wait for 60 seconds before sending the next ping
 
 # MongoDB setup
 tclient = AsyncIOMotorClient(MONGO_DB)
