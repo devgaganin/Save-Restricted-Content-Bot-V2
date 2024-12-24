@@ -76,6 +76,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 - Auto-remove default video thumbnails.
 - Delete or replace words in filenames and captions.
 - Auto-pin messages if enabled.
+- download yt/insta normal ytdlp supported sites that supports best format
 - Login via phone number.
 - **Supports 4GB file uploads**: The bot can handle large file uploads, up to 4GB in size.
 - **Enhanced Timer**: Distinct timers for free and paid users to limit usage and improve service.
@@ -102,6 +103,10 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 - **`STRING`**: (Optional) Add your **premium account session string** here to allow 4GB file uploads. This is **optional** and can be left empty if not used.
 - **`FREEMIUM_LIMIT`**: Default is `0`. Set this to any value you want to allow free users to extract content. If set to `0`, free users will not have access to any extraction features.
 - **`PREMIUM_LIMIT`**: Default is `500`. This is the batch limit for premium users. You can customize this to allow premium users to process more links/files in one batch.
+- **`YT_COOKIES`**: Yt cookies for downloading yt videos 
+- **`INSTA_COOKIES`**: If you want to enable instagram downloading fill cookiesn
+
+** How to get cookies ??** : use mozila firfox if on android or use chrome on desktop and download extension get this cookie or any Netscape Cookies (HTTP Cookies) extractor and use that 
 
 ### Monetization (Optional):
 - **`WEBSITE_URL`**: (Optional) This is the domain for your monetization short link service. Provide the shortener's domain name, for example: `upshrink.com`. Do **not** include `www` or `https://`. The default link shortener is already set.
@@ -204,6 +209,8 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 **6. Fixed Button Issues**  
    - **Fixed broken button functionality**: There were issues where the bot’s buttons were not responding or clicking properly. This has been resolved, and now the buttons will work as expected.  
    - **What’s fixed**: Buttons for commands like `/start`, `/help`, `/cancel`, and others should now work smoothly.
+**7. Added ytdlp back in this version:**
+   - You can use command /dl or /adl for enabling this fill up ytdlp vars i.e. YT_COOKIES and INSTA_COOKIES
 
 ### 🛠 Important Changes and Notes
 
