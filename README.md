@@ -2,10 +2,14 @@
   <b>V3 branch</b> | Summer Release V2
 </h1>
 [Telegram](https://t.me/save_restricted_content_bots) | [See Recent Updates](https://github.com/devgaganin/Save-Restricted-Content-Bot-V2/tree/v3#updates)
+
 ---
+
 ## 📚 About This Branch
 This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. Users must log in to use the bot. For no-login usage, consider the `v4` branch.
+
 ---
+
 <details>
 <summary><b>⚠️ Must Do: Secure Your Sensitive Variables</b></summary>
 
