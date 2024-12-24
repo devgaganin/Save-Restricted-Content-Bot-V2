@@ -83,7 +83,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 - **Premium Access**: Premium users enjoy faster processing speeds and priority queue management.
 
 ---
-## ⚙️ Required Variables (collect before deployment)
+## ⚙️ Required Variables
 
 <details>
 <summary><b>Click to view required variables</b></summary>
