@@ -83,6 +83,7 @@ async def get_seconds(time_string):
 
 
 
+
 PROGRESS_BAR = """\n
 │ **__Completed:__** {1}/{2}
 │ **__Bytes:__** {0}%
@@ -247,3 +248,71 @@ async def screenshot(video, duration, sender):
         return out
     else:
         None  
+
+
+
+last_update_time = time.time()
+
+# Progress callback function with 10% interval update
+async def progress_callback(current, total, progress_message):
+    percent = (current / total) * 100
+    global last_update_time
+    current_time = time.time()
+    # Only update if the progress has increased by 10% or more
+    if current_time - last_update_time >= 10 or percent % 10 == 0:
+        completed_blocks = int(percent // 10)
+        remaining_blocks = 10 - completed_blocks
+        progress_bar = "♦" * completed_blocks + "◇" * remaining_blocks
+        
+        # Convert bytes to MB (1 MB = 1,000,000 bytes)
+        current_mb = current / (1024 * 1024)  # Convert current bytes to MB
+        total_mb = total / (1024 * 1024)      # Convert total bytes to MB
+
+        # Format message with MB and percentage
+        await progress_message.edit(
+    f"╭──────────────────╮\n"
+    f"│        **__Uploading...__**       \n"
+    f"├──────────\n"
+    f"│ {progress_bar}\n\n"
+    f"│ **__Progress:__** {percent:.2f}%\n"
+    f"│ **__Uploaded:__** {current_mb:.2f} MB / {total_mb:.2f} MB\n"
+    f"╰──────────────────╯\n\n"
+    f"**__Powered by Team SPY__**"
+        )
+        
+        last_update_time = current_time
+
+
+async def prog_bar(current, total, ud_type, message, start):
+
+    now = time.time()
+    diff = now - start
+    if round(diff % 10.00) == 0 or current == total:
+        # if round(current / total * 100, 0) % 5 == 0:
+        percentage = current * 100 / total
+        speed = current / diff
+        elapsed_time = round(diff) * 1000
+        time_to_completion = round((total - current) / speed) * 1000
+        estimated_total_time = elapsed_time + time_to_completion
+
+        elapsed_time = TimeFormatter(milliseconds=elapsed_time)
+        estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
+
+        progress = "{0}{1}".format(
+            ''.join(["♦" for i in range(math.floor(percentage / 10))]),
+            ''.join(["◇" for i in range(10 - math.floor(percentage / 10))]))
+            
+        tmp = progress + PROGRESS_BAR.format( 
+            round(percentage, 2),
+            humanbytes(current),
+            humanbytes(total),
+            humanbytes(speed),
+            # elapsed_time if elapsed_time != '' else "0 s",
+            estimated_total_time if estimated_total_time != '' else "0 s"
+        )
+        try:
+            await message.edit_text(
+                text="{}\n│ {}".format(ud_type, tmp),)             
+                
+        except:
+            pass
