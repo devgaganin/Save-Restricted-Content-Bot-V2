@@ -173,9 +173,10 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 ---
 
 ## Updates
-
-<summary<b>Update: 21 NOV 2024</b></summary>
 <details>
+  
+<summary><b>Update: 21 NOV 2024</b></summary>
+
 **1. 4GB Upload Support**  
    - **New feature**: The bot now supports **uploading files as large as 4GB**. This is particularly useful for users working with larger media content.  
    - **How to enable**: To allow **4GB file uploads**, you must add your **premium session string** in the `PREMIUM_SESSION` variable in the `config.py` file. This session string is only required for **premium users**.
