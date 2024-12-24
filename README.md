@@ -45,7 +45,6 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 
 </details>
 
----
 ## ⚡ Commands
 
 <details>
@@ -76,16 +75,23 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 
 </details>
 
-## Features:
+## 🔧 Features
 
-- Able to extarct the content the from private or public entities/channels/group
-- direct rename and forward to channel/group/users
-- Custome caption/thumbnail
-- auto default thumbnail removal from videos
-- Deleting/Replacing words from file name and caption
-- Easy to use and deploy
-- auto pin messages(if they are pinned)
-- login via phone number
+<summary><b>Click to view features</b></summary>
+
+- Extract content from both public and private channels/groups.
+- Rename and forward content to other channels or users.
+- Custom captions and thumbnails.
+- Auto-remove default video thumbnails.
+- Delete or replace words in filenames and captions.
+- Auto-pin messages if enabled.
+- Login via phone number.
+- **Supports 4GB file uploads**: The bot can handle large file uploads, up to 4GB in size.
+- **Enhanced Timer**: Distinct timers for free and paid users to limit usage and improve service.
+- **Improved Looping**: Optimized looping for processing multiple files or links, reducing delays and enhancing performance.
+- **Premium Access**: Premium users enjoy faster processing speeds and priority queue management.
+
+</details>
 
 ## 🚀 Deployment Guide
 
@@ -146,13 +152,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 
 ---
 
-
-## Terms of USE / Modification 
-Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) and accept the guidelines.
-
----
-
-## 📢 Updates
+## Updates
 
 <details>
 <summary><b>Update: 21 NOV 2024</b></summary>
@@ -205,6 +205,9 @@ Visit [Terms](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blo
 </details>
 
 ---
+## 🛠️ Terms of Use
+
+Visit the [Terms of Use](https://github.com/devgaganin/Save-Restricted-Content-Bot-Repo/blob/master/TERMS_OF_USE.md) page to review and accept the guidelines.
 ## Important Note
 
 **Note**: Changing the terms and commands doesn't magically make you a developer. Real development involves understanding the code, writing new functionalities, and debugging issues, not just renaming things. If only it were that easy!
