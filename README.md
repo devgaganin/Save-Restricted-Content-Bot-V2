@@ -175,7 +175,7 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 ## Updates
 <details>
   
-<summary><b>Update: 21 NOV 2024</b></summary>
+<summary><b>Update: 24 DEC 2024</b></summary>
 
 **1. 4GB Upload Support**  
    - **New feature**: The bot now supports **uploading files as large as 4GB**. This is particularly useful for users working with larger media content.  
