@@ -7,14 +7,11 @@ from config import API_ID, API_HASH, BOT_TOKEN, STRING, MONGO_DB
 from telethon.sync import TelegramClient
 from motor.motor_asyncio import AsyncIOMotorClient
 
-
 loop = asyncio.get_event_loop()
-
 logging.basicConfig(
     format="[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s",
     level=logging.INFO,
 )
-
 
 app = Client(
     ":RestrictBot:",
@@ -24,6 +21,7 @@ app = Client(
     workers=10
 )
 
+pro = Client("ggbot", api_id=API_ID, api_hash=API_HASH, session_string=STRING)
 sex = TelegramClient('sexrepo', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
 
 async def auto_ping():
