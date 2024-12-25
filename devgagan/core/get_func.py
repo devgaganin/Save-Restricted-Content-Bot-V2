@@ -81,23 +81,6 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 return None 
             if msg.empty is not None:
                 return None
-            if msg.text:
-                await edit.edit("Cloning...")
-                devgaganin = await app.send_message(target_chat_id, msg.text.markdown)
-                await devgaganin.copy(LOG_GROUP)
-                await edit.delete()
-                return
-            if msg.document:
-                file_size = msg.document.file_size
-            elif msg.photo:
-                file_size = msg.photo.file_size
-            elif msg.video:
-                file_size = msg.video.file_size
-            else:
-                file_size = None
-            if file_size > size_limit and (freecheck == 1 and not verified):
-                await edit.edit("**__❌ File size is greater than 2 GB, purchase premium to proceed or use /token to get 3 hour access for free__")
-                return
             if msg.media:
                 if msg.media == MessageMediaType.WEB_PAGE:
                     target_chat_id = user_chat_ids.get(chatx, chatx)
@@ -106,7 +89,32 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     await devgaganin.copy(LOG_GROUP)                  
                     await edit.delete()
                     return
-            
+            if not msg.media:
+                if msg.text:
+                    target_chat_id = user_chat_ids.get(chatx, chatx)
+                    edit = await app.edit_message_text(sender, edit_id, "Cloning...")
+                    devgaganin = await app.send_message(target_chat_id, msg.text.markdown)
+                    if msg.pinned_message:
+                        try:
+                            await devgaganin.pin(both_sides=True)
+                        except Exception as e:
+                            await devgaganin.pin()
+                    await devgaganin.copy(LOG_GROUP)
+                    await edit.delete()
+                    return
+            if msg.sticker:
+                edit = await app.edit_message_text(sender, edit_id, "Sticker detected...")
+                result = await app.send_sticker(target_chat_id, msg.sticker.file_id)
+                await result.copy(LOG_GROUP)
+                await edit.delete(2)
+                return
+                    
+            file_size = None
+            if msg.document or msg.photo or msg.video:
+                file_size = msg.document.file_size if msg.document else (msg.photo.file_size if msg.photo else msg.video.file_size)
+            if file_size and file_size > size_limit and (freecheck == 1 and not verified):
+                await edit.edit("**__❌ File size is greater than 2 GB, purchase premium to proceed or use /token to get 3 hour access for free__")
+                return
             edit = await app.edit_message_text(sender, edit_id, "Trying to Download...")
             file = await userbot.download_media(
                 msg,
@@ -194,7 +202,13 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                     await edit.delete()
                     os.remove(file)
                     return  
-            if msg.media == MessageMediaType.VIDEO and msg.video.mime_type in ["video/mp4", "video/x-matroska"]:               
+            if msg.voice:
+                result = await app.send_voice(target_chat_id, file)
+                await result.copy(LOG_GROUP)
+            elif msg.audio:
+                result = await app.send_audio(target_chat_id, file, caption=caption)
+                await result.copy(LOG_GROUP)       
+            elif msg.media == MessageMediaType.VIDEO and msg.video.mime_type in ["video/mp4", "video/x-matroska"]:               
                 thumb_path = await screenshot(file, duration, chatx)
                 upload_method = await fetch_upload_method(sender)
                 try:
