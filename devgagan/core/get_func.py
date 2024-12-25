@@ -23,7 +23,7 @@ from devgagan.core.mongo.db import set_session, remove_session
 import string
 from telethon import events, Button
 from io import BytesIO
-from FastTelethonhelper import fast_upload
+from SpyLib import fast_upload
     
 
 # ------------- PDF WATERMARK IMPORTS --------------
