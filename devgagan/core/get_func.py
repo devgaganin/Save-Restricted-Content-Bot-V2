@@ -81,6 +81,12 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 return None 
             if msg.empty is not None:
                 return None
+            if msg.text:
+                await edit.edit("Cloning...")
+                devgaganin = await app.send_message(target_chat_id, msg.text.markdown)
+                await devgaganin.copy(LOG_GROUP)
+                await edit.delete()
+                return
             if msg.document:
                 file_size = msg.document.file_size
             elif msg.photo:
@@ -95,29 +101,12 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             if msg.media:
                 if msg.media == MessageMediaType.WEB_PAGE:
                     target_chat_id = user_chat_ids.get(chatx, chatx)
-                    edit = await app.edit_message_text(target_chat_id, edit_id, "Cloning...")
-                    devgaganin = await app.send_message(sender, msg.text.markdown)
-                    if msg.pinned_message:
-                        try:
-                            await devgaganin.pin(both_sides=True)
-                        except Exception as e:
-                            await devgaganin.pin()
+                    await edit.edit("Cloning...")
+                    devgaganin = await app.send_message(target_chat_id, msg.text.markdown)
                     await devgaganin.copy(LOG_GROUP)                  
                     await edit.delete()
                     return
-            if not msg.media:
-                if msg.text:
-                    target_chat_id = user_chat_ids.get(chatx, chatx)
-                    edit = await app.edit_message_text(target_chat_id, edit_id, "Cloning...")
-                    devgaganin = await app.send_message(sender, msg.text.markdown)
-                    if msg.pinned_message:
-                        try:
-                            await devgaganin.pin(both_sides=True)
-                        except Exception as e:
-                            await devgaganin.pin()
-                    await devgaganin.copy(LOG_GROUP)
-                    await edit.delete()
-                    return
+            
             edit = await app.edit_message_text(sender, edit_id, "Trying to Download...")
             file = await userbot.download_media(
                 msg,
