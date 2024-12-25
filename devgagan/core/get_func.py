@@ -27,15 +27,7 @@ from FastTelethonhelper import fast_upload
     
 
 # ------------- PDF WATERMARK IMPORTS --------------
-from PyPDF2 import PdfReader, PdfWriter
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import cm
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-import fitz  # PyMuPDF
-from PIL import Image, ImageDraw, ImageFont
-from html import escape, unescape
+
 # ------------- PDF WATERMARK IMPORTS --------------
 
 def thumbnail(sender):
