@@ -8,6 +8,7 @@ from devgagan.core.mongo.plans_db import check_and_remove_expired_users
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
+loop = asyncio.get_event_loop()
 
 async def schedule_expiry_check():
     # This function now just runs the task without any loop or sleep
@@ -19,11 +20,10 @@ async def devggn_boot():
     print("Bot deployed...🎉")
 
     # Start the background task for checking expired users
-    scheduler = AsyncIOScheduler(event_loop=loop)  # Use the existing event loop
-    scheduler.add_job(schedule_expiry_check, IntervalTrigger(seconds=60))  # Check every 60 seconds
-    scheduler.start()
+    asyncio.create_task(schedule_expiry_check())
+    # Keep the bot running
+    await idle()
+    print("Lol ...")
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
     loop.run_until_complete(devggn_boot())
-    loop.run_forever()
