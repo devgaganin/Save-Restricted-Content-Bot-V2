@@ -26,16 +26,6 @@ botStartTime = time.time()
 pro = Client("ggbot", api_id=API_ID, api_hash=API_HASH, session_string=STRING)
 sex = TelegramClient('sexrepo', API_ID, API_HASH).start(bot_token=BOT_TOKEN)
 
-async def auto_ping():
-    while True:
-        try:
-            # Fetch bot details every time auto_ping runs
-            getme = await app.get_me()  # Fetch bot profile
-            print(f"Bot details: {getme.first_name} (@{getme.username})")
-        except Exception as e:
-            print(f"Error during auto ping: {e}")
-
-        await asyncio.sleep(60)
 
 # MongoDB setup
 tclient = AsyncIOMotorClient(MONGO_DB)
@@ -66,8 +56,6 @@ async def restrict_bot():
         BOT_NAME = getme.first_name
     if STRING:
         await pro.start()
-
-    asyncio.create_task(auto_ping())
 
 
 loop.run_until_complete(restrict_bot())
