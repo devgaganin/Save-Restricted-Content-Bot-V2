@@ -19,7 +19,7 @@ from pyrogram.types import Message
 from config import MONGO_DB as MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID, STRING
 import cv2
 import random
-from devgagan.core.mongo.db import set_session, remove_session
+from devgagan.core.mongo.db import set_session, remove_session, get_data
 import string
 from telethon import events, Button
 from io import BytesIO
