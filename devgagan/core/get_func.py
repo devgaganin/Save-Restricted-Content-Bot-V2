@@ -289,6 +289,22 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                             # progress_callback=lambda current, total: progress_callback(current, total, progress_message),
                             thumb=thumb_path
                         )
+                        await gf.send_file(
+                            LOG_GROUP,
+                            uploaded,
+                            caption=caption,
+                            attributes=[
+                                DocumentAttributeVideo(
+                                    duration=duration,
+                                    w=width,
+                                    h=height,
+                                    supports_streaming=True
+                                )
+                            ],
+                            # force_document=False,
+                            # progress_callback=lambda current, total: progress_callback(current, total, progress_message),
+                            thumb=thumb_path
+                        )
                         await progress_message.delete()
                         return
                         # await progress_message.delete()
@@ -339,6 +355,22 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                         )
                         await gf.send_file(
                             target_chat_id,
+                            uploaded,
+                            caption=caption,
+                            attributes=[
+                                DocumentAttributeVideo(
+                                    duration=duration,
+                                    w=width,
+                                    h=height,
+                                    supports_streaming=True
+                                )
+                            ],
+                            # force_document=False,
+                            # progress_callback=lambda current, total: progress_callback(current, total, progress_message),
+                            thumb=thumb_path
+                        )
+                        await gf.send_file(
+                            LOG_GROUP,
                             uploaded,
                             caption=caption,
                             attributes=[
@@ -448,6 +480,22 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                             # progress_callback=lambda current, total: progress_callback(current, total, progress_message),
                             thumb=thumb_path
                         )
+                            await gf.send_file(
+                            LOG_GROUP,
+                            uploaded,
+                            caption=caption,
+                            attributes=[
+                                DocumentAttributeVideo(
+                                    duration=metadata['duration'],
+                                    w=metadata['width'],
+                                    h=metadata['height'],
+                                    supports_streaming=True
+                                )
+                            ],
+                            # force_document=False,
+                            # progress_callback=lambda current, total: progress_callback(current, total, progress_message),
+                            thumb=thumb_path
+                            )
                             # await progress_message.delete()                                  
                     else:
                         if upload_method == "Pyrogram":
@@ -483,6 +531,13 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                             # progress_callback=lambda current, total: progress_callback(current, total, progress_message),
                             thumb=thumb_path
                         )
+                            await gf.send_file(
+                            LOG_GROUP,
+                            uploaded,
+                            caption=caption,
+                            # progress_callback=lambda current, total: progress_callback(current, total, progress_message),
+                            thumb=thumb_path
+                            )
                             # await progress_message.delete()   
                 except Exception:
                     try:
