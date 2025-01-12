@@ -297,7 +297,8 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         try:
             chat = msg_link.split("t.me/")[1].split("/")[0]
             await copy_message_with_chat_id(app, userbot, sender, chat, msg_id, edit) 
-            await edit.delete()
+            if edit:
+                await edit.delete()
         except Exception as e:
             await app.edit_message_text(sender, edit_id, f'Failed to save: `{msg_link}`\n\nError: {str(e)}')
 async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, edit):
