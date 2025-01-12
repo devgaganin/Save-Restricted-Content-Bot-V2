@@ -70,8 +70,7 @@ async def set_interval(user_id, interval_minutes=5):
  
 @app.on_message(filters.regex(r'https?://(?:www\.)?t\.me/[^\s]+') & filters.private)
 async def single_link(_, message):
-
-    join = await subscribe(client, message)
+    join = await subscribe(_, message)
     if join == 1:
         return
     
