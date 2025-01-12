@@ -74,7 +74,6 @@ async def upload_media(sender, target_chat_id, file, caption, thumb_path, width,
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
             )
-            os.remove(file)
             await dm.copy(LOG_GROUP)
         elif file.endswith(('pdf', 'docx', 'txt')):  
             dm = await app.send_document(
@@ -85,7 +84,6 @@ async def upload_media(sender, target_chat_id, file, caption, thumb_path, width,
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
             )
-            os.remove(file)
             await dm.copy(LOG_GROUP)
         elif file.endswith(('jpg', 'png', 'jpeg')):  
             dm = await app.send_photo(
@@ -96,7 +94,6 @@ async def upload_media(sender, target_chat_id, file, caption, thumb_path, width,
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
             )
-            os.remove(file)
             await asyncio.sleep(2)
             await dm.copy(LOG_GROUP)
     
@@ -109,7 +106,6 @@ async def upload_media(sender, target_chat_id, file, caption, thumb_path, width,
             name=None,
             progress_bar_function=lambda done, total: progress_callback(done, total, sender)
         )
-        os.remove(file)
         if file.endswith(('mp4', 'mkv', 'avi', 'mov')):  
             await gf.send_file(
                 target_chat_id,
@@ -292,6 +288,9 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         except Exception as e:
             print(f"Errrrror {e}")
             await edit.delete()
+        finally:
+            if file:
+                os.remove(file)
             
     else:
         edit = await app.edit_message_text(sender, edit_id, "Cloning...")
