@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team SPY - Bot is Live</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Courier New', Courier, monospace;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Main content container */
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Animating text appearance */
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px #00ff00, -2px -2px #00ff00;
+            }
+            20% {
+                text-shadow: 2px -2px #ff00ff, -2px 2px #00ff00;
+            }
+            40% {
+                text-shadow: -2px 2px #00ff00, 2px -2px #ff00ff;
+            }
+            60% {
+                text-shadow: 2px 2px #ff00ff, -2px -2px #00ff00;
+            }
+            80% {
+                text-shadow: -2px -2px #ff00ff, 2px 2px #00ff00;
+            }
+            100% {
+                text-shadow: 2px 2px #00ff00, -2px -2px #00ff00;
+            }
+        }
+
+        /* Styling for the welcome text */
+        .team-spy {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(90deg, #ff6a00, #ee0979, #8e44ad, #3498db, #f4d03f);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+            animation: glitch 1.5s infinite;
+        }
+
+        .bot-status {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: #00ffab;
+            text-shadow: 0 0 10px #00ffab, 0 0 20px #00ffab;
+        }
+
+        .actions {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(90deg, #2575fc, #6a11cb);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .team-spy {
+                font-size: 2.5rem;
+            }
+
+            .bot-status {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .team-spy {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="container">
+        <div class="team-spy">Team SPY</div>
+        <div class="bot-status">⚡ Bot is Live ⚡</div>
+
+        <div class="actions">
+            <a href="https://t.me/devggn" class="btn">Join Us</a>
+            <a href="https://github.com/devggn" class="btn">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>
