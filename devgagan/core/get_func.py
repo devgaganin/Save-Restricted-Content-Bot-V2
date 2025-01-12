@@ -72,6 +72,7 @@ async def upload_media(sender, file, caption, thumb_path, width, height, duratio
     Function to upload media based on the type (video, document, photo) and the upload method (Pyrogram or Telethon).
     """
     # Check upload method
+    progress_message = None
     target_chat_id = user_chat_ids.get(sender, sender)
     upload_method = await fetch_upload_method(sender)  # Fetch the upload method (Pyrogram or Telethon)
 
@@ -180,7 +181,8 @@ async def upload_media(sender, file, caption, thumb_path, width, height, duratio
                 thumb=thumb_path
             )
         
-        await progress_message.delete()
+        if progress_message:
+            await progress_message.delete()
         gc.collect()
 async def get_msg(userbot, sender, edit_id, msg_link, i, message):
     edit = ""
@@ -207,7 +209,6 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             chatx = message.chat.id
             msg = await userbot.get_messages(chat, msg_id)
             print(msg)
-            target_chat_id = user_chat_ids.get(chatx, chatx)
             freecheck = await chk_user(message, sender)
             verified = await is_user_verified(sender)
             original_caption = msg.caption if msg.caption else ''
@@ -281,16 +282,13 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 original_file_name = original_file_name.replace(word, replace_word)
             new_file_name = original_file_name + " " + custom_rename_tag + "." + file_extension
             os.rename(file, new_file_name)
-            file = new_file_name
-            await edit.edit('Applying Watermark ...')
-          
+            file = new_file_name          
             metadata = video_metadata(file)
             width= metadata['width']
             height= metadata['height']
             duration= metadata['duration']
             thumb_path = await screenshot(file, duration, chatx)
-            file_extension = file.split('.')[-1]     
-                
+            file_extension = file.split('.')[-1] 
             await edit.edit('**__Checking file...__**')
             x = await is_file_size_exceeding(file, size_limit)
             if x:
