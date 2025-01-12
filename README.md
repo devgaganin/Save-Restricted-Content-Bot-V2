@@ -179,6 +179,16 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 
 ## Updates
 <details>
+<summary><b>Update: 12 Jan 2025</b></summary>
+  
+- Fixed blocking and stopping of bot
+- Fixed public topic or not topic group extraction (no need of formatting link) login required
+- added upload method for public group also
+- added `freez` command to remove the expired user with summary (auto removal of funtion depreciated)
+- rest explore the updates
+</details>
+
+<details>
   
 <summary><b>Update: 24 DEC 2024</b></summary>
 
