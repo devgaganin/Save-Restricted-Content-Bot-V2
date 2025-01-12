@@ -67,11 +67,12 @@ async def fetch_upload_method(user_id):
     user_data = collection.find_one({"user_id": user_id})
     return user_data.get("upload_method", "Pyrogram") if user_data else "Pyrogram"
 
-async def upload_media(sender, target_chat_id, file, caption, thumb_path, width, height, duration, edit):
+async def upload_media(sender, file, caption, thumb_path, width, height, duration, edit):
     """
     Function to upload media based on the type (video, document, photo) and the upload method (Pyrogram or Telethon).
     """
     # Check upload method
+    target_chat_id = user_chat_ids.get(sender, sender)
     upload_method = await fetch_upload_method(sender)  # Fetch the upload method (Pyrogram or Telethon)
 
     # Pyrogram upload
@@ -312,7 +313,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 final_caption = final_caption.replace(word, replace_word)
               caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
               thumb_path = await screenshot(file, duration, chatx)
-              await upload_media(sender, target_chat_id, file, caption, thumb_path, width, height, duration, edit)
+              await upload_media(sender, file, caption, thumb_path, width, height, duration, edit)
                 
         except (ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid):
             await app.edit_message_text(sender, edit_id, "Have you joined the channel?")
@@ -448,7 +449,8 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
         await app.send_message(sender, f"Make Bot admin in your Channel - {target_chat_id} and restart the process after /cancel")
 
     finally:
-        os.remove(file)
+        if file:
+            os.remove(file)
 
 # ------------------------ Button Mode Editz FOR SETTINGS ----------------------------
 
