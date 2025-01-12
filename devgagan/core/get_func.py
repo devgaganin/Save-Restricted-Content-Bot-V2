@@ -63,20 +63,13 @@ else:
     print("STRING is not available. 'app' is set to None.")
 
 async def fetch_upload_method(user_id):
-    """Fetch the user's preferred upload method."""
     user_data = collection.find_one({"user_id": user_id})
     return user_data.get("upload_method", "Pyrogram") if user_data else "Pyrogram"
 
 async def upload_media(sender, file, caption, thumb_path, width, height, duration, edit):
-    """
-    Function to upload media based on the type (video, document, photo) and the upload method (Pyrogram or Telethon).
-    """
-    # Check upload method
     progress_message = None
     target_chat_id = user_chat_ids.get(sender, sender)
     upload_method = await fetch_upload_method(sender)  # Fetch the upload method (Pyrogram or Telethon)
-
-    # Pyrogram upload
     if upload_method == "Pyrogram":
         if file.endswith(('mp4', 'mkv', 'avi', 'mov')):  # Video files
             dm = await app.send_video(
@@ -112,8 +105,7 @@ async def upload_media(sender, file, caption, thumb_path, width, height, duratio
             )
             await asyncio.sleep(2)
             await dm.copy(LOG_GROUP)
-    
-    # Telethon upload
+            
     elif upload_method == "Telethon":
         await edit.delete()
         progress_message = await gf.send_message(sender, "**__Uploading ...**__")
@@ -181,13 +173,16 @@ async def upload_media(sender, file, caption, thumb_path, width, height, duratio
                 thumb=thumb_path
             )
         
-        if progress_message:
-            await progress_message.delete()
+        await progress_message.delete()
         gc.collect()
+
+
 async def get_msg(userbot, sender, edit_id, msg_link, i, message):
     edit = ""
     chat = ""
-
+    progress_message = None
+    round_message = False
+    
     if "?single" in msg_link:
         msg_link = msg_link.split("?single")[0]
     msg_id = int(msg_link.split("/")[-1]) + int(i)
@@ -318,7 +313,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             return
         except Exception as e:
             print(f"Errrrror {e}")
-            await edit.delete()
+            # await edit.delete()
             # await app.edit_message_text(sender, edit_id, f'Failed to save: `{msg_link}`\n\nError: {str(e)}')
         finally:
             if file:
