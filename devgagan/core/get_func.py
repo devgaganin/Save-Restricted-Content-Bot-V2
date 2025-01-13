@@ -842,7 +842,7 @@ def progress_callback(done, total, user_id):
     
     return final
     
-async def handle_large_file(file, chatx, metadata, edit, caption, app, target_chat_id, file_extension, VIDEO_EXTENSIONS):
+async def handle_large_file(file, chatx, metadata, edit, caption, app, file_extension, VIDEO_EXTENSIONS):
     if pro is None:
         await edit.edit('**__ ❌ 4GB trigger not found__**')
         os.remove(file)
@@ -855,7 +855,7 @@ async def handle_large_file(file, chatx, metadata, edit, caption, app, target_ch
     width = metadata['width']
     height = metadata['height']
     thumb_path = await screenshot(file, duration, chatx)
-
+    target_chat_id = user_chat_ids.get(chatx, chatx)
     try:
         if file_extension in VIDEO_EXTENSIONS:
             # Send as video
