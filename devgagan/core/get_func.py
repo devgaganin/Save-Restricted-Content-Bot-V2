@@ -301,6 +301,12 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
               caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
               result = await app.send_audio(target_chat_id, file, caption=caption)
               await result.copy(LOG_GROUP)
+            elif msg.photo:
+              for word, replace_word in replacements.items():
+                final_caption = final_caption.replace(word, replace_word)
+              caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
+              result = await app.send_photo(target_chat_id, file, caption=caption)
+              await result.copy(LOG_GROUP)            
             else:
               for word, replace_word in replacements.items():
                 final_caption = final_caption.replace(word, replace_word)
