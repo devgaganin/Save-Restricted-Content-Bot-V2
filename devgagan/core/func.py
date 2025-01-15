@@ -98,7 +98,6 @@ async def progress_bar(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
     if round(diff % 10.00) == 0 or current == total:
-        # if round(current / total * 100, 0) % 5 == 0:
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
@@ -108,16 +107,18 @@ async def progress_bar(current, total, ud_type, message, start):
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-        progress = "{0}{1}".format(
-            ''.join(["♦" for i in range(math.floor(percentage / 10))]),
-            ''.join(["◇" for i in range(10 - math.floor(percentage / 10))]))
-            
+        # Dynamic progress bar logic
+        completed_blocks = int(percentage // 10)
+        fractional_block = int((percentage % 10) >= 5)  # Add one block for fractional progress if >= 5%
+        remaining_blocks = 10 - completed_blocks - fractional_block
+
+        progress = "✅" * completed_blocks + "🟨" * fractional_block + "🟥" * remaining_blocks
+
         tmp = progress + PROGRESS_BAR.format( 
             round(percentage, 2),
             humanbytes(current),
             humanbytes(total),
             humanbytes(speed),
-            # elapsed_time if elapsed_time != '' else "0 s",
             estimated_total_time if estimated_total_time != '' else "0 s"
         )
         try:
@@ -148,8 +149,7 @@ def TimeFormatter(milliseconds: int) -> str:
         ((str(minutes) + "m, ") if minutes else "") + \
         ((str(seconds) + "s, ") if seconds else "") + \
         ((str(milliseconds) + "ms, ") if milliseconds else "")
-    return tmp[:-2] 
-
+    return tmp[:-2]
 
 
 def convert(seconds):
@@ -256,40 +256,49 @@ last_update_time = time.time()
 # Progress callback function with 10% interval update
 async def progress_callback(current, total, progress_message):
     percent = (current / total) * 100
-    global last_update_time
-    current_time = time.time()
-    # Only update if the progress has increased by 10% or more
-    if current_time - last_update_time >= 10 or percent % 10 == 0:
-        completed_blocks = int(percent // 10)
-        remaining_blocks = 10 - completed_blocks
-        progress_bar = "♦" * completed_blocks + "◇" * remaining_blocks
-        
-        # Convert bytes to MB (1 MB = 1,000,000 bytes)
-        current_mb = current / (1024 * 1024)  # Convert current bytes to MB
-        total_mb = total / (1024 * 1024)      # Convert total bytes to MB
+    completed_blocks = int(percent // 10)
+    remaining_blocks = 10 - completed_blocks
+    fractional_progress = (percent % 10)  # To handle fractional progress
 
-        # Format message with MB and percentage
-        await progress_message.edit(
-    f"╭──────────────────╮\n"
-    f"│        **__Uploading...__**       \n"
-    f"├──────────\n"
-    f"│ {progress_bar}\n\n"
-    f"│ **__Progress:__** {percent:.2f}%\n"
-    f"│ **__Uploaded:__** {current_mb:.2f} MB / {total_mb:.2f} MB\n"
-    f"╰──────────────────╯\n\n"
-    f"**__Powered by Team SPY__**"
-        )
-        
-        last_update_time = current_time
+    # Build the dynamic progress bar
+    progress_bar = "✅" * completed_blocks
+    if fractional_progress > 0:
+        progress_bar += "🟨"
+    progress_bar += "🟥" * remaining_blocks
+    
+    # Convert bytes to MB (1 MB = 1,000,000 bytes)
+    current_mb = current / (1024 * 1024)  # Convert current bytes to MB
+    total_mb = total / (1024 * 1024)      # Convert total bytes to MB
 
+    # Format message with MB and percentage
+    await progress_message.edit(
+        f"╭──────────────────╮\n"
+        f"│        **__Uploading...__**       \n"
+        f"├──────────\n"
+        f"│ {progress_bar}\n\n"
+        f"│ **__Progress:__** {percent:.2f}%\n"
+        f"│ **__Uploaded:__** {current_mb:.2f} MB / {total_mb:.2f} MB\n"
+        f"╰──────────────────╯\n\n"
+        f"**__Powered by Team SPY__**"
+    )
 
 async def prog_bar(current, total, ud_type, message, start):
-
     now = time.time()
     diff = now - start
-    if round(diff % 10.00) == 0 or current == total:
-        # if round(current / total * 100, 0) % 5 == 0:
-        percentage = current * 100 / total
+    percentage = current * 100 / total
+
+    # Handle updating the progress bar every 1%
+    if round(diff % 1.00) == 0 or current == total:
+        completed_blocks = int(percentage // 10)
+        remaining_blocks = 10 - completed_blocks
+        fractional_progress = (percentage % 10)
+
+        # Build the dynamic progress bar
+        progress = "✅" * completed_blocks
+        if fractional_progress > 0:
+            progress += "🟨"
+        progress += "🟥" * remaining_blocks
+
         speed = current / diff
         elapsed_time = round(diff) * 1000
         time_to_completion = round((total - current) / speed) * 1000
@@ -298,21 +307,15 @@ async def prog_bar(current, total, ud_type, message, start):
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-        progress = "{0}{1}".format(
-            ''.join(["♦" for i in range(math.floor(percentage / 10))]),
-            ''.join(["◇" for i in range(10 - math.floor(percentage / 10))]))
-            
         tmp = progress + PROGRESS_BAR.format( 
             round(percentage, 2),
             humanbytes(current),
             humanbytes(total),
             humanbytes(speed),
-            # elapsed_time if elapsed_time != '' else "0 s",
             estimated_total_time if estimated_total_time != '' else "0 s"
         )
+
         try:
-            await message.edit_text(
-                text="{}\n│ {}".format(ud_type, tmp),)             
-                
+            await message.edit_text(text="{}\n│ {}".format(ud_type, tmp))
         except:
             pass
