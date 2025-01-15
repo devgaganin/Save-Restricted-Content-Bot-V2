@@ -282,7 +282,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             width= metadata['width']
             height= metadata['height']
             duration= metadata['duration']
-            thumb_path = await screenshot(file, duration, chatx)
+            thumb_path = await screenshot(file, duration, sender)
             file_extension = file.split('.')[-1] 
             await edit.edit('**__Checking file...__**')
             x = await is_file_size_exceeding(file, size_limit)
@@ -290,7 +290,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 for word, replace_word in replacements.items():
                     final_caption = final_caption.replace(word, replace_word)
                 caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
-                await handle_large_file(file, chatx, metadata, edit, caption, app, target_chat_id, file_extension, VIDEO_EXTENSIONS)
+                await handle_large_file(file, sender, edit, caption)
                 return
             if msg.voice:
                 result = await app.send_voice(target_chat_id, file)
@@ -311,7 +311,6 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
               for word, replace_word in replacements.items():
                 final_caption = final_caption.replace(word, replace_word)
               caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
-              thumb_path = await screenshot(file, duration, chatx)
               await upload_media(sender, file, caption, thumb_path, width, height, duration, edit)
                 
         except (ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid):
@@ -411,21 +410,18 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
                     original_file_name = original_file_name.replace(word, replace_word)
                 new_file_name = original_file_name + " " + custom_rename_tag + "." + file_extension
                 os.rename(file, new_file_name)
-                file = new_file_name
-
-                metadata = video_metadata(file)
-                width= metadata['width']
-                height= metadata['height']
-                duration= metadata['duration']
+                file = new_file_name    
                 size_limit = 2 * 1024 * 1024 * 1024
-
-                thumb_path = await screenshot(file, metadata['duration'], sender)
-
                 if msg.video or msg.document:
                     x = await is_file_size_exceeding(file, size_limit)
                     if x:
-                        await handle_large_file(file, metadata, edit, caption, app, target_chat_id, file_extension, VIDEO_EXTENSIONS)
+                        await handle_large_file(file, sender, edit, caption)
                         return
+                    metadata = video_metadata(file)
+                    width= metadata['width']
+                    height= metadata['height']
+                    duration= metadata['duration']
+                    thumb_path = await screenshot(file, duration, sender)
                     await upload_media(sender, target_chat_id, file, caption, thumb_path, width, height, duration, edit)
                 elif msg.photo:
                     result = await app.send_photo(target_chat_id, file, caption=caption)
@@ -848,7 +844,7 @@ def progress_callback(done, total, user_id):
     
     return final
     
-async def handle_large_file(file, chatx, metadata, edit, caption, app, file_extension, VIDEO_EXTENSIONS):
+async def handle_large_file(file, sender, edit, caption):
     if pro is None:
         await edit.edit('**__ ❌ 4GB trigger not found__**')
         os.remove(file)
@@ -856,12 +852,13 @@ async def handle_large_file(file, chatx, metadata, edit, caption, app, file_exte
         return
 
     await edit.edit('**__ ✅ 4GB trigger connected...__**\n\n')
-
+    file_extension = file.split('.')[-1]
+    metadata= video_metadata(file)
     duration = metadata['duration']
     width = metadata['width']
     height = metadata['height']
-    thumb_path = await screenshot(file, duration, chatx)
-    target_chat_id = user_chat_ids.get(chatx, chatx)
+    thumb_path = await screenshot(file, duration, sender)
+    target_chat_id = user_chat_ids.get(sender, sender)
     try:
         if file_extension in VIDEO_EXTENSIONS:
             # Send as video
