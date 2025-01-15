@@ -985,10 +985,15 @@ def progress_callback(done, total, user_id):
     # Calculate the percentage of progress
     percent = (done / total) * 100
     
-    # Format the progress bar
+    # Format the dynamic progress bar
     completed_blocks = int(percent // 10)
-    remaining_blocks = 10 - completed_blocks
-    progress_bar = "♦" * completed_blocks + "◇" * remaining_blocks
+    fractional_block = int((percent % 10) // 1)  # Determines if a fractional block is needed
+    remaining_blocks = 10 - completed_blocks - (1 if fractional_block > 0 else 0)
+    
+    progress_bar = "✅" * completed_blocks
+    if fractional_block > 0:
+        progress_bar += "🟨"
+    progress_bar += "🟥" * remaining_blocks
     
     # Convert done and total to MB for easier reading
     done_mb = done / (1024 * 1024)  # Convert bytes to MB
@@ -1032,7 +1037,6 @@ def progress_callback(done, total, user_id):
     user_data['previous_time'] = time.time()
     
     return final
-
 
 async def add_pdf_watermark(input_pdf, output_pdf_path, watermark_text):
     """Asynchronous wrapper for the synchronous PDF watermarking function."""
