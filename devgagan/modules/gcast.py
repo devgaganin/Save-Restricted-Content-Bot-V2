@@ -20,7 +20,11 @@ from devgagan.core.mongo.users_db import get_users
 
 async def send_msg(user_id, message):
     try:
-        await message.copy(chat_id=user_id)
+        x = await message.copy(chat_id=user_id)
+        try:
+            await x.pin()
+        except Exception:
+            await x.pin(both_sides=True)
     except FloodWait as e:
         await asyncio.sleep(e.x)
         return send_msg(user_id, message)
@@ -65,7 +69,7 @@ async def broadcast(_, message):
 
 
 
-@app.on_message(filters.command("announce") & filters.user(OWNER_ID))
+@app.on_message(filters.command("acast") & filters.user(OWNER_ID))
 async def announced(_, message):
     if message.reply_to_message:
       to_send=message.reply_to_message.id
