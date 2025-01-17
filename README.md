@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b>V3 branch</b> | Summer Release V2
+  <b>master branch</b> | Winter Release V3
 </h1>
 
 [Telegram](https://t.me/save_restricted_content_bots) | [See Recent Updates](https://github.com/devgaganin/Save-Restricted-Content-Bot-V2/tree/v3#updates)
