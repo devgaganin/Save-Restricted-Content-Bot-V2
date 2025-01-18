@@ -331,6 +331,6 @@ Visit the [Terms of Use](https://github.com/devgaganin/Save-Restricted-Content-B
 **Note**: Changing the terms and commands doesn't magically make you a developer. Real development involves understanding the code, writing new functionalities, and debugging issues, not just renaming things. If only it were that easy!
 
 ### Special thanks to:
-- [Ankit Singh](https://github.com/alreadydea) for base development of this repository
+- [King of Patal](https://github.com/alreadydea) for base development of this repository.
 - [Mautrix Bridge](https://github.com/mautrix/telegram) for fast uploader connectivity bridge.
 
