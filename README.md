@@ -11,6 +11,24 @@ see our live bot kn telegram to check the features [Advance Content Saver Bot](h
 - This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. User are not forced to login in bot for public channels but for public groups and private channel they have to do login.
 - for detailed features scroll down to features section
 
+---
+
+## 🔧 Features
+- Extract content from both public and private channels/groups.
+- Rename and forward content to other channels or users.
+- Custom captions and thumbnails.
+- Auto-remove default video thumbnails.
+- Delete or replace words in filenames and captions.
+- Auto-pin messages if enabled.
+- download yt/insta/Twitter/fb ect normal ytdlp supported sites that supports best format
+- Login via phone number.
+- **Supports 4GB file uploads**: The bot can handle large file uploads, up to 4GB in size.
+- **Enhanced Timer**: Distinct timers for free and paid users to limit usage and improve service.
+- **Improved Looping**: Optimized looping for processing multiple files or links, reducing delays and enhancing performance.
+- **Premium Access**: Premium users enjoy faster processing speeds and priority queue management.
+- fast uploader via `SpyLib` using Telethon modules and `mautrix bridge repo`
+
+---
 ### ⚠️ Must Do: Secure Your Sensitive Variables
 
 **Do not expose sensitive variables (e.g., `API_ID`, `API_HASH`, `BOT_TOKEN`) on GitHub. Use environment variables to keep them secure.**
@@ -71,22 +89,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 - **`help`**: ❓ Help if you're new.
 - **`cancel`**: 🚫 Cancel batch process.
 
-## 🔧 Features
-- Extract content from both public and private channels/groups.
-- Rename and forward content to other channels or users.
-- Custom captions and thumbnails.
-- Auto-remove default video thumbnails.
-- Delete or replace words in filenames and captions.
-- Auto-pin messages if enabled.
-- download yt/insta/Twitter/fb ect normal ytdlp supported sites that supports best format
-- Login via phone number.
-- **Supports 4GB file uploads**: The bot can handle large file uploads, up to 4GB in size.
-- **Enhanced Timer**: Distinct timers for free and paid users to limit usage and improve service.
-- **Improved Looping**: Optimized looping for processing multiple files or links, reducing delays and enhancing performance.
-- **Premium Access**: Premium users enjoy faster processing speeds and priority queue management.
-- fast uploader via `SpyLib` using Telethon modules and `mautrix bridge repo`
 
----
 ## ⚙️ Required Variables
 
 <details>
