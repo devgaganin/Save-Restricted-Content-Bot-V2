@@ -153,7 +153,7 @@ async def single_link(_, message):
             if 't.me/+' in link:
                 q = await userbot_join(userbot, link)
                 await msg.edit_text(q)
-            elif 't.me/c/' in link:
+            elif 't.me/c/' in link or 't.me/b/' in link:
                 await process_and_upload_link(userbot, user_id, msg.id, link, 0, message)
                 await set_interval(user_id, interval_minutes=5)
             else:
