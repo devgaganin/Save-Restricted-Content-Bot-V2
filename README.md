@@ -7,7 +7,8 @@
 ### Star the repo it motivate us to update new features
 
 ## 📚 About This Branch
-This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. Users must log in to use the bot. For no-login usage, consider the `v4` branch.
+- This branch is based on `Pyrogram V2` offering enhanced stability and a forced login feature. User are not forced to login in bot for public channels but for public groups and private channel they have to do login with premium membership addon and all things enjoy
+- Can download videos from YouTube Twitter Instagram Facebook and many more sites
 
 ### ⚠️ Must Do: Secure Your Sensitive Variables
 
