@@ -292,6 +292,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
                 await handle_large_file(file, sender, edit, caption)
                 return
+            target_chat_id = user_chat_ids.get(sender, sender)
             if msg.voice:
                 result = await app.send_voice(target_chat_id, file)
                 await result.copy(LOG_GROUP)
