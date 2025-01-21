@@ -252,7 +252,10 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 msg,
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────",edit,time.time()))
-          
+            
+            def sanitize_filename(filename):
+                return filename.replace("/", "_").replace("\\", "_").replace(":", "_").strip()
+    
             last_dot_index = str(file).rfind('.')
             if last_dot_index != -1 and last_dot_index != 0:
                 ggn_ext = str(file)[last_dot_index + 1:]
@@ -269,7 +272,8 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             else:
                 original_file_name = str(file)
                 file_extension = 'mp4'
-              
+                
+            original_file_name = sanitize_filename(original_file_name) 
             for word in delete_words:
                 original_file_name = original_file_name.replace(word, "")
             video_file_name = original_file_name + " " + custom_rename_tag
