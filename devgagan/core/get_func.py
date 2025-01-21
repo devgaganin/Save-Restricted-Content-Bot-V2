@@ -246,10 +246,21 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
               if file_size and file_size > size_limit and (freecheck == 1 and not verified):
                 await edit.edit("**__❌ File size is greater than 2 GB, purchase premium to proceed or use /token to get 3 hour access for free__")
                 return
-
+                  
+            file_name = None
+            if msg.document:
+                file_name = msg.document.file_name
+            elif msg.video:
+                file_name = msg.video.file_name
+            elif msg.photo:
+                file_name = "photo.jpg"  # Default name for photos
+            if file_name:
+                file_name = await sanitize(file_name)
+    
             edit = await app.edit_message_text(sender, edit_id, "Trying to Download...")
             file = await userbot.download_media(
                 msg,
+                file_name=file_name,
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────",edit,time.time()))
             
@@ -920,3 +931,14 @@ async def is_file_size_exceeding(file_path, size_limit):
     except Exception as e:
         print(f"Error while checking file size: {e}")
         return False
+
+
+async def sanitize(file_name: str) -> str:
+    """
+    Asynchronously sanitizes a filename by removing or replacing invalid characters.
+    """
+    # Replace invalid characters (e.g., '/', '\', ':', '*', '?', '"', '<', '>', '|') with an underscore
+    sanitized_name = re.sub(r'[\\/:"*?<>|]', '_', file_name)
+    # Strip leading/trailing whitespaces
+    return sanitized_name.strip()
+    
