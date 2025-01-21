@@ -264,9 +264,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────",edit,time.time()))
             
-            def sanitize_filename(filename):
-                return filename.replace("/", "_").replace("\\", "_").replace(":", "_").strip()
-    
+            
             last_dot_index = str(file).rfind('.')
             if last_dot_index != -1 and last_dot_index != 0:
                 ggn_ext = str(file)[last_dot_index + 1:]
@@ -284,7 +282,6 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 original_file_name = str(file)
                 file_extension = 'mp4'
                 
-            original_file_name = sanitize_filename(original_file_name) 
             for word in delete_words:
                 original_file_name = original_file_name.replace(word, "")
             video_file_name = original_file_name + " " + custom_rename_tag
@@ -399,8 +396,19 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
             caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else final_caption
             custom_rename_tag = get_user_rename_preference(sender)
             if msg.media:
+                file_name = None
+                if msg.document:
+                    file_name = msg.document.file_name
+                elif msg.video:
+                    file_name = msg.video.file_name
+                elif msg.photo:
+                    file_name = "photo.jpg"  # Default name for photos
+                if file_name:
+                    file_name = await sanitize(file_name)
+    
                 file = await userbot.download_media(
                     msg,
+                    file_name=file_name,
                     progress=progress_bar,
                     progress_args=("╭─────────────────────╮\n│     **__Topic Group Downloader...__**\n├─────────────────────", edit, time.time()),
                 )
