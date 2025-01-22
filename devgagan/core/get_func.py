@@ -978,6 +978,7 @@ async def rename_file(file, sender, edit):
     delete_words = load_delete_words(sender)
     custom_rename_tag = get_user_rename_preference(sender)
     replacements = load_replacement_words(sender)
+    await edit.edit("Finalizing....")
     
     # Rename the file first
     last_dot_index = str(file).rfind('.')
