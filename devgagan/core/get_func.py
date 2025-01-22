@@ -266,10 +266,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
               if file_size and file_size > size_limit and (freecheck == 1 and not verified):
                 await edit.edit("**__❌ File size is greater than 2 GB, purchase premium to proceed or use /token to get 3 hour access for free__")
                 return
-            if msg.document:
-                x = await userbot.send_document("me", msg.document.file_id)
-                return
-                  
+            
             file_name = None
             if msg.document:
                 file_name = msg.document.file_name
