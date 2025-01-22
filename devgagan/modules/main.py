@@ -26,9 +26,10 @@ from devgagan.modules.shrink import is_user_verified
 from pyrogram.errors import FloodWait
 from datetime import datetime, timedelta
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
+import subprocess
 async def generate_random_name(length=8):
     return ''.join(random.choices(string.ascii_lowercase, k=length))
+
 
 
 users_loop = {}
@@ -38,7 +39,7 @@ batch_mode = {}
 async def process_and_upload_link(userbot, user_id, msg_id, link, retry_count, message):
     try:
         await get_msg(userbot, user_id, msg_id, link, retry_count, message)
-        await asyncio.sleep(3.5)
+        await asyncio.sleep(15)
     finally:
         pass
 
@@ -55,20 +56,23 @@ async def check_interval(user_id, freecheck):
     if user_id in interval_set:
         cooldown_end = interval_set[user_id]
         if now < cooldown_end:
-            remaining_time = (cooldown_end - now).seconds // 60
-            return False, f"Please wait {remaining_time} minute(s) before sending another link. Alternatively, purchase premium for instant access.\n\n> Hey 👋 You can use /token to use the bot free for 3 hours without any time limit."
+            remaining_time = (cooldown_end - now).seconds
+            return False, f"Please wait {remaining_time} seconds(s) before sending another link. Alternatively, purchase premium for instant access.\n\n> Hey 👋 You can use /token to use the bot free for 3 hours without any time limit."
         else:
             del interval_set[user_id]  # Cooldown expired, remove user from interval set
 
     return True, None
 
-async def set_interval(user_id, interval_minutes=5):
+async def set_interval(user_id, interval_minutes=45):
     now = datetime.now()
     # Set the cooldown interval for the user
-    interval_set[user_id] = now + timedelta(minutes=interval_minutes)
+    interval_set[user_id] = now + timedelta(seconds=interval_minutes)
     
 
-@app.on_message(filters.regex(r'https?://(?:www\.)?t\.me/[^\s]+') & filters.private)
+@app.on_message(
+    filters.regex(r'https?://(?:www\.)?t\.me/[^\s]+|tg://openmessage\?user_id=\w+&message_id=\d+') 
+    & filters.private
+)
 async def single_link(_, message):
     join = await subscribe(_, message)
     if join == 1:
@@ -98,7 +102,12 @@ async def single_link(_, message):
         
     # Add the user to the loop
     users_loop[user_id] = True
-    link = get_link(message.text) 
+    
+    if "tg://openmessage" in message.text:
+        link = message.text
+    else:
+        link = get_link(message.text) 
+    
     userbot = None
     try:
         join = await subscribe(_, message)
@@ -109,7 +118,7 @@ async def single_link(_, message):
         
         msg = await message.reply("Processing...")
         
-        if 't.me/' in link and 't.me/+' not in link and 't.me/c/' not in link and 't.me/b/' not in link:
+        if 't.me/' in link and 't.me/+' not in link and 't.me/c/' not in link and 't.me/b/' not in link and 'tg://openmessage' not in link:
             data = await db.get_data(user_id)
             if data and data.get("session"):
                 session = data.get("session")
@@ -129,7 +138,7 @@ async def single_link(_, message):
                 userbot = None
                 
             await process_and_upload_link(userbot, user_id, msg.id, link, 0, message)
-            await set_interval(user_id, interval_minutes=5)
+            await set_interval(user_id, interval_minutes=45)
             users_loop[user_id] = False
             return
             
@@ -153,9 +162,9 @@ async def single_link(_, message):
             if 't.me/+' in link:
                 q = await userbot_join(userbot, link)
                 await msg.edit_text(q)
-            elif 't.me/c/' in link or 't.me/b/' in link:
+            elif 't.me/c/' in link or 't.me/b/' in link or '/s/' in link or 'tg://openmessage' in link:
                 await process_and_upload_link(userbot, user_id, msg.id, link, 0, message)
-                await set_interval(user_id, interval_minutes=5)
+                await set_interval(user_id, interval_minutes=45)
             else:
                 await msg.edit_text("Invalid link format.")
         except Exception as e:
@@ -167,8 +176,6 @@ async def single_link(_, message):
     except Exception as e:
         await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
     finally:
-        if userbot and userbot.is_connected:  # Ensure userbot was initialized and started
-            await userbot.stop()
         users_loop[user_id] = False  # Remove user from the loop after processing
 
 # New Update
@@ -197,7 +204,7 @@ async def batch_link(_, message):
     # Determine user's limits based on their subscription
     toker = await is_user_verified(user_id)
     if toker:
-        max_batch_size = (FREEMIUM_LIMIT + 1)
+        max_batch_size = (FREEMIUM_LIMIT + 3)
         freecheck = 0  # Pass
     else:
         freecheck = await chk_user(message, user_id)
@@ -209,7 +216,7 @@ async def batch_link(_, message):
     # Loop for start link input
     attempts = 0
     while attempts < 3:
-        start = await app.ask(message.chat.id, text="Please send the start link.")
+        start = await app.ask(message.chat.id, text="Please send the start link.\n\n> Maximum tries 3")
         start_id = start.text.strip()
         s = start_id.split("/")[-1]  # Extract the last part of the link
 
@@ -226,11 +233,11 @@ async def batch_link(_, message):
     # Loop for the number of messages input
     attempts = 0
     while attempts < 3:
-        num_messages = await app.ask(message.chat.id, text="How many messages do you want to process?")
+        num_messages = await app.ask(message.chat.id, text="How many messages do you want to process?\n\n> Maximum limit is 10")
         try:
             cl = int(num_messages.text.strip())  # Try to convert input to an integer
             if cl <= 0 or cl > max_batch_size:
-                raise ValueError(f"Number of messages must be between 1 and {max_batch_size}.")
+                raise ValueError(f"Number of messages must be between 1 and {max_batch_size}. Please write under limit or purchase the premium from @kingofpatal")
             break  # Exit loop if conversion is successful
         except ValueError as e:
             attempts += 1
@@ -274,7 +281,7 @@ async def batch_link(_, message):
                     link = get_link(url)
                     
                     # Directly process links like t.me/ (no userbot needed)
-                    if 't.me/' in link and 't.me/b/' not in link and 't.me/c' not in link:
+                    if 't.me/' in link and 't.me/b/' not in link and 't.me/c' not in link or 'tg://openmessage' not in link:
                         userbot = None
                         data = await db.get_data(user_id)
                         if data and data.get("session"):
@@ -304,7 +311,7 @@ async def batch_link(_, message):
                     continue
                     
         if not any(prefix in start_id for prefix in ['t.me/c/', 't.me/b/']):
-            await set_interval(user_id, interval_minutes=20)
+            await set_interval(user_id, interval_minutes=300)
             await app.send_message(message.chat.id, "Batch completed successfully! 🎉")
             await pin_msg.edit_text(
                         f"Batch process completed for {cl} messages enjoy 🌝\n\n**__Powered by Team SPY__**",
@@ -340,7 +347,7 @@ async def batch_link(_, message):
                         url = f"{result}/{i}"
                         link = get_link(url)
                         # Process links requiring userbot
-                        if 't.me/b/' in link or 't.me/c/' in link:
+                        if 't.me/b/' in link or 't.me/c/' in link or 'tg://openmessage' in link:
                             msg = await app.send_message(message.chat.id, f"Processing...")
                             await process_and_upload_link(userbot, user_id, msg.id, link, 0, message)
                             await pin_msg.edit_text(
@@ -350,12 +357,12 @@ async def batch_link(_, message):
                     except Exception as e:
                         print(f"Error processing link {url}: {e}")
                         continue
-        finally:
-            if userbot.is_connected:
-                await userbot.stop()
-
+        except Exception as e:
+            print(f"{e}")
+            pass
+            
         await app.send_message(message.chat.id, "Batch completed successfully! 🎉")
-        await set_interval(user_id, interval_minutes=20)
+        await set_interval(user_id, interval_minutes=300)
         await pin_msg.edit_text(
                         f"Batch completed for {cl} messages ⚡\n\n**__Powered by Team SPY__**",
                         reply_markup=keyboard
@@ -392,3 +399,4 @@ async def stop_batch(_, message):
             message.chat.id, 
             "No active batch processing is running to cancel."
         )
+         
