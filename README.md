@@ -183,8 +183,10 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 ---
 
 ## Updates
+
 <details>
 <summary><b>Update: 22 Jan 2025</b></summary>
+  
 - Added public user ID story downloader support
 - Renaming made asynchronous
 - added support for `tg://openmessage` type link
