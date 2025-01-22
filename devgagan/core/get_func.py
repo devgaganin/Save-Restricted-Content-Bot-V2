@@ -230,7 +230,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             custom_caption = get_user_caption_preference(sender)
             final_caption = f"{original_caption}" if custom_caption else f"{original_caption}"
             delete_words = load_delete_words(chatx)
-            custom_rename_tag = get_user_rename_preference(chatx)
+            # custom_rename_tag = get_user_rename_preference(chatx)
             replacements = load_replacement_words(sender)
           
             if msg.service is not None:
