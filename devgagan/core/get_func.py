@@ -66,9 +66,15 @@ async def fetch_upload_method(user_id):
     user_data = collection.find_one({"user_id": user_id})
     return user_data.get("upload_method", "Pyrogram") if user_data else "Pyrogram"
 
-async def upload_media(sender, file, caption, thumb_path, width, height, duration, edit):
+async def upload_media(sender, target_chat_id, file, caption, edit):
     progress_message = None
-    target_chat_id = user_chat_ids.get(sender, sender)
+    # target_chat_id = user_chat_ids.get(sender, sender)
+    metadata = video_metadata(file)
+    width= metadata['width']
+    height= metadata['height']
+    duration= metadata['duration']
+    thumb_path = await screenshot(file, duration, sender)
+    
     upload_method = await fetch_upload_method(sender)  # Fetch the upload method (Pyrogram or Telethon)
     if upload_method == "Pyrogram":
         if file.endswith(('mp4', 'mkv', 'avi', 'mov')):  # Video files
@@ -185,15 +191,30 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
     
     if "?single" in msg_link:
         msg_link = msg_link.split("?single")[0]
-    msg_id = int(msg_link.split("/")[-1]) + int(i)
-
+        
     saved_channel_ids = load_saved_channel_ids()
-    if 't.me/c/' in msg_link or 't.me/b/' in msg_link:
-        parts = msg_link.split("/")
-        if 't.me/b/' not in msg_link:
-            chat = int('-100' + str(parts[parts.index('c') + 1])) # topic group/subgroup support enabled
-        else:
-            chat = msg_link.split("/")[-2]
+    if 't.me/c/' in msg_link or 't.me/b/' in msg_link or 'tg://openmessage' in msg_link:
+        if 't.me/c/' in msg_link or 't.me/b/' in msg_link:
+            parts = msg_link.split("/")
+            if 't.me/b/' not in msg_link:
+                chat = int('-100' + str(parts[parts.index('c') + 1]))
+                msg_id = int(msg_link.split("/")[-1]) + int(i)# topic group/subgroup support enabled
+            else:
+                chat = msg_link.split("/")[-2]
+            
+        elif 'tg://openmessage' in msg_link:
+            match = re.search(r"tg://openmessage\?user_id=(\w+)&message_id=(\d+)", msg_link)
+            if match:
+                chat = match.group(1)
+                msg_id = int(match.group(2))
+            else:
+                await app.edit_message_text(
+                    message.chat.id, 
+                    edit_id, 
+                    "Invalid tg://openmessage link format."
+                )
+                return
+                
         if chat in saved_channel_ids:
             await app.edit_message_text(message.chat.id, edit_id, "Sorry! dude 😎 This channel is protected 🔐 by **__Team SPY__**")
             return
@@ -263,47 +284,18 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 file_name=file_name,
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────",edit,time.time()))
-            
-            
-            last_dot_index = str(file).rfind('.')
-            if last_dot_index != -1 and last_dot_index != 0:
-                ggn_ext = str(file)[last_dot_index + 1:]
-                if ggn_ext.isalpha() and len(ggn_ext) <= 9:
-                    if ggn_ext.lower() in VIDEO_EXTENSIONS:
-                        original_file_name = str(file)[:last_dot_index]
-                        file_extension = 'mp4'                 
-                    else:
-                        original_file_name = str(file)[:last_dot_index]
-                        file_extension = ggn_ext
-                else:
-                    original_file_name = str(file)
-                    file_extension = 'mp4'
-            else:
-                original_file_name = str(file)
-                file_extension = 'mp4'
-                
-            for word in delete_words:
-                original_file_name = original_file_name.replace(word, "")
-            video_file_name = original_file_name + " " + custom_rename_tag
-            for word, replace_word in replacements.items():
-                original_file_name = original_file_name.replace(word, replace_word)
-            new_file_name = original_file_name + " " + custom_rename_tag + "." + file_extension
-            os.rename(file, new_file_name)
-            file = new_file_name          
-            metadata = video_metadata(file)
-            width= metadata['width']
-            height= metadata['height']
-            duration= metadata['duration']
-            thumb_path = await screenshot(file, duration, sender)
-            file_extension = file.split('.')[-1] 
+                      
+            file = await rename_file(file, sender, edit)
             await edit.edit('**__Checking file...__**')
-            x = await is_file_size_exceeding(file, size_limit)
-            if x:
-                for word, replace_word in replacements.items():
-                    final_caption = final_caption.replace(word, replace_word)
-                caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
-                await handle_large_file(file, sender, edit, caption)
-                return
+            file_size = None
+            if msg.document or msg.photo or msg.video:
+                file_size = msg.document.file_size if msg.document else (msg.photo.file_size if msg.photo else msg.video.file_size)
+                if file_size and file_size > size_limit:
+                    for word, replace_word in replacements.items():
+                        final_caption = final_caption.replace(word, replace_word)
+                    caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
+                    await handle_large_file(file, sender, edit, caption)
+                    return
             target_chat_id = user_chat_ids.get(sender, sender)
             if msg.voice:
                 result = await app.send_voice(target_chat_id, file)
@@ -324,7 +316,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
               for word, replace_word in replacements.items():
                 final_caption = final_caption.replace(word, replace_word)
               caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else f"{final_caption}"
-              await upload_media(sender, file, caption, thumb_path, width, height, duration, edit)
+              await upload_media(sender, target_chat_id, file, caption, edit)
                 
         except (ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid):
             await app.edit_message_text(sender, edit_id, "Have you joined the channel?")
@@ -338,15 +330,73 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 os.remove(file)
             if edit:
                 await edit.delete()
+
     else:
         edit = await app.edit_message_text(sender, edit_id, "Cloning...")
         try:
-            chat = msg_link.split("t.me/")[1].split("/")[0]
-            await copy_message_with_chat_id(app, userbot, sender, chat, msg_id, edit) 
+            # Story Wrapper by devgagan
+            if '/s/' in msg_link:
+                if userbot is None:
+                    await edit.edit("You must log in to the bot to save stories of public users or channels.")
+                    return
+                    
+                await edit.edit("Story link detected...")
+                parts = msg_link.split("/")
+                chat = parts[3]
+                if chat.isdigit():
+                    chat = f"-100{chat}"
+                msg_id = int(parts[-1])
+                await download_user_stories(userbot, chat, msg_id, edit, sender)
+            else:
+                chat = msg_link.split("t.me/")[1].split("/")[0]
+                msg_id = int(msg_link.split("/")[-1])
+                await copy_message_with_chat_id(app, userbot, sender, chat, msg_id, edit) 
             if edit:
                 await edit.delete()
         except Exception as e:
             await app.edit_message_text(sender, edit_id, f'Failed to save: `{msg_link}`\n\nError: {str(e)}')
+
+# Story dwnloader functions for Public IDs and channel
+async def download_user_stories(userbot, chat_id, msg_id, edit, sender):
+    """Download a single user story by chat ID and message ID."""
+    try:
+        # Fetch the story using the provided chat ID and message ID
+        story = await userbot.get_stories(chat_id, msg_id)
+        if not story:
+            await edit.edit("No story available for this user.")
+            return
+
+        # Download the story
+        
+        if not story.media:
+            await edit.edit("The story doesn't contain any media.")
+            return
+            
+        await edit.edit("Downloading Story...")
+        file_path = await userbot.download_media(story)
+        print(f"Story downloaded: {file_path}")
+        
+        # Send the downloaded story based on its type
+        if story.media:
+            await edit.edit("Uploading Story...")
+            if story.media == MessageMediaType.VIDEO:
+                await app.send_video(sender, file_path)
+            elif story.media == MessageMediaType.DOCUMENT:
+                await app.send_document(sender, file_path)
+            elif story.media == MessageMediaType.PHOTO:
+                await app.send_photo(sender, file_path)
+        
+        # Remove the downloaded file after uploading
+        if file_path and os.path.exists(file_path):
+            os.remove(file_path)
+        
+        await edit.edit("Story processed successfully.")
+    
+    except RPCError as e:
+        print(f"Failed to fetch story: {e}")
+        await edit.edit(f"Error: {e}")
+        
+# Public Channels and Public topic enabled/disabled Group Content Downloadimg Function 
 
 async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, edit):
     target_chat_id = user_chat_ids.get(sender, sender)
@@ -394,7 +444,7 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
             for word, replace_word in replacements.items():
                 final_caption = final_caption.replace(word, replace_word)
             caption = f"{final_caption}\n\n__**{custom_caption}**__" if custom_caption else final_caption
-            custom_rename_tag = get_user_rename_preference(sender)
+            # custom_rename_tag = get_user_rename_preference(sender)
             if msg.media:
                 file_name = None
                 if msg.document:
@@ -412,41 +462,14 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
                     progress=progress_bar,
                     progress_args=("╭─────────────────────╮\n│     **__Topic Group Downloader...__**\n├─────────────────────", edit, time.time()),
                 )
-                last_dot_index = str(file).rfind('.')
-                if last_dot_index != -1 and last_dot_index != 0:
-                    ggn_ext = str(file)[last_dot_index + 1:]
-                    if ggn_ext.isalpha() and len(ggn_ext) <= 9:
-                        if ggn_ext.lower() in VIDEO_EXTENSIONS:
-                            original_file_name = str(file)[:last_dot_index]
-                            file_extension = 'mp4'                 
-                        else:
-                            original_file_name = str(file)[:last_dot_index]
-                            file_extension = ggn_ext
-                    else:
-                        original_file_name = str(file)
-                        file_extension = 'mp4'
-                else:
-                    original_file_name = str(file)
-                    file_extension = 'mp4'
-                for word in delete_words:
-                    original_file_name = original_file_name.replace(word, "")
-                for word, replace_word in replacements.items():
-                    original_file_name = original_file_name.replace(word, replace_word)
-                new_file_name = original_file_name + " " + custom_rename_tag + "." + file_extension
-                os.rename(file, new_file_name)
-                file = new_file_name    
+                file = await rename_file(file, sender, edit)
                 size_limit = 2 * 1024 * 1024 * 1024
                 if msg.video or msg.document:
                     x = await is_file_size_exceeding(file, size_limit)
                     if x:
                         await handle_large_file(file, sender, edit, caption)
                         return
-                    metadata = video_metadata(file)
-                    width= metadata['width']
-                    height= metadata['height']
-                    duration= metadata['duration']
-                    thumb_path = await screenshot(file, duration, sender)
-                    await upload_media(sender, target_chat_id, file, caption, thumb_path, width, height, duration, edit)
+                    await upload_media(sender, target_chat_id, file, caption, edit)
                 elif msg.photo:
                     result = await app.send_photo(target_chat_id, file, caption=caption)
                 elif msg.audio:
@@ -458,7 +481,6 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
                 else:
                     await edit.edit("Unsupported media type.")
             else:
-                
                 if msg.text:
                     result = await app.send_message(target_chat_id, msg.text.markdown)
 
@@ -949,4 +971,42 @@ async def sanitize(file_name: str) -> str:
     sanitized_name = re.sub(r'[\\/:"*?<>|]', '_', file_name)
     # Strip leading/trailing whitespaces
     return sanitized_name.strip()
+
+# --- Asynchronous Renamer
+
+async def rename_file(file, sender, edit):
+    # Get user-specific settings
+    delete_words = load_delete_words(sender)
+    custom_rename_tag = get_user_rename_preference(sender)
+    replacements = load_replacement_words(sender)
     
+    # Rename the file first
+    last_dot_index = str(file).rfind('.')
+    if last_dot_index != -1 and last_dot_index != 0:
+        ggn_ext = str(file)[last_dot_index + 1:]
+        if ggn_ext.isalpha() and len(ggn_ext) <= 9:
+            if ggn_ext.lower() in VIDEO_EXTENSIONS:
+                original_file_name = str(file)[:last_dot_index]
+                file_extension = 'mp4'
+            else:
+                original_file_name = str(file)[:last_dot_index]
+                file_extension = ggn_ext
+        else:
+            original_file_name = str(file)[:last_dot_index]
+            file_extension = 'mp4'
+    else:
+        original_file_name = str(file)
+        file_extension = 'mp4'
+
+    # original_file_name = sanitize_filename(original_file_name)
+    for word in delete_words:
+        original_file_name = original_file_name.replace(word, "")
+
+    for word, replace_word in replacements.items():
+        original_file_name = original_file_name.replace(word, replace_word)
+
+    new_file_name = f"{original_file_name} {custom_rename_tag}.{file_extension}"
+    
+    # Rename the file asynchronously
+    await asyncio.to_thread(os.rename, file, new_file_name)
+    return new_file_name
