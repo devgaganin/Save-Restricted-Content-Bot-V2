@@ -105,7 +105,6 @@ async def upload_media(sender, target_chat_id, file, caption, edit):
                 chat_id=target_chat_id,
                 photo=file,
                 caption=caption,
-                thumb=thumb_path,
                 progress=progress_bar,
                 progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
             )
