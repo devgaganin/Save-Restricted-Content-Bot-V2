@@ -185,6 +185,15 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 ## Updates
 <details>
 <summary><b>Update: 12 Jan 2025</b></summary>
+- Added public user ID story downloader support
+- Renaming made asynchronous
+- added support for `tg://openmessage` type link
+- & some more advancements 
+  
+</details>
+
+<details>
+<summary><b>Update: 12 Jan 2025</b></summary>
   
 - Fixed blocking and stopping of bot
 - Fixed public topic or not topic group extraction (no need of formatting link) login required
