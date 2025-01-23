@@ -37,7 +37,7 @@ def human_readable_size(size, decimal_places=2):
         size /= 1024.0
     return f"{size:.{decimal_places}f} {unit}"
 
-async def fast_download(client, msg, reply = None, download_folder = None, progress_bar_function = progress_bar_str):
+async def fast_download(client, msg, reply = None, download_folder = None, progress_bar_function = progress_bar_str, name = None):
     timer = Timer()
 
     async def progress_bar(downloaded_bytes, total_bytes):
@@ -46,7 +46,7 @@ async def fast_download(client, msg, reply = None, download_folder = None, progr
             await reply.edit(f"Downloading...\n{data}")
 
     file = msg.document
-    filename = msg.file.name
+    filename = name if name else msg.file.name
     dir = "downloads/"
 
     try:
