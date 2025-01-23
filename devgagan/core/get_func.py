@@ -278,12 +278,18 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 file_name = await sanitize(file_name)
     
             edit = await app.edit_message_text(sender, edit_id, "Trying to Download...")
-            file = await userbot.download_media(
-                msg,
-                file_name=file_name,
-                progress=progress_bar,
-                progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────",edit,time.time()))
-                      
+            if file_name:
+                file = await userbot.download_media(
+                    msg,
+                    file_name=file_name,
+                    progress=progress_bar,
+                    progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────",edit,time.time()))
+            else:
+                file = await userbot.download_media(
+                    msg,
+                    progress=progress_bar,
+                    progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────",edit,time.time()))
+                    
             file = await rename_file(file, sender, edit)
             await edit.edit('**__Checking file...__**')
             file_size = None
