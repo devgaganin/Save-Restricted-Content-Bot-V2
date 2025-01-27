@@ -30,7 +30,7 @@ from telethon.sync import TelegramClient
 from telethon.tl.types import DocumentAttributeVideo
 from devgagan.core.func import screenshot, video_metadata
 from telethon.tl.functions.messages import EditMessageRequest
-from SpyLib import fast_upload
+from devgagantools import fast_upload
 from concurrent.futures import ThreadPoolExecutor
 import aiohttp   
 import logging
