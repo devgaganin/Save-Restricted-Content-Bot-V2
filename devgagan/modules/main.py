@@ -26,6 +26,7 @@ from pyrogram.errors import FloodWait
 from datetime import datetime, timedelta
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import subprocess
+from devgagan.modules.shrink import is_user_verified
 async def generate_random_name(length=8):
     return ''.join(random.choices(string.ascii_lowercase, k=length))
 
@@ -44,7 +45,7 @@ async def process_and_upload_link(userbot, user_id, msg_id, link, retry_count, m
 
 # Function to check if the user can proceed
 async def check_interval(user_id, freecheck):
-    if freecheck != 1:  # Premium or owner users can always proceed
+    if freecheck != 1 or await is_user_verified(user_id):  # Premium or owner users can always proceed
         return True, None
 
     now = datetime.now()
@@ -85,7 +86,7 @@ async def single_link(_, message):
         return
 
     # Check freemium limits
-    if await chk_user(message, user_id) == 1 and FREEMIUM_LIMIT == 0 and user_id not in OWNER_ID:
+    if await chk_user(message, user_id) == 1 and FREEMIUM_LIMIT == 0 and user_id not in OWNER_ID and not await is_user_verified(user_id):
         await message.reply("Freemium service is currently not available. Upgrade to premium for access.")
         return
 
@@ -177,7 +178,7 @@ async def batch_link(_, message):
         return
 
     freecheck = await chk_user(message, user_id)
-    if freecheck == 1 and FREEMIUM_LIMIT == 0 and user_id not in OWNER_ID:
+    if freecheck == 1 and FREEMIUM_LIMIT == 0 and user_id not in OWNER_ID and not await is_user_verified(user_id):
         await message.reply("Freemium service is currently not available. Upgrade to premium for access.")
         return
 
