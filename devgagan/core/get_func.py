@@ -334,7 +334,7 @@ def get_final_caption(msg, sender):
     upload_method = await fetch_upload_method(sender)
     # Handle caption based on the upload method
     if msg.caption:
-        original_caption = msg.caption if upload_method == "telethon" else msg.caption.markdown
+        original_caption = msg.caption if upload_method == "Telethon" else msg.caption.markdown
     else:
         original_caption = ""
     
