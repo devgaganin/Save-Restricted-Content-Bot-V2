@@ -171,7 +171,8 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         chat, msg_id = None, None
         saved_channel_ids = load_saved_channel_ids()
         size_limit = 2 * 1024 * 1024 * 1024  # 1.99 GB size limit
-        
+        file = None
+        edit = None
         # Extract chat and message ID for valid Telegram links
         if 't.me/c/' in msg_link or 't.me/b/' in msg_link:
             parts = msg_link.split("/")
@@ -237,7 +238,6 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
 
         
         # Handle file media (photo, document, video)
-        file = None
         file_size = get_message_file_size(msg)
 
         if file_size and file_size > size_limit and pro is None:
