@@ -188,7 +188,7 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 <summary><b>Update: 1 Feb 2025</b></summary>
   
 - Added support to upload in `topics` (in group)
-- seperated function from direct loop
+- seperated function from direct loop of `get_msg` and `copy_message_with_chat_id` function
 - & some more advancements 
   
 </details>
