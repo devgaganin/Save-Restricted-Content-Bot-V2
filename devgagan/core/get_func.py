@@ -326,7 +326,7 @@ async def get_media_filename(msg):
     return None
 
 def get_final_caption(msg, sender):
-    original_caption = msg.caption.markdown or ""
+    original_caption = msg.caption.markdown if msg.caption else None
     custom_caption = get_user_caption_preference(sender)
     final_caption = f"{original_caption}\n\n{custom_caption}" if custom_caption else original_caption
     replacements = load_replacement_words(sender)
@@ -385,8 +385,10 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
         # Handle different media types
         if msg.media:
             result = await send_media_message(app, target_chat_id, msg, final_caption, topic_id)
+            return
         elif msg.text:
             result = await app.copy_message(target_chat_id, chat_id, message_id, reply_to_message_id=topic_id)
+            return
 
         # Fallback if result is None
         if result is None:
@@ -397,7 +399,7 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
             if not msg or msg.service or msg.empty:
                 return
 
-            final_caption = format_caption(msg.caption.markdown or '', sender, custom_caption)
+            final_caption = format_caption(msg.caption.markdown if msg.caption else "", sender, custom_caption)
             file = await userbot.download_media(
                 msg,
                 progress=progress_bar,
