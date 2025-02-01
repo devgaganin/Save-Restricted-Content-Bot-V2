@@ -127,14 +127,14 @@ async def single_link(_, message):
             pass
 
 
-async def initialize_userbot(user_id):
+async def initialize_userbot(user_id): # this ensure the single startup .. even if logged in or not
     """Initialize the userbot session for the given user."""
     data = await db.get_data(user_id)
     if data and data.get("session"):
         try:
-            device = 'Vivo Y20'
+            device = 'iPhone 16 Pro' # added gareebi text
             userbot = Client(
-                ":userbot:",
+                "userbot",
                 api_id=API_ID,
                 api_hash=API_HASH,
                 device_model=device,
