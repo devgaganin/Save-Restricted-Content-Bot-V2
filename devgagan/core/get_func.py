@@ -10,6 +10,7 @@
 # Last Modified: 2025-02-01
 # Version: 2.0.5
 # License: MIT License
+# Improved logic handles
 # ---------------------------------------------------
 
 import asyncio
