@@ -257,7 +257,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             progress_args=("╭─────────────────────╮\n│      **__Downloading__...**\n├─────────────────────", edit, time.time())
         )
         
-        caption = get_final_caption(msg, sender)
+        caption = await get_final_caption(msg, sender)
 
         # Rename file
         file = await rename_file(file, sender)
@@ -330,7 +330,7 @@ async def get_media_filename(msg):
         return "photo.jpg"
     return None
 
-def get_final_caption(msg, sender):
+async def get_final_caption(msg, sender):
     upload_method = await fetch_upload_method(sender)
     # Handle caption based on the upload method
     if msg.caption:
