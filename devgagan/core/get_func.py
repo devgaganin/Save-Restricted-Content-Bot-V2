@@ -231,6 +231,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             await handle_sticker(app, msg, target_chat_id, topic_id, edit_id, LOG_GROUP)
             return
 
+        
         # Handle file media (photo, document, video)
         file = None
         file_size = get_message_file_size(msg)
@@ -326,15 +327,20 @@ async def get_media_filename(msg):
     return None
 
 def get_final_caption(msg, sender):
-    original_caption = msg.caption.markdown if msg.caption else None
+    upload_method = await fetch_upload_method(sender)
+    # Handle caption based on the upload method
+    if msg.caption:
+        original_caption = msg.caption if upload_method == "telethon" else msg.caption.markdown
+    else:
+        original_caption = ""
+    
     custom_caption = get_user_caption_preference(sender)
     final_caption = f"{original_caption}\n\n{custom_caption}" if custom_caption else original_caption
     replacements = load_replacement_words(sender)
-
     for word, replace_word in replacements.items():
         final_caption = final_caption.replace(word, replace_word)
-    
-    return final_caption.strip()
+        
+    return final_caption if final_caption else None
 
 
 async def download_user_stories(userbot, chat_id, msg_id, edit, sender):
