@@ -10,6 +10,7 @@
 # Last Modified: 2025-01-11
 # Version: 2.0.5
 # License: MIT License
+# More readable 
 # ---------------------------------------------------
 
 import time
