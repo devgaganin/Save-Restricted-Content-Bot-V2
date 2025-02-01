@@ -240,10 +240,8 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         file = None
         file_size = get_message_file_size(msg)
 
-        # Check file size limit
-        free_check = await chk_user(message, sender)
-        if file_size and file_size > size_limit and free_check == 1:
-            await app.edit_message_text(sender, edit_id, "**❌ File size exceeds 2GB. Upgrade to premium to proceed.**")
+        if file_size and file_size > size_limit and pro is None:
+            await app.edit_message_text(sender, edit_id, "**❌ 4GB Uploader not found**")
             return
 
         file_name = await get_media_filename(msg)
@@ -334,7 +332,7 @@ def get_message_file_size(msg):
         return msg.photo.file_size
     if msg.video:
         return msg.video.file_size
-    return None
+    return 1
 
 async def get_final_caption(msg, sender):
     upload_method = await fetch_upload_method(sender)
