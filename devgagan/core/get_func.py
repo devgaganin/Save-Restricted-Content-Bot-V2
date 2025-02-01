@@ -322,7 +322,7 @@ async def get_media_filename(msg):
     if msg.video:
         return msg.video.file_name if msg.video.file_name else "temp.mp4"
     if msg.photo:
-        return msg.photo.file_name if msg.photo.file_name else "temp.jpg"
+        return "temp.jpg"
     return "unknown_file"
 
 def get_message_file_size(msg):
