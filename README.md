@@ -185,6 +185,14 @@ Your credentials can be stolen if pushed to a public repository. Always keep the
 ## Updates
 
 <details>
+<summary><b>Update: 1 Feb 2025</b></summary>
+  
+- Added support to upload in `topics` (in group)
+- seperated function from direct loop
+- & some more advancements 
+  
+</details>
+<details>
 <summary><b>Update: 22 Jan 2025</b></summary>
   
 - Added public user ID or channel story downloader support (see our tutorial for this how to save) 
