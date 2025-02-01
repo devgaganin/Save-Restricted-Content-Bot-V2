@@ -336,6 +336,15 @@ async def get_media_filename(msg):
         return "photo.jpg"
     return None
 
+def get_message_file_size(msg):
+    if msg.document:
+        return msg.document.file_size
+    if msg.photo:
+        return msg.photo.file_size
+    if msg.video:
+        return msg.video.file_size
+    return None
+
 async def get_final_caption(msg, sender):
     upload_method = await fetch_upload_method(sender)
     # Handle caption based on the upload method
