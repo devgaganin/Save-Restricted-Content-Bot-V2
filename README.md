@@ -28,7 +28,9 @@ see our live bot kn telegram to check the features [Advance Content Saver Bot](h
 - **Premium Access**: Premium users enjoy faster processing speeds and priority queue management.
 - ads setup shorlink ads token system
 - fast uploader via `SpyLib` using Telethon modules and `mautrix bridge repo`
+- Directly upload to `topic` in any topic enabled group
 
+  
 ## ⚡ Commands
 
 - **`start`**: 🚀 Start the bot.
@@ -77,7 +79,7 @@ To run the bot, you'll need to configure a few sensitive variables. Here's how t
 - **`YT_COOKIES`**: Yt cookies for downloading yt videos 
 - **`INSTA_COOKIES`**: If you want to enable instagram downloading fill cookiesn
 
-** How to get cookies ??** : use mozila firfox if on android or use chrome on desktop and download extension get this cookie or any Netscape Cookies (HTTP Cookies) extractor and use that 
+**How to get cookies ??** : use mozila firfox if on android or use chrome on desktop and download extension get this cookie or any Netscape Cookies (HTTP Cookies) extractor and use that 
 
 ### Monetization (Optional):
 - **`WEBSITE_URL`**: (Optional) This is the domain for your monetization short link service. Provide the shortener's domain name, for example: `upshrink.com`. Do **not** include `www` or `https://`. The default link shortener is already set.
