@@ -318,14 +318,14 @@ async def handle_sticker(app, msg, target_chat_id, topic_id, edit_id, log_group)
     await edit.delete()
 
 
-def get_message_file_size(msg):
+async def get_media_filename(msg):
     if msg.document:
-        return msg.document.file_size
-    if msg.photo:
-        return msg.photo.file_size
+        return msg.document.file_name
     if msg.video:
-        return msg.video.file_size
-    return None
+        return msg.video.file_name if msg.video.file_name else "temp.mp4"
+    if msg.photo:
+        return msg.photo.file_name if msg.photo.file_name else "temp.jpg"
+    return "unknown_file"
 
 async def get_media_filename(msg):
     if msg.document:
