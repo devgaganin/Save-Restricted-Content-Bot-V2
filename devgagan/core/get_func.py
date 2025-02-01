@@ -87,7 +87,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                     reply_to_message_id=topic_id,
                     parse_mode=ParseMode.MARKDOWN,
                     progress=progress_bar,
-                    progress_args=("**__Pyro Uploader__**", edit, time.time())
+                    progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
                 )
                 await dm.copy(LOG_GROUP)
             elif file.split('.')[-1].lower() in document_formats:
@@ -269,6 +269,12 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         
         if msg.voice:
             result = await app.send_voice(target_chat_id, file, reply_to_message_id=topic_id)
+            await result.copy(LOG_GROUP)
+            await edit.delete(2)
+            return
+
+        if msg.photo:
+            result = await app.send_photo(target_chat_id, file, reply_to_message_id=topic_id)
             await result.copy(LOG_GROUP)
             await edit.delete(2)
             return
