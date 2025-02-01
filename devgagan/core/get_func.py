@@ -195,6 +195,10 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 return
             parts = msg_link.split("/")
             chat = parts[3]
+            
+            if chat.isdigit():   # this is for channel stories
+                chat = f"-100{chat}"
+            
             msg_id = int(parts[-1])
             await download_user_stories(userbot, chat, msg_id, edit, sender)
             await edit.delete(2)
