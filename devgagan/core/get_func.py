@@ -28,11 +28,10 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid
 from pyrogram.enums import MessageMediaType, ParseMode
 from devgagan.core.func import *
-from devgagan.core.mongo import db
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 from config import MONGO_DB as MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID, STRING, API_ID, API_HASH
-from devgagan.core.mongo.db import set_session, remove_session
+from devgagan.core.mongo.db import set_session, remove_session, get_data
 from telethon import TelegramClient, events, Button
 from devgagantools import fast_upload
 
