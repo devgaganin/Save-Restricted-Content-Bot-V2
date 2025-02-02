@@ -20,13 +20,6 @@ from config import API_ID, API_HASH, BOT_TOKEN, STRING, MONGO_DB
 from telethon.sync import TelegramClient
 from motor.motor_asyncio import AsyncIOMotorClient
 import time
-import pyrogram.utils
-
-pyrogram.utils.MIN_CHAT_ID = -999999999999
-pyrogram.utils.MIN_CHANNEL_ID = -100999999999999
-pyrogram.utils.MAX_USER_ID = 999999999999
-pyrogram.utils.MAX_CHANNEL_ID = -1000000000000
-
 
 loop = asyncio.get_event_loop()
 
