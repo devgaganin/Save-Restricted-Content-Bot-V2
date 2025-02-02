@@ -66,7 +66,7 @@ async def clear_db(client, message):
     if files_deleted:
         await message.reply("✅ Your session data and files have been cleared from memory and disk.")
     else:
-        await message.reply("⚠️ You are not logged in, no session data found.")
+        await message.reply("✅ Logged out with flag -m")
         
     
 @app.on_message(filters.command("login"))
