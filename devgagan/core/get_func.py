@@ -462,14 +462,19 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
 
 
 async def send_media_message(app, target_chat_id, msg, caption, topic_id):
-    if msg.video:
-        return await app.send_video(target_chat_id, msg.video.file_id, caption=caption, reply_to_message_id=topic_id)
-    if msg.document:
-        return await app.send_document(target_chat_id, msg.document.file_id, caption=caption, reply_to_message_id=topic_id)
-    if msg.photo:
-        return await app.send_photo(target_chat_id, msg.photo.file_id, caption=caption, reply_to_message_id=topic_id)
+    try:
+        if msg.video:
+            return await app.send_video(target_chat_id, msg.video.file_id, caption=caption, reply_to_message_id=topic_id)
+        if msg.document:
+            return await app.send_document(target_chat_id, msg.document.file_id, caption=caption, reply_to_message_id=topic_id)
+        if msg.photo:
+            return await app.send_photo(target_chat_id, msg.photo.file_id, caption=caption, reply_to_message_id=topic_id)
+    except Exception as e:
+        print(f"Error while sending media: {e}")
+    
+    # Fallback to copy_message in case of any exceptions
     return await app.copy_message(target_chat_id, msg.chat.id, msg.id, reply_to_message_id=topic_id)
-
+    
 
 def format_caption(original_caption, sender, custom_caption):
     delete_words = load_delete_words(sender)
