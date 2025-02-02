@@ -614,7 +614,7 @@ async def callback_query_handler(event):
         
     elif event.data == b'logout':
         await remove_session(user_id)
-        user_data = await db.get_data(user_id)
+        user_data = await get_data(user_id)
         if user_data and user_data.get("session") is None:
             await event.respond("Logged out and deleted session successfully.")
         else:
