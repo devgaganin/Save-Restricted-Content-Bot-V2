@@ -58,6 +58,10 @@ async def delete_session_files(user_id):
 async def clear_db(client, message):
     user_id = message.chat.id
     files_deleted = await delete_session_files(user_id)
+    try:
+        await db.remove_session(user_id)
+    except Exception:
+        pass
 
     if files_deleted:
         await message.reply("✅ Your session data and files have been cleared from memory and disk.")
