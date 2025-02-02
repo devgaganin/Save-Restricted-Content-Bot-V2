@@ -62,6 +62,21 @@ async def fetch_upload_method(user_id):
     user_data = collection.find_one({"user_id": user_id})
     return user_data.get("upload_method", "Pyrogram") if user_data else "Pyrogram"
 
+async def format_caption_to_html(caption: str) -> str:
+    caption = re.sub(r"^> (.*)", r"<blockquote>\1</blockquote>", caption, flags=re.MULTILINE)
+    caption = re.sub(r"```(.*?)```", r"<pre>\1</pre>", caption, flags=re.DOTALL)
+    caption = re.sub(r"`(.*?)`", r"<code>\1</code>", caption)
+    caption = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", caption)
+    caption = re.sub(r"\*(.*?)\*", r"<b>\1</b>", caption)
+    caption = re.sub(r"__(.*?)__", r"<i>\1</i>", caption)
+    caption = re.sub(r"_(.*?)_", r"<i>\1</i>", caption)
+    caption = re.sub(r"~~(.*?)~~", r"<s>\1</s>", caption)
+    caption = re.sub(r"\|\|(.*?)\|\|", r"<details>\1</details>", caption)
+    caption = re.sub(r"\[(.*?)\]\((.*?)\)", r'<a href="\2">\1</a>', caption)
+    return caption.strip() if caption else None
+    
+
+
 async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
     try:
         upload_method = await fetch_upload_method(sender)  # Fetch the upload method (Pyrogram or Telethon)
@@ -120,7 +135,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
             await edit.delete()
             progress_message = await gf.send_message(sender, "**__Uploading...__**")
             start_time = time.time()
-
+            caption = await format_caption_to_html(caption)
             uploaded = await fast_upload(
                 gf, file,
                 reply=progress_message,
@@ -335,10 +350,9 @@ def get_message_file_size(msg):
     return 1
 
 async def get_final_caption(msg, sender):
-    upload_method = await fetch_upload_method(sender)
     # Handle caption based on the upload method
     if msg.caption:
-        original_caption = msg.caption if upload_method == "Telethon" else msg.caption.markdown
+        original_caption = msg.caption.markdown
     else:
         original_caption = ""
     
