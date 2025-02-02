@@ -204,7 +204,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
                 )
                 return
             
-        elif 't.me/s/' in msg_link:
+        elif '/s/' in msg_link: # fixed story typo
             edit = await app.edit_message_text(sender, edit_id, "Story Link Dictected...")
             if userbot is None:
                 await edit.edit("Login in bot save stories...")     
