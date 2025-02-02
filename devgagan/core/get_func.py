@@ -468,7 +468,7 @@ async def send_media_message(app, target_chat_id, msg, caption, topic_id):
         return await app.send_document(target_chat_id, msg.document.file_id, caption=caption, reply_to_message_id=topic_id)
     if msg.photo:
         return await app.send_photo(target_chat_id, msg.photo.file_id, caption=caption, reply_to_message_id=topic_id)
-    return await app.copy_message(target_chat_id, msg.chat.id, msg.message_id, reply_to_message_id=topic_id)
+    return await app.copy_message(target_chat_id, msg.chat.id, msg.id, reply_to_message_id=topic_id)
 
 
 def format_caption(original_caption, sender, custom_caption):
