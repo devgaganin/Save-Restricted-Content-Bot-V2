@@ -453,9 +453,11 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
                 await edit.edit("Unsupported media type.")
 
     except Exception as e:
-        error_message = f"Error occurred while processing message: {str(e)}"
-        await app.send_message(sender, error_message)
-        await app.send_message(sender, f"Make Bot admin in your Channel - {target_chat_id} and restart the process after /cancel")
+        print(f"Error : {e}"}
+        pass
+        #error_message = f"Error occurred while processing message: {str(e)}"
+        # await app.send_message(sender, error_message)
+        # await app.send_message(sender, f"Make Bot admin in your Channel - {target_chat_id} and restart the process after /cancel")
 
     finally:
         if file and os.path.exists(file):
