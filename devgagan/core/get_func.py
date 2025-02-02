@@ -303,7 +303,7 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
     except (ChannelBanned, ChannelInvalid, ChannelPrivate, ChatIdInvalid, ChatInvalid):
         await app.edit_message_text(sender, edit_id, "Have you joined the channel?")
     except Exception as e:
-        await app.edit_message_text(sender, edit_id, f"Failed to save: `{msg_link}`\n\nError: {str(e)}")
+        # await app.edit_message_text(sender, edit_id, f"Failed to save: `{msg_link}`\n\nError: {str(e)}")
         print(f"Error: {e}")
     finally:
         # Clean up
@@ -453,7 +453,7 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
                 await edit.edit("Unsupported media type.")
 
     except Exception as e:
-        print(f"Error : {e}"}
+        print(f"Error : {e}")
         pass
         #error_message = f"Error occurred while processing message: {str(e)}"
         # await app.send_message(sender, error_message)
