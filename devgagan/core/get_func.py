@@ -134,13 +134,12 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
         elif upload_method == "Telethon":
             await edit.delete()
             progress_message = await gf.send_message(sender, "**__Uploading...__**")
-            start_time = time.time()
             caption = await format_caption_to_html(caption)
             uploaded = await fast_upload(
                 gf, file,
                 reply=progress_message,
                 name=None,
-                progress_bar_function=lambda done, total: progress_callback(done, total, start_time)
+                progress_bar_function=lambda done, total: progress_callback(done, total, sender)
             )
             await progress_message.delete()
 
