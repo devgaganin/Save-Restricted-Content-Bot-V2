@@ -16,6 +16,7 @@ see our live bot kn telegram to check the features [Advance Content Saver Bot](h
 ## 🔧 Features
 - Extract content from both public and private channels/groups.
 - Rename and forward content to other channels or users.
+- extract restricted content from other bots how to use format link like `https://b/botusername(without @)/message_id(get it from plus messenger)`
 - Custom captions and thumbnails.
 - Auto-remove default video thumbnails.
 - Delete or replace words in filenames and captions.
