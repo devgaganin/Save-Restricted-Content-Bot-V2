@@ -31,7 +31,7 @@ from devgagan.core.func import *
 from pyrogram.errors import RPCError
 from pyrogram.types import Message
 from config import MONGO_DB as MONGODB_CONNECTION_STRING, LOG_GROUP, OWNER_ID, STRING, API_ID, API_HASH
-from devgagan.core.mongo.db import set_session, remove_session, get_data
+from devgagan.core.mongo import db as odb
 from telethon import TelegramClient, events, Button
 from devgagantools import fast_upload
 
@@ -621,8 +621,8 @@ async def callback_query_handler(event):
         sessions[user_id] = 'deleteword'
         
     elif event.data == b'logout':
-        await remove_session(user_id)
-        user_data = await get_data(user_id)
+        await odb.remove_session(user_id)
+        user_data = await odb.get_data(user_id)
         if user_data and user_data.get("session") is None:
             await event.respond("Logged out and deleted session successfully.")
         else:
@@ -765,7 +765,7 @@ async def handle_user_input(event):
 
         elif session_type == 'addsession':
             session_string = event.text
-            await set_session(user_id, session_string)
+            await odb.set_session(user_id, session_string)
             await event.respond("✅ Session string added successfully!")
                 
         elif session_type == 'deleteword':
