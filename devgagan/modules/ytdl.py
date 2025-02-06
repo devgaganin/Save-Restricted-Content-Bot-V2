@@ -28,12 +28,14 @@ from pyrogram import Client,filters
 from telethon import events
 from telethon.sync import TelegramClient
 from telethon.tl.types import DocumentAttributeVideo
-from devgagan.core.func import screenshot, video_metadata
+from devgagan.core.func import screenshot, video_metadata, progress_bar
 from telethon.tl.functions.messages import EditMessageRequest
 from devgagantools import fast_upload
 from concurrent.futures import ThreadPoolExecutor
-import aiohttp   
+import aiohttp 
+from devgagan import app
 import logging
+import aiofiles
 from mutagen.id3 import ID3, TIT2, TPE1, COMM, APIC
 from mutagen.mp3 import MP3
  
@@ -380,6 +382,14 @@ async def process_video(client, event, url, cookies_env_var, check_duration_and_
  
          
         chat_id = event.chat_id
+        SIZE = 2 * 1024 * 1024
+        caption = f"{title}"
+     
+        if os.path.exists(download_path) and os.path.getsize(download_path) > SIZE:
+            prog = await client.send_message(chat_id, "**__Starting Upload...__**")
+            await split_and_upload_file(app, chat_id, download_path, caption)
+            await prog.delete()
+         
         if os.path.exists(download_path):
             await progress_message.delete()
             prog = await client.send_message(chat_id, "**__Starting Upload...__**")
@@ -418,4 +428,43 @@ async def process_video(client, event, url, cookies_env_var, check_duration_and_
         if thumbnail_file and os.path.exists(thumbnail_file):
             os.remove(thumbnail_file)
  
+
+async def split_and_upload_file(app, sender, file, caption):
+    if not os.path.exists(file_path):
+        await app.send_message(sender, "❌ File not found!")
+        return
+
+    file_size = os.path.getsize(file_path)
+    start = await app.send_message(sender, f"ℹ️ File size: {file_size / (1024 * 1024):.2f} MB")
+    PART_SIZE =  1.9 * 1024 * 1024 * 1024
+
+    part_number = 0
+    async with aiofiles.open(file_path, mode="rb") as f:
+        while True:
+            chunk = await f.read(PART_SIZE)
+            if not chunk:
+                break
+
+            # Create part filename
+            base_name, file_ext = os.path.splitext(file_path)
+            part_file = f"{base_name}.part{str(part_number).zfill(3)}{file_ext}"
+
+            # Write part to file
+            async with aiofiles.open(part_file, mode="wb") as part_f:
+                await part_f.write(chunk)
+
+            # Uploading part
+            edit = await app.send_message(sender, f"⬆️ Uploading part {part_number + 1}...")
+            part_caption = f"{caption} \n\n**Part : {part_number + 1}**"
+            await app.send_document(sender, document=part_file, caption=part_caption,
+                progress=progress_bar,
+                progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
+            )
+            await edit.delete()
+            os.remove(part_file)  # Cleanup after upload
+
+            part_number += 1
+
+    await start.delete()
+    os.remove(file_path)
  
