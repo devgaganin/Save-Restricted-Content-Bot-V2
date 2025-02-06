@@ -25,6 +25,7 @@ see our live bot kn telegram to check the features [Advance Content Saver Bot](h
 - download yt/insta/Twitter/fb ect normal ytdlp supported sites that supports best format
 - Login via phone number.
 - **Supports 4GB file uploads**: The bot can handle large file uploads, up to 4GB in size.
+- file splitter if not premium string
 - **Enhanced Timer**: Distinct timers for free and paid users to limit usage and improve service.
 - **Improved Looping**: Optimized looping for processing multiple files or links, reducing delays and enhancing performance.
 - **Premium Access**: Premium users enjoy faster processing speeds and priority queue management.
