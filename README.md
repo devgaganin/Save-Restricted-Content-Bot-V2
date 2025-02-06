@@ -1,5 +1,5 @@
 <h1 align="center">
-  Winter Release V3
+  Winter Release v3
 </h1>
 
 [Telegram](https://t.me/save_restricted_content_bots) | [See Recent Updates](https://github.com/devgaganin/Save-Restricted-Content-Bot-V2/tree/v3#updates)
@@ -17,6 +17,7 @@ see our live bot kn telegram to check the features [Advance Content Saver Bot](h
 - Extract content from both public and private channels/groups.
 - Rename and forward content to other channels or users.
 - extract restricted content from other bots how to use format link like `https://b/botusername(without @)/message_id(get it from plus messenger)`
+- `/login` method along with `session` based login
 - Custom captions and thumbnails.
 - Auto-remove default video thumbnails.
 - Delete or replace words in filenames and captions.
