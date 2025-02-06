@@ -255,9 +255,9 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         # Handle file media (photo, document, video)
         file_size = get_message_file_size(msg)
 
-        if file_size and file_size > size_limit and pro is None:
-            await app.edit_message_text(sender, edit_id, "**❌ 4GB Uploader not found**")
-            return
+        # if file_size and file_size > size_limit and pro is None:
+        #     await app.edit_message_text(sender, edit_id, "**❌ 4GB Uploader not found**")
+        #     return
 
         file_name = await get_media_filename(msg)
         edit = await app.edit_message_text(sender, edit_id, "**Downloading...**")
@@ -294,8 +294,12 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
 
         # Upload media
         # await edit.edit("**Checking file...**")
-        if file_size > size_limit:
-            await handle_large_file(file, sender, edit, caption)
+        if file_size > size_limit and (free_check == 1 or pro is None):
+            await edit.delete()
+            await split_and_upload_file(app, sender, target_chat_id, file, caption, topic_id, is_pin)
+            return
+        elif file_size > size_limit:
+            await handle_large_file(file, sender, edit, caption, is_pin)
         else:
             await upload_media(sender, target_chat_id, file, caption, edit, topic_id)
 
@@ -438,8 +442,14 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
             if msg.photo:
                 result = await app.send_photo(target_chat_id, file, caption=final_caption, reply_to_message_id=topic_id)
             elif msg.video or msg.document:
-                if await is_file_size_exceeding(file, size_limit):
-                    await handle_large_file(file, sender, edit, final_caption)
+                freecheck = await chk_user(chat_id, sender)
+                if file_size > size_limit and (freecheck == 1 or pro is None):
+                    await edit.delete()
+                    is_pin = 1 # dummy
+                    await split_and_upload_file(app, sender, target_chat_id, file, caption, topic_id, is_pin)
+                    return       
+                elif file_size > size_limit:
+                    await handle_large_file(file, sender, edit, final_caption, is_pin)
                     return
                 await upload_media(sender, target_chat_id, file, final_caption, edit, topic_id)
             elif msg.audio:
