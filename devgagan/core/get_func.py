@@ -20,6 +20,7 @@ import os
 import re
 from typing import Callable
 from devgagan import app
+import aiofiles
 from devgagan import sex as gf
 from telethon.tl.types import DocumentAttributeVideo, Message
 from telethon.sessions import StringSession
@@ -296,10 +297,10 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
         # await edit.edit("**Checking file...**")
         if file_size > size_limit and (free_check == 1 or pro is None):
             await edit.delete()
-            await split_and_upload_file(app, sender, target_chat_id, file, caption, topic_id, is_pin)
+            await split_and_upload_file(app, sender, target_chat_id, file, caption, topic_id)
             return
         elif file_size > size_limit:
-            await handle_large_file(file, sender, edit, caption, is_pin)
+            await handle_large_file(file, sender, edit, caption)
         else:
             await upload_media(sender, target_chat_id, file, caption, edit, topic_id)
 
@@ -445,11 +446,10 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
                 freecheck = await chk_user(chat_id, sender)
                 if file_size > size_limit and (freecheck == 1 or pro is None):
                     await edit.delete()
-                    is_pin = 1 # dummy
-                    await split_and_upload_file(app, sender, target_chat_id, file, caption, topic_id, is_pin)
+                    await split_and_upload_file(app, sender, target_chat_id, file, caption, topic_id)
                     return       
                 elif file_size > size_limit:
-                    await handle_large_file(file, sender, edit, final_caption, is_pin)
+                    await handle_large_file(file, sender, edit, final_caption)
                     return
                 await upload_media(sender, target_chat_id, file, final_caption, edit, topic_id)
             elif msg.audio:
@@ -1071,3 +1071,44 @@ def dl_progress_callback(done, total, user_id):
     user_data['previous_time'] = time.time()
     
     return final
+
+# split function .... ?( to handle gareeb bot coder jo string n lga paaye)
+
+async def split_and_upload_file(app, sender, target_chat_id, file_path, caption, topic_id):
+    if not os.path.exists(file_path):
+        await app.send_message(sender, "❌ File not found!")
+        return
+
+    file_size = os.path.getsize(file_path)
+    start = await app.send_message(sender, f"ℹ️ File size: {file_size / (1024 * 1024):.2f} MB")
+    PART_SIZE =  1.9 * 1024 * 1024 * 1024
+
+    part_number = 0
+    async with aiofiles.open(file_path, mode="rb") as f:
+        while True:
+            chunk = await f.read(PART_SIZE)
+            if not chunk:
+                break
+
+            # Create part filename
+            base_name, file_ext = os.path.splitext(file_path)
+            part_file = f"{base_name}.part{str(part_number).zfill(3)}{file_ext}"
+
+            # Write part to file
+            async with aiofiles.open(part_file, mode="wb") as part_f:
+                await part_f.write(chunk)
+
+            # Uploading part
+            edit = await app.send_message(sender, f"⬆️ Uploading part {part_number + 1}...")
+            part_caption = f"{caption} \n\n**Part : {part_number + 1}**"
+            await app.send_document(target_chat_id, document=part_file, caption=part_caption, reply_to_message_id=topic_id,
+                progress=progress_bar,
+                progress_args=("╭─────────────────────╮\n│      **__Pyro Uploader__**\n├─────────────────────", edit, time.time())
+            )
+            await edit.delete()
+            os.remove(part_file)  # Cleanup after upload
+
+            part_number += 1
+
+    await start.delete()
+    os.remove(file_path)
