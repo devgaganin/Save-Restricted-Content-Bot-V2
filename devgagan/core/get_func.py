@@ -432,6 +432,10 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
             if not msg or msg.service or msg.empty:
                 return
 
+            if msg.text:
+                await app.send_message(target_chat_id, msg.text.markdown)
+                return
+
             final_caption = format_caption(msg.caption.markdown if msg.caption else "", sender, custom_caption)
             file = await userbot.download_media(
                 msg,
