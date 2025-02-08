@@ -433,7 +433,7 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
                 return
 
             if msg.text:
-                await app.send_message(target_chat_id, msg.text.markdown)
+                await app.send_message(target_chat_id, msg.text.markdown, reply_to_message_id=topic_id)
                 return
 
             final_caption = format_caption(msg.caption.markdown if msg.caption else "", sender, custom_caption)
