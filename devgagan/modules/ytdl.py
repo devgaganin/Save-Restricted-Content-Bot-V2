@@ -429,7 +429,7 @@ async def process_video(client, event, url, cookies_env_var, check_duration_and_
             os.remove(thumbnail_file)
  
 
-async def split_and_upload_file(app, sender, file, caption):
+async def split_and_upload_file(app, sender, file_path, caption):
     if not os.path.exists(file_path):
         await app.send_message(sender, "❌ File not found!")
         return
