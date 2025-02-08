@@ -51,7 +51,6 @@ async def set(_, message):
         BotCommand("plan", "🗓️ Check our premium plans"),
         BotCommand("terms", "🥺 Terms and conditions"),
         BotCommand("speedtest", "🚅 Speed of server"),
-        BotCommand("get", "🗄️ Get all user IDs"),
         BotCommand("lock", "🔒 Protect channel from extraction"),
         BotCommand("gcast", "⚡ Broadcast message to bot users"),
         BotCommand("help", "❓ If you're a noob, still!"),
