@@ -279,12 +279,14 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             result = await app.send_audio(target_chat_id, file, caption=caption, reply_to_message_id=topic_id)
             await result.copy(LOG_GROUP)
             await edit.delete(2)
+            os.remove(file)
             return
         
         if msg.voice:
             result = await app.send_voice(target_chat_id, file, reply_to_message_id=topic_id)
             await result.copy(LOG_GROUP)
             await edit.delete(2)
+            os.remove(file)
             return
 
 
@@ -292,12 +294,14 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             result = await app.send_video_note(target_chat_id, file, reply_to_message_id=topic_id)
             await result.copy(LOG_GROUP)
             await edit.delete(2)
+            os.remove(file)
             return
 
         if msg.photo:
             result = await app.send_photo(target_chat_id, file, caption=caption, reply_to_message_id=topic_id)
             await result.copy(LOG_GROUP)
             await edit.delete(2)
+            os.remove(file)
             return
 
         # Upload media
