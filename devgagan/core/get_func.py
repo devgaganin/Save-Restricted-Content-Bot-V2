@@ -287,6 +287,13 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             await edit.delete(2)
             return
 
+
+        if msg.video_note:
+            result = await app.send_video_note(target_chat_id, file, reply_to_message_id=topic_id)
+            await result.copy(LOG_GROUP)
+            await edit.delete(2)
+            return
+
         if msg.photo:
             result = await app.send_photo(target_chat_id, file, caption=caption, reply_to_message_id=topic_id)
             await result.copy(LOG_GROUP)
