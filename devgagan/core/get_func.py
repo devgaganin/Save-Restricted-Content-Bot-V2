@@ -231,7 +231,8 @@ async def get_msg(userbot, sender, edit_id, msg_link, i, message):
             
         # Fetch the target message
         msg = await userbot.get_messages(chat, msg_id)
-        if not msg or msg.service or msg.empty:
+        if msg.service or msg.empty:
+            await app.delete_messages(sender, edit_id)
             return
 
         target_chat_id = user_chat_ids.get(message.chat.id, message.chat.id)
