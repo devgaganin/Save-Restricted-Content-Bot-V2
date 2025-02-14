@@ -46,6 +46,13 @@
       "value": "",
       "required": false
     },
+
+    "DEFAULT_SESSION": {
+      "description": "Enter session string if you want YOUR USERS not to be forced login and can do things via invite_link",
+      "value": "",
+      "required": false
+    },
+    
     "WEBSITE_URL": {
       "description": "Enter shortener website domain eg upshrink.com",
       "value": "upshrink.com",
