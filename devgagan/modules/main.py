@@ -18,8 +18,8 @@ import random
 import string
 import asyncio
 from pyrogram import filters, Client
-from devgagan import app
-from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT, OWNER_ID
+from devgagan import app, userrbot
+from config import API_ID, API_HASH, FREEMIUM_LIMIT, PREMIUM_LIMIT, OWNER_ID, DEFAULT_SESSION
 from devgagan.core.get_func import get_msg
 from devgagan.core.func import *
 from devgagan.core.mongo import db
@@ -103,14 +103,11 @@ async def single_link(_, message):
     link = message.text if "tg://openmessage" in message.text else get_link(message.text)
     msg = await message.reply("Processing...")
     userbot = await initialize_userbot(user_id)
-
     try:
         if await is_normal_tg_link(link):
-            # Pass userbot if available; handle normal Telegram links
             await process_and_upload_link(userbot, user_id, msg.id, link, 0, message)
             await set_interval(user_id, interval_minutes=45)
         else:
-            # Handle special Telegram links
             await process_special_links(userbot, user_id, msg, link)
             
     except FloodWait as fw:
@@ -119,8 +116,6 @@ async def single_link(_, message):
         await msg.edit_text(f"Link: `{link}`\n\n**Error:** {str(e)}")
     finally:
         users_loop[user_id] = False
-        if userbot:
-            await userbot.stop()
         try:
             await msg.delete()
         except Exception:
@@ -128,7 +123,6 @@ async def single_link(_, message):
 
 
 async def initialize_userbot(user_id): # this ensure the single startup .. even if logged in or not
-    """Initialize the userbot session for the given user."""
     data = await db.get_data(user_id)
     if data and data.get("session"):
         try:
@@ -143,8 +137,13 @@ async def initialize_userbot(user_id): # this ensure the single startup .. even 
             await userbot.start()
             return userbot
         except Exception:
+            await app.send_message(user_id, "Login Expired re do login")
             return None
-    return None
+    else:
+        if DEFAULT_SESSION:
+            return userrbot
+        else:
+            return None
 
 
 async def is_normal_tg_link(link: str) -> bool:
@@ -153,15 +152,18 @@ async def is_normal_tg_link(link: str) -> bool:
     return 't.me/' in link and not any(x in link for x in special_identifiers)
     
 async def process_special_links(userbot, user_id, msg, link):
-    """Handle special Telegram links."""
+    if userbot is None:
+        return await msg.edit_text("Try logging in to the bot and try again.")
     if 't.me/+' in link:
         result = await userbot_join(userbot, link)
         await msg.edit_text(result)
-    elif any(sub in link for sub in ['t.me/c/', 't.me/b/', '/s/', 'tg://openmessage']):
+        return
+    special_patterns = ['t.me/c/', 't.me/b/', '/s/', 'tg://openmessage']
+    if any(sub in link for sub in special_patterns):
         await process_and_upload_link(userbot, user_id, msg.id, link, 0, msg)
         await set_interval(user_id, interval_minutes=45)
-    else:
-        await msg.edit_text("Invalid link format.")
+        return
+    await msg.edit_text("Invalid link...")
 
 
 @app.on_message(filters.command("batch") & filters.private)
@@ -233,6 +235,7 @@ async def batch_link(_, message):
     users_loop[user_id] = True
     try:
         normal_links_handled = False
+        if DEFAULT_
         userbot = await initialize_userbot(user_id)
         # Handle normal links first
         for i in range(cs, cs + cl):
