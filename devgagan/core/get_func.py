@@ -438,6 +438,11 @@ async def copy_message_with_chat_id(app, userbot, sender, chat_id, message_id, e
         # Fallback if result is None
         if result is None:
             await edit.edit("Trying if it is a group...")
+            try:
+                await userbot.join_chat(chat_id)
+            except Exception as e:
+                print(e)
+                pass
             chat_id = (await userbot.get_chat(f"@{chat_id}")).id
             msg = await userbot.get_messages(chat_id, message_id)
 
