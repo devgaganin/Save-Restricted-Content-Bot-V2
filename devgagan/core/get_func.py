@@ -82,7 +82,10 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
         upload_method = await fetch_upload_method(sender)  # Fetch the upload method (Pyrogram or Telethon)
         metadata = video_metadata(file)
         width, height, duration = metadata['width'], metadata['height'], metadata['duration']
-        thumb_path = await screenshot(file, duration, sender)
+        try:
+            thumb_path = await screenshot(file, duration, sender)
+        except Exception:
+            thumb_path = None
 
         video_formats = {'mp4', 'mkv', 'avi', 'mov'}
         document_formats = {'pdf', 'docx', 'txt', 'epub'}
@@ -848,8 +851,10 @@ async def handle_large_file(file, sender, edit, caption):
     duration = metadata['duration']
     width = metadata['width']
     height = metadata['height']
-    
-    thumb_path = await screenshot(file, duration, sender)
+    try:
+        thumb_path = await screenshot(file, duration, sender)
+    except Exception:
+        thumb_path = None
     try:
         if file_extension in VIDEO_EXTENSIONS:
             dm = await pro.send_video(
