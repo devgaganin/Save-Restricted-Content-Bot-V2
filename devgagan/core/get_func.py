@@ -162,6 +162,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                 caption=caption,
                 attributes=attributes,
                 reply_to=topic_id,
+                parse_mode='html',
                 thumb=thumb_path
             )
             await gf.send_file(
@@ -169,6 +170,7 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                 uploaded,
                 caption=caption,
                 attributes=attributes,
+                parse_mode='html',
                 thumb=thumb_path
             )
 
