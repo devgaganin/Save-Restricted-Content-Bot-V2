@@ -143,7 +143,8 @@ async def upload_media(sender, target_chat_id, file, caption, edit, topic_id):
                 gf, file,
                 reply=progress_message,
                 name=None,
-                progress_bar_function=lambda done, total: progress_callback(done, total, sender)
+                progress_bar_function=lambda done, total: progress_callback(done, total, sender),
+                user_id=sender
             )
             await progress_message.delete()
 
