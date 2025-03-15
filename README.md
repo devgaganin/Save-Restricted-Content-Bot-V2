@@ -2,6 +2,13 @@
   Winter Release v3
 </h1>
 
+# Important Note : 
+- I will not update this repo instead use the latest repo based on Pyrogram developed in less code (the current branch v4 is that's replica)
+- https://github.com/devgaganin/Save-Restricted-Content-Bot-v3/tree/main
+- the every branch of this repo have uniques features and all are working branches so you can migrate and test from `v1` to `v4` the `v3` is more advance than all
+- thanks continue fork and edit
+
+
 [Telegram](https://t.me/save_restricted_content_bots) | [See Recent Updates](https://github.com/devgaganin/Save-Restricted-Content-Bot-V2/tree/v3#updates)
 
 ### Star the repo it motivate us to update new features
